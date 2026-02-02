@@ -84,9 +84,9 @@ func shoot():
 func kick():
 	can_kick = false
 	var kick_instance = kick_scene.instantiate()
-	
+
 	kick_instance.position = Vector2(50, 10)
-	get_parent().add_child(kick_instance)
+	add_child(kick_instance)
 	
 	await get_tree().create_timer(0.2).timeout
 	if is_instance_valid(kick_instance):
