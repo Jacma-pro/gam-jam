@@ -1,0 +1,76 @@
+[gd_scene load_steps=6 format=3 uid="uid://dgry0dd7ox5pt"]
+
+[ext_resource type="PackedScene" uid="uid://c4rfru7mo434n" path="res://scenes/map/interfaceTop.tscn" id="1_top"]
+[ext_resource type="PackedScene" uid="uid://wvuatb5lo2f0" path="res://scenes/fire_player/fire_player.tscn" id="2_vjpme"]
+[ext_resource type="PackedScene" uid="uid://djh8bfpj3hko4" path="res://scenes/map/interfaceBottom.tscn" id="3_bottom"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_horiz"]
+size = Vector2(1280, 100)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_vert"]
+size = Vector2(100, 500)
+
+[node name="MainLayout" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Camera2D" type="Camera2D" parent="."]
+position = Vector2(645, 372)
+
+[node name="VBoxContainer" type="VBoxContainer" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/separation = 0
+
+[node name="TopSection" type="Control" parent="VBoxContainer"]
+custom_minimum_size = Vector2(0, 40)
+layout_mode = 2
+
+[node name="TopSection#InterfaceTop" parent="VBoxContainer/TopSection" instance=ExtResource("1_top")]
+position = Vector2(0, 2)
+
+[node name="GameSection" type="Control" parent="VBoxContainer"]
+custom_minimum_size = Vector2(0, 500)
+layout_mode = 2
+
+[node name="BottomSection" type="Control" parent="VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="BottomSection#InterfaceBottom" parent="VBoxContainer/BottomSection" instance=ExtResource("3_bottom")]
+position = Vector2(640, 96)
+
+[node name="FirePlayer" parent="." instance=ExtResource("2_vjpme")]
+position = Vector2(368, 407)
+
+[node name="StaticBody2D" type="StaticBody2D" parent="."]
+
+[node name="Boundaries#TopWall" type="CollisionShape2D" parent="StaticBody2D"]
+position = Vector2(641, -11)
+shape = SubResource("RectangleShape2D_horiz")
+
+[node name="StaticBody2D2" type="StaticBody2D" parent="."]
+
+[node name="Boundaries#BottomWall" type="CollisionShape2D" parent="StaticBody2D2"]
+position = Vector2(640, 550)
+shape = SubResource("RectangleShape2D_horiz")
+
+[node name="StaticBody2D3" type="StaticBody2D" parent="."]
+
+[node name="Boundaries#LeftWall" type="CollisionShape2D" parent="StaticBody2D3"]
+position = Vector2(-48, 253)
+shape = SubResource("RectangleShape2D_vert")
+
+[node name="StaticBody2D4" type="StaticBody2D" parent="."]
+
+[node name="Boundaries#RightWall" type="CollisionShape2D" parent="StaticBody2D4"]
+position = Vector2(1330, 250)
+shape = SubResource("RectangleShape2D_vert")
