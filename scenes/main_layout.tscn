@@ -19,7 +19,7 @@ grow_horizontal = 2
 grow_vertical = 2
 
 [node name="Camera2D" type="Camera2D" parent="."]
-position = Vector2(645, 372)
+position = Vector2(647, 360)
 
 [node name="VBoxContainer" type="VBoxContainer" parent="."]
 layout_mode = 1
@@ -41,6 +41,16 @@ position = Vector2(0, 2)
 custom_minimum_size = Vector2(0, 500)
 layout_mode = 2
 
+[node name="ColorRect" type="ColorRect" parent="VBoxContainer/GameSection"]
+layout_mode = 0
+offset_top = 2.0
+offset_right = 1280.0
+offset_bottom = 542.0
+color = Color(0.21960784, 1, 0.1882353, 1)
+
+[node name="FirePlayer" parent="VBoxContainer/GameSection" instance=ExtResource("2_vjpme")]
+position = Vector2(365, 416)
+
 [node name="BottomSection" type="Control" parent="VBoxContainer"]
 layout_mode = 2
 size_flags_vertical = 3
@@ -48,28 +58,21 @@ size_flags_vertical = 3
 [node name="BottomSection#InterfaceBottom" parent="VBoxContainer/BottomSection" instance=ExtResource("3_bottom")]
 position = Vector2(640, 96)
 
-[node name="FirePlayer" parent="." instance=ExtResource("2_vjpme")]
-position = Vector2(368, 407)
-
-[node name="StaticBody2D" type="StaticBody2D" parent="."]
-
-[node name="Boundaries#TopWall" type="CollisionShape2D" parent="StaticBody2D"]
-position = Vector2(641, -11)
-shape = SubResource("RectangleShape2D_horiz")
-
 [node name="StaticBody2D2" type="StaticBody2D" parent="."]
 
 [node name="Boundaries#BottomWall" type="CollisionShape2D" parent="StaticBody2D2"]
-position = Vector2(640, 550)
+position = Vector2(640, 591)
 shape = SubResource("RectangleShape2D_horiz")
 
 [node name="StaticBody2D3" type="StaticBody2D" parent="."]
+position = Vector2(-2, 38)
 
 [node name="Boundaries#LeftWall" type="CollisionShape2D" parent="StaticBody2D3"]
 position = Vector2(-48, 253)
 shape = SubResource("RectangleShape2D_vert")
 
 [node name="StaticBody2D4" type="StaticBody2D" parent="."]
+position = Vector2(0, 41)
 
 [node name="Boundaries#RightWall" type="CollisionShape2D" parent="StaticBody2D4"]
 position = Vector2(1330, 250)
