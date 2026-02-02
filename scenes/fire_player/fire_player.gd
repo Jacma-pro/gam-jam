@@ -1,6 +1,7 @@
 extends CharacterBody2D
 
 @export var fireball_scene = preload("res://scenes/fire_player/fire_ball/FireBall.tscn")
+@export var kick_scene = preload("res://scenes/fire_player/fire_kick/FireKick.tscn")
 
 @export_category("Mouvement")
 @export var speed = 400.0
@@ -12,9 +13,12 @@ extends CharacterBody2D
 @export var action_jump: String = "p1_up"
 @export var action_down: String = "p1_block"
 @export var action_shoot: String = "p1_shoot"
+@export var action_kick: String = "p1_kick"
 
 @export var shoot_cooldown: float = 2.0
+@export var kick_cooldown: float = 0.5
 var can_shoot: bool = true
+var can_kick: bool = true
 
 var gravity = ProjectSettings.get_setting("physics/2d/default_gravity")
 
@@ -34,6 +38,10 @@ func _physics_process(delta: float) -> void:
 	# Handle shooting.
 	if Input.is_action_just_pressed(action_shoot) and can_shoot:
 		shoot()
+		
+	# Handle Kick
+	if Input.is_action_just_pressed(action_kick) and can_kick:
+		kick()
 
 	# Handle jump.	
 	if Input.is_action_just_pressed(action_jump) and is_on_floor():
@@ -72,3 +80,17 @@ func shoot():
 	
 	await get_tree().create_timer(shoot_cooldown).timeout
 	can_shoot = true
+
+func kick():
+	can_kick = false
+	var kick_instance = kick_scene.instantiate()
+	
+	kick_instance.position = Vector2(50, 10)
+	get_parent().add_child(kick_instance)
+	
+	await get_tree().create_timer(0.2).timeout
+	if is_instance_valid(kick_instance):
+		kick_instance.queue_free()
+		
+	await get_tree().create_timer(kick_cooldown).timeout
+	can_kick = true

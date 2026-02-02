@@ -1,0 +1,11 @@
+[gd_scene load_steps=3 format=3 uid="uid://our7175xv0pd"]
+
+[ext_resource type="Script" path="res://scenes/fire_player/fire_cac/fire_cac.gd" id="1_c2lbm"]
+[ext_resource type="Texture2D" uid="uid://blfqg621u87rd" path="res://icon.svg" id="2_hx35o"]
+
+[node name="FireKick" type="Area2D"]
+script = ExtResource("1_c2lbm")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+position = Vector2(0, -1)
+texture = ExtResource("2_hx35o")
