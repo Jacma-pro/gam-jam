@@ -31,20 +31,20 @@ func _physics_process(delta: float) -> void:
 		velocity.y += gravity * delta
 	
 	# Handle down (block)
-
+	var is_blocking = false
 	if Input.is_action_pressed(action_down) and is_on_floor():
-		velocity.y = 0
+		is_blocking = true
 
 	# Handle shooting.
-	if Input.is_action_just_pressed(action_shoot) and can_shoot:
+	if Input.is_action_just_pressed(action_shoot) and can_shoot and not is_blocking:
 		shoot()
 		
 	# Handle Kick
-	if Input.is_action_just_pressed(action_kick) and can_kick:
+	if Input.is_action_just_pressed(action_kick) and can_kick and not is_blocking:
 		kick()
 
 	# Handle jump.	
-	if Input.is_action_just_pressed(action_jump) and is_on_floor():
+	if Input.is_action_just_pressed(action_jump) and is_on_floor() and not is_blocking:
 		velocity.y = jump_velocity
 
 	# Get the input direction and handle the movement/deceleration.
