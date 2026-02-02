@@ -1,17 +1,88 @@
-[gd_scene load_steps=4 format=3 uid="uid://wvuatb5lo2f0"]
+[gd_scene load_steps=12 format=3 uid="uid://wvuatb5lo2f0"]
 
-[ext_resource type="Texture2D" uid="uid://blfqg621u87rd" path="res://icon.svg" id="1_i0wps"]
 [ext_resource type="Script" uid="uid://dcn8olcl5w8o4" path="res://scenes/fire_player/fire_player.gd" id="1_qqxw6"]
+[ext_resource type="Texture2D" uid="uid://ba1iar8rh8b2f" path="res://assets/dodo.png" id="2_qqxw6"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_qqxw6"]
 radius = 64.0
-height = 128.0
+height = 176.0
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_qqxw6"]
+atlas = ExtResource("2_qqxw6")
+region = Rect2(0, 100, 37, 50)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_8qqkx"]
+atlas = ExtResource("2_qqxw6")
+region = Rect2(37, 100, 37, 50)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_plpw6"]
+atlas = ExtResource("2_qqxw6")
+region = Rect2(74, 100, 37, 50)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_rlfdi"]
+atlas = ExtResource("2_qqxw6")
+region = Rect2(37, 50, 37, 50)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_epuyc"]
+atlas = ExtResource("2_qqxw6")
+region = Rect2(0, 50, 37, 50)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_cqvoo"]
+atlas = ExtResource("2_qqxw6")
+region = Rect2(37, 50, 37, 50)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_re5xv"]
+atlas = ExtResource("2_qqxw6")
+region = Rect2(74, 50, 37, 50)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_cqvoo"]
+animations = [{
+"frames": [],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_qqxw6")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_8qqkx")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_plpw6")
+}],
+"loop": true,
+"name": &"p1_jump",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_rlfdi")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_epuyc")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_cqvoo")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_re5xv")
+}],
+"loop": true,
+"name": &"p1_right",
+"speed": 5.0
+}]
 
 [node name="FirePlayer" type="CharacterBody2D"]
 script = ExtResource("1_qqxw6")
 
-[node name="Sprite2D" type="Sprite2D" parent="."]
-texture = ExtResource("1_i0wps")
-
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(0, 4)
 shape = SubResource("CapsuleShape2D_qqxw6")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+scale = Vector2(4, 4)
+sprite_frames = SubResource("SpriteFrames_cqvoo")
+animation = &"p1_jump"
+frame_progress = 0.7067751

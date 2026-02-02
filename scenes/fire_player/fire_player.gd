@@ -12,7 +12,12 @@ extends CharacterBody2D
 @export var action_jump: String = "p1_up"
 @export var action_shoot: String = "p1_shoot"
 
+@export var shoot_cooldown: float = 2.0
+var can_shoot: bool = true
+
 var gravity = ProjectSettings.get_setting("physics/2d/default_gravity")
+
+@onready var animated_sprite = $AnimatedSprite2D
 
 
 func _physics_process(delta: float) -> void:
@@ -21,7 +26,7 @@ func _physics_process(delta: float) -> void:
 		velocity.y += gravity * delta
 
 	# Handle shooting.
-	if Input.is_action_just_pressed(action_shoot):
+	if Input.is_action_just_pressed(action_shoot) and can_shoot:
 		shoot()
 
 	# Handle jump.	
@@ -35,11 +40,27 @@ func _physics_process(delta: float) -> void:
 	else:
 		velocity.x = move_toward(velocity.x, 0, speed)
 
+	_update_animation(direction)
 	move_and_slide()
 
 
+func _update_animation(direction):
+	if not is_on_floor():
+		animated_sprite.play("p1_jump")
+	elif direction != 0:
+		animated_sprite.play("p1_right")
+	else:
+		animated_sprite.play("p1_right")
+		animated_sprite.stop()
+		animated_sprite.frame = 0
+
+
 func shoot():
+	can_shoot = false
 	var fireball = fireball_scene.instantiate()
 	fireball.position = position + Vector2(100, 0)
 	
 	get_parent().add_child(fireball)
+	
+	await get_tree().create_timer(shoot_cooldown).timeout
+	can_shoot = true
