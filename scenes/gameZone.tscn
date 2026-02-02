@@ -1,0 +1,14 @@
+[gd_scene load_steps=3 format=3 uid="uid://p6uw2vws1n2i"]
+
+[ext_resource type="PackedScene" uid="uid://c4rfru7mo434n" path="res://scenes/map/interfaceTop.tscn" id="1_l7n10"]
+[ext_resource type="PackedScene" uid="uid://djh8bfpj3hko4" path="res://scenes/map/interfaceBottom.tscn" id="2_13itn"]
+
+[node name="GameZone" type="Node"]
+
+[node name="Camera2D" type="Camera2D" parent="."]
+position = Vector2(640, 356)
+
+[node name="InterfaceTop" parent="." instance=ExtResource("1_l7n10")]
+
+[node name="InterfaceBottom" parent="." instance=ExtResource("2_13itn")]
+position = Vector2(638, 626)

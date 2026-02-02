@@ -1,0 +1,37 @@
+[gd_scene load_steps=2 format=3 uid="uid://djh8bfpj3hko4"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_saq45"]
+font_size = 46
+font_color = Color(0, 0, 0, 1)
+
+[node name="InterfaceBottom" type="Node2D"]
+
+[node name="ColorRect" type="ColorRect" parent="."]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -640.0
+offset_top = -85.5
+offset_right = 640.0
+offset_bottom = 85.5
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+
+[node name="Label" type="Label" parent="."]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -100.0
+offset_top = -32.0
+offset_right = 100.0
+offset_bottom = 32.0
+grow_horizontal = 2
+grow_vertical = 2
+text = "Interface & Commandes"
+label_settings = SubResource("LabelSettings_saq45")
