@@ -6,7 +6,7 @@
 [node name="TestArena" type="Node2D"]
 
 [node name="Camera2D" type="Camera2D" parent="."]
-position = Vector2(576, 324)
+position = Vector2(640, 360)
 
 [node name="Floor" parent="." instance=ExtResource("2_platform")]
 position = Vector2(576, 600)

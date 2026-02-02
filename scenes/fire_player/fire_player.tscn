@@ -1,4 +1,4 @@
-[gd_scene load_steps=12 format=3 uid="uid://wvuatb5lo2f0"]
+[gd_scene load_steps=13 format=3 uid="uid://wvuatb5lo2f0"]
 
 [ext_resource type="Script" uid="uid://dcn8olcl5w8o4" path="res://scenes/fire_player/fire_player.gd" id="1_qqxw6"]
 [ext_resource type="Texture2D" uid="uid://ba1iar8rh8b2f" path="res://assets/dodo.png" id="2_qqxw6"]
@@ -6,6 +6,10 @@
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_qqxw6"]
 radius = 64.0
 height = 176.0
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_l1spi"]
+atlas = ExtResource("2_qqxw6")
+region = Rect2(37, 0, 37, 50)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_qqxw6"]
 atlas = ExtResource("2_qqxw6")
@@ -44,6 +48,14 @@ animations = [{
 }, {
 "frames": [{
 "duration": 1.0,
+"texture": SubResource("AtlasTexture_l1spi")
+}],
+"loop": true,
+"name": &"p1_block",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
 "texture": SubResource("AtlasTexture_qqxw6")
 }, {
 "duration": 1.0,
@@ -54,7 +66,7 @@ animations = [{
 }],
 "loop": true,
 "name": &"p1_jump",
-"speed": 5.0
+"speed": 6.0
 }, {
 "frames": [{
 "duration": 1.0,
@@ -84,5 +96,4 @@ shape = SubResource("CapsuleShape2D_qqxw6")
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 scale = Vector2(4, 4)
 sprite_frames = SubResource("SpriteFrames_cqvoo")
-animation = &"p1_jump"
-frame_progress = 0.7067751
+animation = &"p1_block"

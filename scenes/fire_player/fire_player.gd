@@ -10,6 +10,7 @@ extends CharacterBody2D
 @export var action_left: String = "p1_left"
 @export var action_right: String = "p1_right"
 @export var action_jump: String = "p1_up"
+@export var action_down: String = "p1_block"
 @export var action_shoot: String = "p1_shoot"
 
 @export var shoot_cooldown: float = 2.0
@@ -24,6 +25,11 @@ func _physics_process(delta: float) -> void:
 	# Add the gravity.
 	if not is_on_floor():
 		velocity.y += gravity * delta
+	
+	# Handle down (block)
+
+	if Input.is_action_pressed(action_down) and is_on_floor():
+		velocity.y = 0
 
 	# Handle shooting.
 	if Input.is_action_just_pressed(action_shoot) and can_shoot:
@@ -49,6 +55,8 @@ func _update_animation(direction):
 		animated_sprite.play("p1_jump")
 	elif direction != 0:
 		animated_sprite.play("p1_right")
+	elif Input.is_action_pressed(action_down):
+		animated_sprite.play("p1_block")
 	else:
 		animated_sprite.play("p1_right")
 		animated_sprite.stop()
