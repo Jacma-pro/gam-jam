@@ -56,7 +56,7 @@ layout_mode = 2
 size_flags_vertical = 3
 
 [node name="BottomSection#InterfaceBottom" parent="VBoxContainer/BottomSection" instance=ExtResource("3_bottom")]
-position = Vector2(640, 96)
+position = Vector2(643, 99)
 
 [node name="StaticBody2D2" type="StaticBody2D" parent="."]
 
