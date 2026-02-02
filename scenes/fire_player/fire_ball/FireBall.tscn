@@ -1,0 +1,13 @@
+[gd_scene load_steps=3 format=3 uid="uid://dbtid3sd3epux"]
+
+[ext_resource type="Script" uid="uid://crbny75e55ht" path="res://scenes/fire_player/fire_ball/fire_ball.gd" id="1_xw5oo"]
+[ext_resource type="Texture2D" uid="uid://blfqg621u87rd" path="res://icon.svg" id="2_x5xds"]
+
+[node name="FireBall" type="RigidBody2D"]
+mass = 0.001
+gravity_scale = 0.0
+script = ExtResource("1_xw5oo")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+scale = Vector2(0.5, 0.5)
+texture = ExtResource("2_x5xds")
