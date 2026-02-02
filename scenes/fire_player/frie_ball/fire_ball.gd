@@ -24,4 +24,3 @@ func _process(delta: float) -> void:
 func _on_body_entered(body):
 	print("Touche : ", body.name)
 	queue_free()
-	
