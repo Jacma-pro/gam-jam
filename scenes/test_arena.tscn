@@ -1,4 +1,4 @@
-[gd_scene load_steps=3 format=3 uid="uid://bqx3y2g6k4n8"]
+[gd_scene load_steps=3 format=3 uid="uid://6vplrocd82cm"]
 
 [ext_resource type="PackedScene" uid="uid://wvuatb5lo2f0" path="res://scenes/fire_player/fire_player.tscn" id="1_player"]
 [ext_resource type="PackedScene" uid="uid://c5evy6clrr0i1" path="res://scenes/map/map_element.tscn" id="2_platform"]
@@ -11,12 +11,6 @@ position = Vector2(576, 324)
 [node name="Floor" parent="." instance=ExtResource("2_platform")]
 position = Vector2(576, 600)
 scale = Vector2(5, 1)
-
-[node name="Platform1" parent="." instance=ExtResource("2_platform")]
-position = Vector2(300, 400)
-
-[node name="Platform2" parent="." instance=ExtResource("2_platform")]
-position = Vector2(850, 400)
 
 [node name="FirePlayer" parent="." instance=ExtResource("1_player")]
 position = Vector2(576, 300)
