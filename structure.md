@@ -11,15 +11,15 @@
 - End Game Menu (Restart + Main Menu)
 
 ### Game
-- Fire_Player (Left player)
+- Fire_Player (Left player) X
 - Ice_Player (Right player)
-- Projectiles (Fireball, Iceball) **Capacity one** 
+- Projectiles (Fireball, Iceball) **Capacity one** 1/2
     - E and P
-- Melee Attack **Capacity two** 
+- Melee Attack **Capacity two** 1/2
     - A and I
-- Protection Shield **Capacity three** 
+- Protection Shield **Capacity three** 1/2
     - S and L
-- Movement 
+- Movement 1/2
     - Left(Q and K)
     - Right(D and M)
     - Jump(W and O)
