@@ -68,7 +68,6 @@ func _update_animation(direction):
 		animated_sprite.play("p2_jump")
 	elif direction != 0:
 		animated_sprite.play("p2_left")
-
 	elif Input.is_action_pressed(action_down):
 		animated_sprite.play("p2_block")
 	else:
@@ -104,4 +103,5 @@ func kick():
 	can_kick = true
 
 func take_damage(amount):
+	can_shoot = false
 	print("Aïe ! IcePlayer a pris ", amount, " dégâts.")

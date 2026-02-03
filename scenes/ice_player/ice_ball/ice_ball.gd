@@ -11,7 +11,7 @@ extends Area2D
 func _ready() -> void:
 	if not body_entered.is_connected(_on_body_entered):
 		body_entered.connect(_on_body_entered)
-
+	
 	animated_sprite.play("rotate")
 	
 	await get_tree().create_timer(deleteTimer).timeout
@@ -26,9 +26,9 @@ func _process(delta: float) -> void:
 
 func _on_body_entered(body):
 	print("Touche : ", body.name)
-	
+
 	if body.has_method("take_damage"):
 		body.take_damage(damage)
-		print("IcePlayer touché par la FireBall !")
-	
+		print("FirePlayer touché par la IceBall !")
+
 	queue_free()
