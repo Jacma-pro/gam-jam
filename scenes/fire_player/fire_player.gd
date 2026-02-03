@@ -4,8 +4,8 @@ extends CharacterBody2D
 @export var kick_scene = preload("res://scenes/fire_player/fire_kick/FireKick.tscn")
 
 @export_category("Mouvement")
-@export var speed = 400.0
-@export var jump_velocity = -600.0
+@export var speed = 500.0
+@export var jump_velocity = -500.0
 
 @export_category("Controles")
 @export var action_left: String = "p1_left"
@@ -25,6 +25,11 @@ var gravity = ProjectSettings.get_setting("physics/2d/default_gravity")
 @onready var animated_sprite = $AnimatedSprite2D
 
 
+func _ready() -> void:
+	animated_sprite.play("p2_left")
+	animated_sprite.stop()
+	animated_sprite.frame = 0
+	
 func _physics_process(delta: float) -> void:
 	# Add the gravity.
 	if not is_on_floor():

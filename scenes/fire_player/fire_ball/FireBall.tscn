@@ -53,7 +53,7 @@ script = ExtResource("1_xw5oo")
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 sprite_frames = SubResource("SpriteFrames_lsum8")
 animation = &"rotate"
-frame_progress = 0.41755998
+frame_progress = 0.42729476
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource("CircleShape2D_xw5oo")
