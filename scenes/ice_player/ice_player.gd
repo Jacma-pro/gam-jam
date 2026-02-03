@@ -102,5 +102,11 @@ func kick():
 	can_kick = true
 
 func take_damage(amount):
-	can_shoot = false
 	print("Aïe ! IcePlayer a pris ", amount, " dégâts.")
+	
+	# La glace prend des dégâts = Le feu gagne du terrain (+ température)
+	var termo = get_tree().get_first_node_in_group("termo_bar")
+	if termo:
+		termo.update_temperature(amount)
+	else:
+		print("Erreur : Impossible de trouver la TermoBar !")
