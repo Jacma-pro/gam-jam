@@ -2,24 +2,38 @@ extends Control
 
 @onready var animation_player: AnimationPlayer = $AnimationPlayer
 const PAUSE_MENU_SCENE = preload("res://scenes/Menu/pause_menu.tscn")
+const OVER_MENU_SCENE = preload("res://scenes/Menu/over_menu.tscn")
 
 func _ready() -> void:
-	# Met le jeu en pause pour figer les joueurs
+	print("MainLayoutIntro: _ready appelé")
+	
+	# Force le mode Pausable sur la section de jeu pour être sûr que les joueurs s'arrêtent
+	var game_section = get_node_or_null("VBoxContainer/GameSection")
+	if game_section:
+		game_section.process_mode = Node.PROCESS_MODE_PAUSABLE
+		print("MainLayoutIntro: GameSection mis en mode PAUSABLE")
+	else:
+		print("MainLayoutIntro: ATTENTION - GameSection introuvable")
+
+	# Vérifie que le GameManager est accessible (Autoload)
+	if GameManager:
+		print("MainLayoutIntro: GameManager trouvé")
+		if not GameManager.game_over.is_connected(_on_game_over):
+			GameManager.game_over.connect(_on_game_over)
+			print("MainLayoutIntro: Signal game_over connecté")
+	else:
+		print("MainLayoutIntro: ERREUR - GameManager introuvable")
+
+	# ... suite du code
+
+func _on_game_over(winner_name: String) -> void:
+	print("MainLayoutIntro: _on_game_over appelé avec vainqueur : ", winner_name)
+	var over_menu = OVER_MENU_SCENE.instantiate()
+	add_child(over_menu)
+	print("MainLayoutIntro: OverMenu instancié et ajouté")
+	
+	# Le script est maintenant sur la racine, on peut appeler la fonction directement
+	over_menu.set_winner(winner_name)
+	
 	get_tree().paused = true
-	# Connecte le signal de fin d'animation pour relancer le jeu
-	animation_player.animation_finished.connect(_on_animation_finished)
-
-func _process(delta: float) -> void:
-	if Input.is_action_just_pressed("pause"):
-		if not get_tree().paused:
-			pause_game()
-
-func pause_game() -> void:
-	var pause_menu = PAUSE_MENU_SCENE.instantiate()
-	add_child(pause_menu)
-	get_tree().paused = true
-
-func _on_animation_finished(anim_name: StringName) -> void:
-	if anim_name == "intro":
-		# Reprend le jeu une fois l'intro terminée
-		get_tree().paused = false
+	print("MainLayoutIntro: Jeu mis en pause")

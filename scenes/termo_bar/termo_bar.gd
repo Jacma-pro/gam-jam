@@ -11,10 +11,9 @@ func update_temperature(amount: float) -> void:
 	# Add (fire gains) or subtract (ice gains)
 	value += amount
 	
-	print("Score actuel : ", value, "/ 100")
+	# Synchronise avec le GameManager si nécessaire, ou déclenche la victoire directement
+	if GameManager:
+		GameManager.temperature = value
+		GameManager.check_win_condition()
 	
-	if value >= max_value:
-		print("VICTOIRE DU FEU ! (La barre est pleine)")
-
-	elif value <= min_value:
-		print("VICTOIRE DE LA GLACE ! (La barre est vide)")
+	print("Score actuel : ", value, "/ 100")
