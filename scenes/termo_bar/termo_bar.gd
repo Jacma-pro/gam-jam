@@ -15,7 +15,6 @@ func update_temperature(amount: float) -> void:
 	
 	if value >= max_value:
 		print("VICTOIRE DU FEU ! (La barre est pleine)")
-		# Ajouter ici la fin de partie
+
 	elif value <= min_value:
 		print("VICTOIRE DE LA GLACE ! (La barre est vide)")
-		# Ajouter ici la fin de partie

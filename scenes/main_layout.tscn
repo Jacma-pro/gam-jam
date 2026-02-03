@@ -1,9 +1,9 @@
-[gd_scene load_steps=6 format=3 uid="uid://dgry0dd7ox5pt"]
+[gd_scene load_steps=7 format=3 uid="uid://mxb6ats508is"]
 
-[ext_resource type="PackedScene" uid="uid://c4rfru7mo434n" path="res://scenes/map/interfaceTop.tscn" id="1_top"]
+[ext_resource type="PackedScene" path="res://scenes/map/interfaceTop.tscn" id="1_top"]
 [ext_resource type="PackedScene" uid="uid://wvuatb5lo2f0" path="res://scenes/fire_player/fire_player.tscn" id="2_vjpme"]
+[ext_resource type="PackedScene" path="res://scenes/map/interfaceBottom.tscn" id="3_bottom"]
 [ext_resource type="PackedScene" uid="uid://dk5rsfk36y8rc" path="res://scenes/ice_player/ice_player.tscn" id="3_ice_player"]
-[ext_resource type="PackedScene" uid="uid://djh8bfpj3hko4" path="res://scenes/map/interfaceBottom.tscn" id="3_bottom"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_horiz"]
 size = Vector2(1280, 100)
