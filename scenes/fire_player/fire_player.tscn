@@ -86,7 +86,7 @@ animations = [{
 "speed": 5.0
 }]
 
-[node name="IcePlayer" type="CharacterBody2D"]
+[node name="FirePlayer" type="CharacterBody2D"]
 position = Vector2(-1, 0)
 script = ExtResource("1_qqxw6")
 
