@@ -11,14 +11,14 @@
 
 ### Game
 - Fire_Player (Left player) X
-- Ice_Player (Right player)
-- Projectiles (Fireball, Iceball) **Capacity one** 1/2
+- Ice_Player (Right player) x
+- Projectiles (Fireball, Iceball) **Capacity one** x
     - E and P
-- Melee Attack **Capacity two** 1/2
+- Melee Attack **Capacity two** x
     - A and I
-- Protection Shield **Capacity three** 1/2
+- Protection Shield **Capacity three** x
     - S and L
-- Movement 1/2
+- Movement x
     - Left(Q and K)
     - Right(D and M)
     - Jump(W and O)
@@ -26,3 +26,29 @@
     - Size (One map size 1280x720 - OverLay)
 - Background 
     - Implemented different layers of background
+
+## What has been done
+
+dodo :
+- In Gameplay:
+    - Fire Player : Complete
+    - Ice Player : Complete
+    - Projectiles : Complete
+    - Melee Attack : Complete
+    - Protection Shield : Complete
+    - Movement : Complete
+    - KeyBoardSettings : Complete
+    - TermoBar : Complete
+
+## what's left
+
+dodo :
+- In Gameplay:
+    - fix gameplay
+    - add combo
+    - add sound effects
+
+## combo Idea
+- add knockback
+- after blocked a ball attack, the next ball gonna be bigger and do more dmg
+

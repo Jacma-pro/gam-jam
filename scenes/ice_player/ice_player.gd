@@ -124,12 +124,19 @@ func take_damage(amount):
 	if is_blocking:
 		print("IcePlayer a bloqué l'attaque !")
 		return
-
-	can_shoot = false
+	
 	print("Aïe ! IcePlayer a pris ", amount, " dégâts.")
 	
+
+	position += Vector2(50, 0)
+
 	var termo = get_tree().get_first_node_in_group("termo_bar")
 	if termo:
 		termo.update_temperature(amount)
 	else:
 		print("Erreur : Impossible de trouver la TermoBar !")
+
+# function for knockback, move back when hit by attack
+func knockback(force: Vector2):
+	velocity += force
+	

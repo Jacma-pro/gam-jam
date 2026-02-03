@@ -21,7 +21,7 @@ position = Vector2(179, 365)
 position = Vector2(934, 365)
 
 [node name="TermoBar" parent="." instance=ExtResource("4_s42hq")]
-offset_left = 275.0
-offset_top = -2.0
-offset_right = 875.0
-offset_bottom = 100.0
+offset_left = 346.0
+offset_top = -65.0
+offset_right = 946.0
+offset_bottom = 37.0

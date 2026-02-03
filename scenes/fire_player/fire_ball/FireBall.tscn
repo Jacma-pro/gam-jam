@@ -51,9 +51,10 @@ radius = 33.06055
 script = ExtResource("1_xw5oo")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+modulate = Color(1, 0.23921569, 0, 1)
 sprite_frames = SubResource("SpriteFrames_lsum8")
 animation = &"rotate"
-frame_progress = 0.42729476
+frame_progress = 0.03086477
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource("CircleShape2D_xw5oo")
