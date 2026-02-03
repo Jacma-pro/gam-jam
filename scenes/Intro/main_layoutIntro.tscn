@@ -1,8 +1,9 @@
-[gd_scene load_steps=11 format=3 uid="uid://bm33h081s2f5w"]
+[gd_scene load_steps=12 format=3 uid="uid://bm33h081s2f5w"]
 
 [ext_resource type="PackedScene" uid="uid://c4rfru7mo434n" path="res://scenes/map/interfaceTop.tscn" id="1_3iq38"]
 [ext_resource type="PackedScene" uid="uid://wvuatb5lo2f0" path="res://scenes/fire_player/fire_player.tscn" id="2_lldya"]
 [ext_resource type="PackedScene" uid="uid://djh8bfpj3hko4" path="res://scenes/map/interfaceBottom.tscn" id="3_ev5j6"]
+[ext_resource type="PackedScene" path="res://scenes/map/background_ambiance.tscn" id="3_v4xi0"]
 [ext_resource type="Script" uid="uid://bvoa0bm66dk8d" path="res://scenes/Intro/main_layout_intro.gd" id="4_script"]
 [ext_resource type="PackedScene" uid="uid://dk5rsfk36y8rc" path="res://scenes/ice_player/ice_player.tscn" id="4_u0wmg"]
 
@@ -115,6 +116,7 @@ size = Vector2(1280, 100)
 size = Vector2(100, 500)
 
 [node name="MainLayout" type="Control"]
+process_mode = 3
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -153,15 +155,11 @@ layout_mode = 2
 position = Vector2(0, 2)
 
 [node name="GameSection" type="Control" parent="VBoxContainer"]
+process_mode = 1
 custom_minimum_size = Vector2(0, 500)
 layout_mode = 2
 
-[node name="ColorRect" type="ColorRect" parent="VBoxContainer/GameSection"]
-layout_mode = 0
-offset_top = 2.0
-offset_right = 1280.0
-offset_bottom = 542.0
-color = Color(0.21960784, 1, 0.1882353, 1)
+[node name="BackgroundAmbiance" parent="VBoxContainer/GameSection" instance=ExtResource("3_v4xi0")]
 
 [node name="FirePlayer" parent="VBoxContainer/GameSection" instance=ExtResource("2_lldya")]
 position = Vector2(302, 422)
