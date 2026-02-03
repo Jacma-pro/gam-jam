@@ -26,10 +26,9 @@ var gravity = ProjectSettings.get_setting("physics/2d/default_gravity")
 
 
 func _ready() -> void:
-	animated_sprite.play("p2_left")
+	animated_sprite.play("default")
 	animated_sprite.stop()
-	animated_sprite.frame = 0
-	
+
 func _physics_process(delta: float) -> void:
 	# Add the gravity.
 	if not is_on_floor():
