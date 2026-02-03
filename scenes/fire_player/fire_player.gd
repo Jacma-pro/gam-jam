@@ -128,6 +128,9 @@ func take_damage(amount):
 		
 	print("Aïe ! FirePlayer a pris ", amount, " dégâts.")
 	
+	# petit recul vers la droite
+	position += Vector2(-50, 0)
+
 	var termo = get_tree().get_first_node_in_group("termo_bar")
 	if termo:
 		termo.update_temperature(-amount)
