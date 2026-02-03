@@ -78,7 +78,7 @@ func _update_animation(direction):
 func shoot():
 	can_shoot = false
 	var fireball = fireball_scene.instantiate()
-	fireball.position = position + Vector2(100, 0)
+	fireball.position = position + Vector2(100, 50)
 	
 	get_parent().add_child(fireball)
 	
@@ -101,3 +101,10 @@ func kick():
 
 func take_damage(amount):
 	print("Aïe ! FirePlayer a pris ", amount, " dégâts.")
+	
+	# Le feu prend des dégâts = La glace gagne du terrain (- température)
+	var termo = get_tree().get_first_node_in_group("termo_bar")
+	if termo:
+		termo.update_temperature(-amount)
+	else:
+		print("Erreur : Impossible de trouver la TermoBar !")
