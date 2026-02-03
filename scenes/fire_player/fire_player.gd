@@ -16,7 +16,7 @@ extends CharacterBody2D
 @export var action_kick: String = "p1_kick"
 
 @export var shoot_cooldown: float = 2.0
-@export var kick_cooldown: float = 0.5
+@export var kick_cooldown: float = 1.0
 var can_shoot: bool = true
 var can_kick: bool = true
 
