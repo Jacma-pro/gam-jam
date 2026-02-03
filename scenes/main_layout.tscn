@@ -61,7 +61,7 @@ position = Vector2(643, 99)
 [node name="StaticBody2D2" type="StaticBody2D" parent="."]
 
 [node name="Boundaries#BottomWall" type="CollisionShape2D" parent="StaticBody2D2"]
-position = Vector2(640, 591)
+position = Vector2(640, 605)
 shape = SubResource("RectangleShape2D_horiz")
 
 [node name="StaticBody2D3" type="StaticBody2D" parent="."]
