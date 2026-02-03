@@ -78,7 +78,7 @@ func _update_animation(direction):
 func shoot():
 	can_shoot = false
 	var fireball = fireball_scene.instantiate()
-	fireball.position = position + Vector2(100, 0)
+	fireball.position = position + Vector2(100, 50)
 	
 	get_parent().add_child(fireball)
 	
