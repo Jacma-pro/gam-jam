@@ -1,6 +1,7 @@
 extends Area2D
 
-@export var damage: float = 5.0
+@export var damage: float = 20.0
+@export var knockback_base: float = 200.0
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
@@ -9,7 +10,7 @@ func _ready() -> void:
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(delta: float) -> void:
+func _process(_delta: float) -> void:
 	pass
 
 func _on_body_entered(body):
@@ -19,6 +20,12 @@ func _on_body_entered(body):
 	if body.has_method("take_damage"):
 		body.take_damage(damage)
 		print("FirePlayer touché par un coup de pied !")
+
+		# apply strong knockback away from the kicker
+		if body.has_method("knockback") and is_instance_valid(get_parent()):
+			var hdir = 1 if body.global_position.x > get_parent().global_position.x else -1
+			var force = Vector2(hdir * knockback_base * 25, -200)
+			body.knockback(force, 1.0)
 
 
 func apply_counter(multiplier: float, size_mult: float) -> void:

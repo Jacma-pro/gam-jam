@@ -59,19 +59,21 @@ func _physics_process(delta: float) -> void:
 		current_block_time = 0.0
 
 	# Handle shooting.
-	if Input.is_action_just_pressed(action_shoot) and can_shoot and not is_blocking:
+	if Input.is_action_just_pressed(action_shoot) and can_shoot and not is_blocking and not is_knocked:
 		shoot()
 		
 	# Handle Kick
-	if Input.is_action_just_pressed(action_kick) and can_kick and not is_blocking:
+	if Input.is_action_just_pressed(action_kick) and can_kick and not is_blocking and not is_knocked:
 		kick()
 
-	# Handle jump.	
-	if Input.is_action_just_pressed(action_jump) and is_on_floor() and not is_blocking:
+	# Handle jump.    
+	if Input.is_action_just_pressed(action_jump) and is_on_floor() and not is_blocking and not is_knocked:
 		velocity.y = jump_velocity
 
 	# Get the input direction and handle the movement/deceleration.
-	var direction := Input.get_axis(action_left, action_right)
+	var direction := 0.0
+	if not is_knocked:
+		direction = Input.get_axis(action_left, action_right)
 	if direction:
 		velocity.x = direction * speed
 	else:
@@ -158,12 +160,16 @@ func take_damage(amount):
 		print("Erreur : Impossible de trouver la TermoBar !")
 
 
-func knockback(force: Vector2):
-	# apply force once and disable inputs briefly so player slides back
+func knockback(force: Vector2, stun_time: float = 0.0) -> void:
+	# apply force once and disable inputs briefly so player slides back / stunned
 	velocity += force
 	is_knocked = true
 
-	await get_tree().create_timer(knockback_duration).timeout
+	var wait_time = knockback_duration
+	if stun_time > wait_time:
+		wait_time = stun_time
+
+	await get_tree().create_timer(wait_time).timeout
 	is_knocked = false
 
 
