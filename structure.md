@@ -3,9 +3,8 @@
 ## Features intégration
 
 ### Interfaces
-- Main menu (Play + Settings)
-- Settings (Audio (On/Off), KeyBoardSettings)
-- Select Player (Fire Player(Name choice) + Ice Player(Name choice))
+- Main menu (Play + Settings) Ok
+- Settings (Audio (On/Off), KeyBoardSettings) OK
 - Pause Menu (Resume + Settings + Main Menu)
 - OverLay (Life progress Bar, Timer) + Bottom section (Keyboard feedback + avatars view + name)
 - End Game Menu (Restart + Main Menu)
