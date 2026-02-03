@@ -18,4 +18,4 @@ func _on_body_entered(body):
 	print("touche cac : ", body.name)
 	if body.has_method("take_damage"):
 		body.take_damage(damage)
-		print("IcePlayer touché par un coup de pied !")
+		print("FirePlayer touché par un coup de pied !")

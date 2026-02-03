@@ -1,19 +1,19 @@
 extends CharacterBody2D
 
-@export var fireball_scene = preload("res://scenes/fire_player/fire_ball/FireBall.tscn")
-@export var kick_scene = preload("res://scenes/fire_player/fire_kick/FireKick.tscn")
+@export var fireball_scene = preload("res://scenes/ice_player/ice_ball/IceBall.tscn")
+@export var kick_scene = preload("res://scenes/ice_player/ice_kick/IceKick.tscn")
 
 @export_category("Mouvement")
 @export var speed = 500.0
 @export var jump_velocity = -500.0
 
 @export_category("Controles")
-@export var action_left: String = "p1_left"
-@export var action_right: String = "p1_right"
-@export var action_jump: String = "p1_up"
-@export var action_down: String = "p1_block"
-@export var action_shoot: String = "p1_shoot"
-@export var action_kick: String = "p1_kick"
+@export var action_left: String = "p2_left"
+@export var action_right: String = "p2_right"
+@export var action_jump: String = "p2_up"
+@export var action_down: String = "p2_block"
+@export var action_shoot: String = "p2_shoot"
+@export var action_kick: String = "p2_kick"
 
 @export var shoot_cooldown: float = 2.0
 @export var kick_cooldown: float = 0.5
@@ -24,12 +24,11 @@ var gravity = ProjectSettings.get_setting("physics/2d/default_gravity")
 
 @onready var animated_sprite = $AnimatedSprite2D
 
-
 func _ready() -> void:
 	animated_sprite.play("p2_left")
 	animated_sprite.stop()
 	animated_sprite.frame = 0
-	
+
 func _physics_process(delta: float) -> void:
 	# Add the gravity.
 	if not is_on_floor():
@@ -59,19 +58,20 @@ func _physics_process(delta: float) -> void:
 	else:
 		velocity.x = move_toward(velocity.x, 0, speed)
 
-	_update_animation(direction)
 	move_and_slide()
+	_update_animation(direction)
 
 
 func _update_animation(direction):
+	animated_sprite.flip_h = false
 	if not is_on_floor():
-		animated_sprite.play("p1_jump")
+		animated_sprite.play("p2_jump")
 	elif direction != 0:
-		animated_sprite.play("p1_right")
+		animated_sprite.play("p2_left")
 	elif Input.is_action_pressed(action_down):
-		animated_sprite.play("p1_block")
+		animated_sprite.play("p2_block")
 	else:
-		animated_sprite.play("p1_right")
+		animated_sprite.play("p2_left")
 		animated_sprite.stop()
 		animated_sprite.frame = 0
 
@@ -79,7 +79,8 @@ func _update_animation(direction):
 func shoot():
 	can_shoot = false
 	var fireball = fireball_scene.instantiate()
-	fireball.position = position + Vector2(100, 0)
+	fireball.position = position + Vector2(-100, 0)
+	fireball.rotation = PI
 	
 	get_parent().add_child(fireball)
 	
@@ -90,7 +91,8 @@ func kick():
 	can_kick = false
 	var kick_instance = kick_scene.instantiate()
 
-	kick_instance.position = Vector2(50, 10)
+	kick_instance.position = Vector2(-50, 10)
+	kick_instance.scale.x = -1
 	add_child(kick_instance)
 	
 	await get_tree().create_timer(0.2).timeout
@@ -101,4 +103,5 @@ func kick():
 	can_kick = true
 
 func take_damage(amount):
-	print("Aïe ! FirePlayer a pris ", amount, " dégâts.")
+	can_shoot = false
+	print("Aïe ! IcePlayer a pris ", amount, " dégâts.")

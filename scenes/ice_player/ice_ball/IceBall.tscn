@@ -1,22 +1,22 @@
-[gd_scene load_steps=9 format=3 uid="uid://dbtid3sd3epux"]
+[gd_scene load_steps=9 format=3 uid="uid://bus48s2a37avh"]
 
-[ext_resource type="Script" uid="uid://crbny75e55ht" path="res://scenes/fire_player/fire_ball/fire_ball.gd" id="1_xw5oo"]
-[ext_resource type="Texture2D" uid="uid://blfqg621u87rd" path="res://icon.svg" id="2_x5xds"]
+[ext_resource type="Script" uid="uid://bq4u3xo3eepn" path="res://scenes/ice_player/ice_ball/ice_ball.gd" id="1_rpatp"]
+[ext_resource type="Texture2D" uid="uid://blfqg621u87rd" path="res://icon.svg" id="2_2mcsn"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_dsw6t"]
-atlas = ExtResource("2_x5xds")
+atlas = ExtResource("2_2mcsn")
 region = Rect2(0, 64, 64, 64)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_xw5oo"]
-atlas = ExtResource("2_x5xds")
+atlas = ExtResource("2_2mcsn")
 region = Rect2(64, 64, 64, 64)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_x5xds"]
-atlas = ExtResource("2_x5xds")
+atlas = ExtResource("2_2mcsn")
 region = Rect2(0, 0, 64, 64)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_thwfy"]
-atlas = ExtResource("2_x5xds")
+atlas = ExtResource("2_2mcsn")
 region = Rect2(64, 0, 64, 64)
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_lsum8"]
@@ -44,16 +44,19 @@ animations = [{
 "speed": 60.0
 }]
 
-[sub_resource type="CircleShape2D" id="CircleShape2D_xw5oo"]
+[sub_resource type="CircleShape2D" id="CircleShape2D_h7box"]
 radius = 33.06055
 
-[node name="FireBall" type="Area2D"]
-script = ExtResource("1_xw5oo")
+[node name="IceBall" type="Area2D"]
+script = ExtResource("1_rpatp")
+speed = null
+damage = null
+deleteTimer = null
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 sprite_frames = SubResource("SpriteFrames_lsum8")
 animation = &"rotate"
-frame_progress = 0.42729476
+frame_progress = 0.56923157
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-shape = SubResource("CircleShape2D_xw5oo")
+shape = SubResource("CircleShape2D_h7box")
