@@ -39,6 +39,7 @@ dodo :
     - Movement : Complete
     - KeyBoardSettings : Complete
     - TermoBar : Complete
+    - add knockback
 
 ## what's left
 
@@ -49,6 +50,5 @@ dodo :
     - add sound effects
 
 ## combo Idea
-- add knockback
 - after blocked a ball attack, the next ball gonna be bigger and do more dmg
 

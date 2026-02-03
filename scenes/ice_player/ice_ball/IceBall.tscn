@@ -54,7 +54,7 @@ script = ExtResource("1_rpatp")
 modulate = Color(0.30980393, 0.6039216, 1, 1)
 sprite_frames = SubResource("SpriteFrames_lsum8")
 animation = &"rotate"
-frame_progress = 0.21488744
+frame_progress = 0.5375797
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource("CircleShape2D_h7box")

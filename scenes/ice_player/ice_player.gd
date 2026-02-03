@@ -23,9 +23,17 @@ var can_kick: bool = true
 # Block gestion
 @export var max_block_time: float = 2.0
 @export var block_cooldown: float = 2.0
+@export var counter_attack_timer: float = 2.0
+var can_counter_attack: bool = false
+var counter_size = 2
 var can_block: bool = true
 var is_blocking: bool = false
 var current_block_time: float = 0.0
+
+# Knockback / stun (déclarés ici pour éviter les références non définies)
+@export var knockback_strength: float = 200.0
+@export var knockback_duration: float = 0.2
+var is_knocked: bool = false
 
 var gravity = ProjectSettings.get_setting("physics/2d/default_gravity")
 
@@ -92,7 +100,18 @@ func shoot():
 	var fireball = fireball_scene.instantiate()
 	fireball.position = position + Vector2(-100, 50)
 	fireball.rotation = PI
-	
+
+	# mark shooter so the projectile won't hit its owner
+	fireball.shooter = self
+
+	# si le joueur a une fenêtre de counter active, élever la balle et l'amplifier
+	if can_counter_attack:
+		# raise spawn so big counter ball doesn't hit ground
+		fireball.position += Vector2(0, -30 * counter_size)
+		if fireball.has_method("apply_counter"):
+			fireball.apply_counter(2.0, counter_size)
+		can_counter_attack = false
+
 	get_parent().add_child(fireball)
 	
 	await get_tree().create_timer(shoot_cooldown).timeout
@@ -122,6 +141,8 @@ func start_block_penalty():
 
 func take_damage(amount):
 	if is_blocking:
+		can_counter_attack = true
+		start_counter_window()
 		print("IcePlayer a bloqué l'attaque !")
 		return
 	
@@ -139,4 +160,16 @@ func take_damage(amount):
 # function for knockback, move back when hit by attack
 func knockback(force: Vector2):
 	velocity += force
+	is_knocked = true
+
+	await get_tree().create_timer(knockback_duration).timeout
+	is_knocked = false
+
+
+func start_counter_window():
+	# window during which next attack is amplified
+	await get_tree().create_timer(counter_attack_timer).timeout
+	can_counter_attack = false
+
+	
 	

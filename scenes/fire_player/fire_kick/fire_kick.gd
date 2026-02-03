@@ -19,3 +19,9 @@ func _on_body_entered(body):
 	if body.has_method("take_damage"):
 		body.take_damage(damage)
 		print("IcePlayer touché par un coup de pied !")
+
+
+func apply_counter(multiplier: float, size_mult: float) -> void:
+	# amplify damage and visual size when player used counter-attack
+	damage *= multiplier
+	scale *= size_mult

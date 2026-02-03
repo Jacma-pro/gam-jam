@@ -3,6 +3,9 @@ extends Area2D
 @export var speed: float = 1000.0
 @export var damage: float = 10.0
 
+# reference to the node that fired this projectile
+var shooter: Node = null
+
 @export var deleteTimer: float = 2.0
 
 @onready var animated_sprite = $AnimatedSprite2D
@@ -26,9 +29,19 @@ func _process(delta: float) -> void:
 
 func _on_body_entered(body):
 	print("Touche : ", body.name)
+
+	# ignore collisions with the shooter
+	if shooter and body == shooter:
+		return
 	
 	if body.has_method("take_damage"):
 		body.take_damage(damage)
 		print("IcePlayer touché par la FireBall !")
 	
 	queue_free()
+
+
+func apply_counter(multiplier: float, size_mult: float) -> void:
+	# amplify damage and visual size when player used counter-attack
+	damage *= multiplier
+	scale *= size_mult
