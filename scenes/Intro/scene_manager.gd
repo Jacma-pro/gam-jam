@@ -25,11 +25,14 @@ func _ready() -> void:
 	if animation_player:
 		animation_player.animation_finished.connect(_on_animation_finished)
 
-func _process(delta: float) -> void:
+func _unhandled_input(event: InputEvent) -> void:
 	# Gestion de la pause manuelle
-	if Input.is_action_just_pressed("pause"):
+	# On utilise _unhandled_input pour que si le MenuPause consomme l'événement, on ne le re-traite pas ici
+	if event.is_action_pressed("pause"):
 		if not get_tree().paused:
 			pause_game()
+			# On consomme l'événement pour éviter qu'il ne remonte ailleurs
+			get_viewport().set_input_as_handled()
 
 func pause_game() -> void:
 	var pause_menu = PAUSE_MENU_SCENE.instantiate()

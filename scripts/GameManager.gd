@@ -5,6 +5,10 @@ signal game_over(winner_name)
 
 var temperature: float = 50.0 
 
+# Variables Audio Persistantes
+var master_volume: float = 100.0
+var is_muted: bool = false
+
 func change_temperature(amount: float):
 	temperature += amount
 	

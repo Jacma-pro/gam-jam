@@ -7,29 +7,40 @@ func _ready() -> void:
 	$CheckButton.toggled.connect(_on_check_button_toggled)
 	$HSlider.value_changed.connect(_on_h_slider_value_changed)
 	
-	# Initialisation : Son activé par défaut
-	$CheckButton.button_pressed = true
-	# Applique l'état initial
-	_on_check_button_toggled($CheckButton.button_pressed)
+	# Initialisation depuis le GameManager
+	# CheckButton ON = Son activé (donc is_muted = false)
+	$CheckButton.button_pressed = not GameManager.is_muted
+	$HSlider.value = GameManager.master_volume
+	
+	# Applique l'état visuel initial
+	$HSlider.visible = $CheckButton.button_pressed
+	
+	# Applique l'état audio initial
+	_apply_audio_settings()
 
+func _apply_audio_settings() -> void:
+	var master_bus_index = AudioServer.get_bus_index("Master")
+	AudioServer.set_bus_mute(master_bus_index, GameManager.is_muted)
+	AudioServer.set_bus_volume_db(master_bus_index, linear_to_db(GameManager.master_volume / 100.0))
 
 func _on_button_pressed() -> void:
 	get_tree().change_scene_to_file("res://scenes/Intro/main_layout_intro.tscn")
 
-
 func _on_check_button_toggled(toggled_on: bool) -> void:
-	var master_bus_index = AudioServer.get_bus_index("Master")
+	# toggled_on = true (Son Activé) -> is_muted = false
+	GameManager.is_muted = not toggled_on
 	
-	# CheckButton ON (toggled_on = true) -> Son Activé (Mute = false)
-	# CheckButton OFF (toggled_on = false) -> Son Coupé (Mute = true)
-	AudioServer.set_bus_mute(master_bus_index, not toggled_on)
+	var master_bus_index = AudioServer.get_bus_index("Master")
+	AudioServer.set_bus_mute(master_bus_index, GameManager.is_muted)
 	
 	$HSlider.visible = toggled_on
 	
 	if toggled_on:
-		$HSlider.value = 100
-
+		if GameManager.master_volume == 0:
+			GameManager.master_volume = 100
+		$HSlider.value = GameManager.master_volume
 
 func _on_h_slider_value_changed(value: float) -> void:
+	GameManager.master_volume = value
 	var master_bus_index = AudioServer.get_bus_index("Master")
 	AudioServer.set_bus_volume_db(master_bus_index, linear_to_db(value / 100.0))

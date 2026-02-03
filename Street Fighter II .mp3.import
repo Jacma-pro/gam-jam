@@ -1,0 +1,19 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+uid="uid://djjlqtl4clhd8"
+path="res://.godot/imported/Street Fighter II .mp3-e7855ee02ea68a6a27b01595351b1fe1.mp3str"
+
+[deps]
+
+source_file="res://Street Fighter II .mp3"
+dest_files=["res://.godot/imported/Street Fighter II .mp3-e7855ee02ea68a6a27b01595351b1fe1.mp3str"]
+
+[params]
+
+loop=false
+loop_offset=0
+bpm=0
+beat_count=0
+bar_beats=4
