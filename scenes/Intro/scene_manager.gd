@@ -35,7 +35,9 @@ func _unhandled_input(event: InputEvent) -> void:
 		if not get_tree().paused:
 			pause_game()
 			# On consomme l'événement pour éviter qu'il ne remonte ailleurs
-			get_viewport().set_input_as_handled()
+			var v = get_viewport()
+			if v:
+				v.set_input_as_handled()
 
 func pause_game() -> void:
 	var pause_menu = PAUSE_MENU_SCENE.instantiate()

@@ -602,4 +602,4 @@ position = Vector2(1, 0)
 scale = Vector2(2, 2)
 sprite_frames = SubResource("SpriteFrames_ntx00")
 animation = &"p2_death"
-frame_progress = 0.64978975
+frame_progress = 0.25247025

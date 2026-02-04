@@ -27,44 +27,6 @@ func _ready() -> void:
 	else:
 		print("OverMenu: ERREUR - Button3 (Menu) introuvable")
 
-	# Focus initial
-	if _focusables.size() > 0:
-		_focus_index = 0
-		_focusables[_focus_index].grab_focus()
-
-func _input(_event: InputEvent) -> void:
-	if nav_down and Input.is_action_just_pressed(nav_down):
-		_focus_index = (_focus_index + 1) % _focusables.size()
-		_focusables[_focus_index].grab_focus()
-		var v = get_viewport()
-		if v:
-			v.set_input_as_handled()
-		return
-	if nav_up and Input.is_action_just_pressed(nav_up):
-		_focus_index = (_focus_index - 1 + _focusables.size()) % _focusables.size()
-		_focusables[_focus_index].grab_focus()
-		var v = get_viewport()
-		if v:
-			v.set_input_as_handled()
-		return
-
-	if nav_ok and Input.is_action_just_pressed(nav_ok):
-		var node = _focusables[_focus_index]
-		if node is Button:
-			# Buttons in over menu are not toggleable, emit pressed
-			node.emit_signal("pressed")
-			var v = get_viewport()
-			if v:
-				v.set_input_as_handled()
-			return
-
-	# Back here is a noop but exported for future usage
-	if nav_back and Input.is_action_just_pressed(nav_back):
-		var v = get_viewport()
-		if v:
-			v.set_input_as_handled()
-		return
-
 func set_winner(winner_name: String) -> void:
 	print("OverMenu: set_winner appelé avec ", winner_name)
 	if label:
