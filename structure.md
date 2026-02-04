@@ -30,18 +30,19 @@
 ## What has been done
 
 - In Gameplay:
-    - Fire Player : Complete
-    - Ice Player : Complete
-    - Projectiles : Complete
-    - Melee Attack : Complete
-    - Protection Shield : Complete
-    - Movement : Complete
-    - KeyBoardSettings : Complete
-    - TermoBar : Complete
-    - add knockback
-    - camera shake when countering
+    - Fire Player : Complete ✅
+    - Ice Player : Complete ✅
+    - Projectiles : Complete ✅
+    - Melee Attack : Complete ✅
+    - Protection Shield : Complete ✅
+    - Movement : Complete ✅
+    - KeyBoardSettings : Complete ✅
+    - TermoBar : Complete ✅
+    - add knockback ✅
+    - camera shake when countering ✅
+    - add death animation (and time for T-bag) ✅
 
-- add damage x2 after 30 seconds ✅
+- add damage x2 after 30 seconds (sudden death) ✅
 - add controller version ✅
 ## what's left
 

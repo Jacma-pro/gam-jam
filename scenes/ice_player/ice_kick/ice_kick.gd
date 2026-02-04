@@ -21,11 +21,13 @@ func _on_body_entered(body):
 		body.take_damage(damage)
 		print("FirePlayer touché par un coup de pied !")
 
-		# apply strong knockback away from the kicker
-		if body.has_method("knockback") and is_instance_valid(get_parent()):
+		# apply an instant positional shove away from the kicker (no sliding)
+		if is_instance_valid(get_parent()):
 			var hdir = 1 if body.global_position.x > get_parent().global_position.x else -1
-			var force = Vector2(hdir * knockback_base * 25, -200)
-			body.knockback(force, 1.0)
+			var shove = Vector2(hdir * knockback_base * 1.5, 0)
+			body.global_position += shove
+			if body.has_method("knockback"):
+				body.knockback(Vector2(0, 0), 0.2)
 
 
 func apply_counter(multiplier: float, size_mult: float) -> void:
