@@ -1,7 +1,8 @@
-[gd_scene load_steps=13 format=3 uid="uid://swrye7exddbs"]
+[gd_scene load_steps=14 format=3 uid="uid://swrye7exddbs"]
 
 [ext_resource type="PackedScene" uid="uid://wvuatb5lo2f0" path="res://scenes/fire_player/fire_player.tscn" id="2_lldya"]
 [ext_resource type="PackedScene" uid="uid://dt1dgs63g4kj5" path="res://scenes/termo_bar/TermoBar.tscn" id="2_v4xi0"]
+[ext_resource type="Script" uid="uid://dipmr6kk5j7i7" path="res://scenes/Intro/camera_shake.gd" id="2_yqm5v"]
 [ext_resource type="PackedScene" path="res://scenes/map/interfaceBottom.tscn" id="3_ev5j6"]
 [ext_resource type="PackedScene" uid="uid://btxb8d7p0fjw5" path="res://scenes/map/background_ambiance.tscn" id="3_v4xi0"]
 [ext_resource type="Script" uid="uid://bygyknw1rogl4" path="res://scenes/Intro/scene_manager.gd" id="4_manager"]
@@ -136,10 +137,11 @@ libraries = {
 }
 autoplay = "intro"
 
-[node name="Camera2D2" type="Camera2D" parent="."]
+[node name="Camera2D2" type="Camera2D" parent="." groups=["camera_shakers"]]
 process_mode = 3
 position = Vector2(300, 455)
 zoom = Vector2(2.87, 2.87)
+script = ExtResource("2_yqm5v")
 
 [node name="VBoxContainer" type="VBoxContainer" parent="."]
 layout_mode = 1

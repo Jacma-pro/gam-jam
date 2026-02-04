@@ -41,7 +41,19 @@ func _on_body_entered(body):
 	queue_free()
 
 
+
 func apply_counter(multiplier: float, size_mult: float) -> void:
 	# amplify damage and visual size when player used counter-attack
 	damage *= multiplier
 	scale *= size_mult
+
+	# trigger a camera shake if there's a camera_shaker in the scene
+	var tree = get_tree()
+	if tree == null:
+		tree = Engine.get_main_loop() # fallback if node isn't in the scene tree yet
+	var shaker = null
+	if tree and tree.has_method("get_first_node_in_group"):
+		shaker = tree.get_first_node_in_group("camera_shakers")
+	if shaker and shaker.has_method("shake"):
+		# stronger shake for counter (scale with size_mult)
+		shaker.shake(12.0 * size_mult, 0.24 * size_mult)
