@@ -41,6 +41,7 @@
     - add knockback
     - camera shake when countering
 
+- add damage x2 after 30 seconds ✅
 ## what's left
 
 - In Gameplay:
@@ -52,8 +53,9 @@
 - Game Over screen
 - Update Start Animation
 - Interface (Keyboard)
-- add damage x2 after 30 seconds
 - add K.O !
+- add text for damage x2 after 30 seconds (Sudden Death)
+- add controller version
 
 ## combo Idea
 - after blocked a ball attack, the next ball gonna be bigger and do more dmg ✅

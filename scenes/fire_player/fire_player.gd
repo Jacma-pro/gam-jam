@@ -47,6 +47,9 @@ var current_block_time: float = 0.0
 @export var knockback_duration: float = 0.2
 var is_knocked: bool = false
 
+# Multiplicateur de dégâts reçus (peut être modifié par SceneManager)
+var damage_received_multiplier: float = 1.0
+
 var gravity = ProjectSettings.get_setting("physics/2d/default_gravity")
 
 @onready var animated_sprite = $AnimatedSprite2D
@@ -196,6 +199,9 @@ func take_damage(amount):
 		start_counter_window()
 		print("FirePlayer a bloqué l'attaque !")
 		return
+
+	# Appliquer le multiplicateur de dégâts
+	amount = amount * damage_received_multiplier
 
 	# We ensure the hurt animation does not loop and play it
 	if animated_sprite.sprite_frames.has_animation(animation_hurt):

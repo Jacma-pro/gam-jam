@@ -5,6 +5,7 @@ extends Node
 @onready var animation_player = main_layout.get_node("AnimationPlayer")
 
 @export var end_animation_timer: float = 5.0
+@export var sudden_death_time: float = 30.0
 
 const PAUSE_MENU_SCENE = preload("res://scenes/Menu/pause_menu.tscn")
 const OVER_MENU_SCENE = preload("res://scenes/Menu/over_menu.tscn")
@@ -46,6 +47,40 @@ func _on_animation_finished(anim_name: StringName) -> void:
 	if anim_name == "intro":
 		print("SceneManager: Fin de l'intro, reprise du jeu")
 		get_tree().paused = false
+
+		# Lancer le timer de mort subite (dégâts doublés) après la reprise
+		_start_sudden_death_timer()
+
+
+func _start_sudden_death_timer() -> void:
+	# create_timer returns a Timer object; we'll await its timeout and then call handler
+	print("SceneManager: Timer de mort subite démarré pour ", sudden_death_time, " secondes")
+	await get_tree().create_timer(sudden_death_time).timeout
+	_on_sudden_death_timeout()
+
+
+func _on_sudden_death_timeout() -> void:
+	print("SceneManager: MORT SUBITE ! Dégâts doublés !")
+
+	# Find players: prefer using groups if present
+	var players: Array = []
+	if get_tree().has_group("players"):
+		players = get_tree().get_nodes_in_group("players")
+	else:
+		var p1 = _find_node_by_script("fire_player.gd")
+		var p2 = _find_node_by_script("ice_player.gd")
+		if p1:
+			players.append(p1)
+		if p2:
+			players.append(p2)
+
+	for p in players:
+		if p:
+			# set multiplier directly (players found by script/group are expected to have this var)
+			p.damage_received_multiplier = 2.0
+			# Optional visual feedback: only CanvasItem nodes have 'modulate'
+			if p is CanvasItem:
+				p.modulate = Color(1.5, 1.2, 1.2)
 
 func _on_game_over(winner_name: String) -> void:
 	print("SceneManager: VICTOIRE détectée pour ", winner_name)
