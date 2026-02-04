@@ -49,13 +49,13 @@
 - In Gameplay:
     - fix gameplay
     - add combo
-    - add sound effects
+    - add sound effects **Pack sound design downloaded**
 - Credit page
-- Command menu
-- Game Over screen
-- Update Start Animation
-- Interface (Keyboard)
-- add K.O !
+- Command menu **Add but to design**
+- Game Over screen **To polish**
+- Update Start Animation **Up to date but need validation**
+- Interface (Keyboard) **Need assets**
+- add K.O ! **Need assets**
 - add text for damage x2 after 30 seconds (Sudden Death)
 
 - adapt controller menu navigation
