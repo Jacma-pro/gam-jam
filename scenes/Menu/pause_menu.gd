@@ -1,5 +1,15 @@
 extends VBoxContainer
 
+# Navigation actions (menu navigation)
+@export_category("Navigation")
+@export var nav_up: String = "up_nav_menu"
+@export var nav_down: String = "down_nav_menu"
+@export var nav_left: String = "left_nav_menu"
+@export var nav_right: String = "right_nav_menu"
+@export var nav_ok: String = "ok_nav_menu"
+@export var nav_back: String = "back_nav_menu"
+
+
 func _ready() -> void:
 	# Connexions des boutons
 	$Button.pressed.connect(_on_resume_pressed)       # Reprendre

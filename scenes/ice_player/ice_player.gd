@@ -4,8 +4,9 @@ extends CharacterBody2D
 @export var kick_scene = preload("res://scenes/ice_player/ice_kick/IceKick.tscn")
 
 @export_category("Mouvement")
-@export var speed = 500.0
-@export var jump_velocity = -500.0
+@export var speed = 400.0
+@export var jump_velocity = -600.0
+@export var fall_multiplier: float = 3.0
 
 @export_category("Controles")
 @export var action_left: String = "p2_left"
@@ -14,6 +15,18 @@ extends CharacterBody2D
 @export var action_down: String = "p2_block"
 @export var action_shoot: String = "p2_shoot"
 @export var action_kick: String = "p2_kick"
+
+# animation category
+@export_category("Animation_fire")
+@export var animation_crouch: String = "p2_crouch"
+@export var animation_death: String = "p2_death"
+@export var animation_hurt: String = "p2_hurt"
+@export var animation_idle: String = "p2_idle"
+@export var animation_jump: String = "p2_jump"
+@export var animation_land: String = "p2_land"
+@export var animation_kick: String = "p2_kick"
+@export var animation_shoot: String = "p2_shoot"
+@export var animation_walk: String = "p2_walk"
 
 @export var shoot_cooldown: float = 2.0
 @export var kick_cooldown: float = 1.0
@@ -35,18 +48,34 @@ var current_block_time: float = 0.0
 @export var knockback_duration: float = 0.2
 var is_knocked: bool = false
 
+# Multiplicateur de dégâts reçus (géré par le SceneManager)
+var damage_received_multiplier: float = 1.0
+
 var gravity = ProjectSettings.get_setting("physics/2d/default_gravity")
 
 @onready var animated_sprite = $AnimatedSprite2D
 
+# nouvel état de vie
+var is_dead: bool = false
+
 func _ready() -> void:
 	animated_sprite.play("default")
-	#animated_sprite.stop()
+	# face left by default
+	animated_sprite.flip_h = true
 
 func _physics_process(delta: float) -> void:
+	# If dead, don't process inputs or movement
+	if is_dead:
+		return
+
 	# Add the gravity.
 	if not is_on_floor():
-		velocity.y += gravity * delta
+		# Ascending
+		if velocity.y < 0:
+			velocity.y += gravity * delta
+		# Falling
+		else:
+			velocity.y += gravity * fall_multiplier * delta
 	
 	# Handle down (block)
 	is_blocking = false
@@ -60,10 +89,18 @@ func _physics_process(delta: float) -> void:
 
 	# Handle shooting.
 	if Input.is_action_just_pressed(action_shoot) and can_shoot and not is_blocking and not is_knocked:
+		# ensure shoot animation does not loop and play it
+		if animated_sprite.sprite_frames.has_animation(animation_shoot):
+			animated_sprite.sprite_frames.set_animation_loop(animation_shoot, false)
+		animated_sprite.play(animation_shoot)
 		shoot()
 		
 	# Handle Kick
 	if Input.is_action_just_pressed(action_kick) and can_kick and not is_blocking and not is_knocked:
+		# ensure kick animation does not loop and play it
+		if animated_sprite.sprite_frames.has_animation(animation_kick):
+			animated_sprite.sprite_frames.set_animation_loop(animation_kick, false)
+		animated_sprite.play(animation_kick)
 		kick()
 
 	# Handle jump.	
@@ -84,49 +121,70 @@ func _physics_process(delta: float) -> void:
 
 
 func _update_animation(direction):
-	animated_sprite.flip_h = false
+	# si mort, forcer l'animation de mort et ne rien changer ensuite
+	if is_dead:
+		if animated_sprite.animation != animation_death:
+			if animated_sprite.sprite_frames.has_animation(animation_death):
+				animated_sprite.sprite_frames.set_animation_loop(animation_death, false)
+			animated_sprite.play(animation_death)
+		return
+
+	if animated_sprite.is_playing() and (animated_sprite.animation == animation_shoot or animated_sprite.animation == animation_kick or animated_sprite.animation == animation_hurt):
+		return
+
+	var target := ""
 	if not is_on_floor():
-		animated_sprite.play("p2_jump")
-	elif direction != 0:
-		animated_sprite.play("p2_left")
+		target = animation_jump
 	elif is_blocking:
-		animated_sprite.play("p2_block")
+		target = animation_crouch
+	elif direction != 0:
+		target = animation_walk
 	else:
-		animated_sprite.play("p2_left")
-		animated_sprite.stop()
-		animated_sprite.frame = 0
+		target = animation_idle
+
+	if animated_sprite.animation != target:
+		animated_sprite.play(target)
 
 
 func shoot():
 	can_shoot = false
-	var fireball = fireball_scene.instantiate()
-	fireball.position = position + Vector2(-100, 50)
-	fireball.rotation = PI
+	# We ensure the shoot animation does not loop and play it
+	if animated_sprite.sprite_frames.has_animation(animation_shoot):
+		animated_sprite.sprite_frames.set_animation_loop(animation_shoot, false)
 
+	var fireball = fireball_scene.instantiate()
+	fireball.position = position + Vector2(-100, 20)
+	fireball.rotation = PI
 	# mark shooter so the projectile won't hit its owner
 	fireball.shooter = self
 
-	# si le joueur a une fenêtre de counter active, élever la balle et l'amplifier
+	# if counter active, raise spawn and amplify
 	if can_counter_attack:
-		# raise spawn so big counter ball doesn't hit ground
 		fireball.position += Vector2(0, -30 * counter_size)
 		if fireball.has_method("apply_counter"):
-			fireball.apply_counter(2.0, counter_size)
+			fireball.apply_counter(2.5, counter_size)
 		can_counter_attack = false
 
 	get_parent().add_child(fireball)
-	
+
 	await get_tree().create_timer(shoot_cooldown).timeout
 	can_shoot = true
 
 func kick():
 	can_kick = false
+
+	# We ensure the kick animation does not loop and play it
+	if animated_sprite.sprite_frames.has_animation(animation_kick):
+		animated_sprite.sprite_frames.set_animation_loop(animation_kick, false)
+
 	var kick_instance = kick_scene.instantiate()
 
+	# spawn kick to the left and flip
 	kick_instance.position = Vector2(-50, 10)
 	kick_instance.scale.x = -1
 	add_child(kick_instance)
-	
+
+
 	await get_tree().create_timer(0.2).timeout
 	if is_instance_valid(kick_instance):
 		kick_instance.queue_free()
@@ -147,9 +205,15 @@ func take_damage(amount):
 		start_counter_window()
 		print("IcePlayer a bloqué l'attaque !")
 		return
-	
+
+	# Appliquer le multiplicateur de dégâts
+	amount = amount * damage_received_multiplier
+
+	# We ensure the hurt animation does not loop and play it
+	if animated_sprite.sprite_frames.has_animation(animation_hurt):
+		animated_sprite.sprite_frames.set_animation_loop(animation_hurt, false)
+	animated_sprite.play(animation_hurt)
 	print("Aïe ! IcePlayer a pris ", amount, " dégâts.")
-	
 
 	position += Vector2(50, 0)
 
@@ -158,6 +222,12 @@ func take_damage(amount):
 		termo.update_temperature(amount)
 	else:
 		print("Erreur : Impossible de trouver la TermoBar !")
+
+	# wait for hurt animation to finish before resuming movement animations
+	if animated_sprite.animation == animation_hurt:
+		await animated_sprite.animation_finished
+		if animated_sprite.animation == animation_hurt:
+			animated_sprite.stop()
 
 # function for knockback, move back when hit by attack
 func knockback(force: Vector2, stun_time: float = 0.0) -> void:
@@ -177,6 +247,37 @@ func start_counter_window():
 	# window during which next attack is amplified
 	await get_tree().create_timer(counter_attack_timer).timeout
 	can_counter_attack = false
+
+
+func die() -> void:
+	# Delete CollisionShape2D for T-bag
+	var collision_shape = $CollisionShape2D
+	if is_instance_valid(collision_shape):
+		collision_shape.queue_free()
+
+	if is_dead:
+		return
+	is_dead = true
+	can_shoot = false
+	can_kick = false
+	can_block = false
+	is_blocking = false
+	is_knocked = true
+
+	if animated_sprite.sprite_frames.has_animation(animation_death):
+		animated_sprite.sprite_frames.set_animation_loop(animation_death, false)
+		animated_sprite.play(animation_death)
+		# wait for the animation to finish
+		await animated_sprite.animation_finished
+		
+		# Stop FIRST, then force the frame to ensure it sticks
+		animated_sprite.stop()
+		var frames_count = animated_sprite.sprite_frames.get_frame_count(animation_death)
+		if frames_count > 0:
+			animated_sprite.animation = animation_death
+			animated_sprite.frame = frames_count - 1
+	else:
+		animated_sprite.stop()
 
 	
 	

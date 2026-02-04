@@ -1,5 +1,14 @@
 extends VBoxContainer
 
+# Navigation actions (menu navigation - default names assumed)
+@export_category("Navigation")
+@export var nav_up: String = "up_nav_menu"
+@export var nav_down: String = "down_nav_menu"
+@export var nav_left: String = "left_nav_menu"
+@export var nav_right: String = "right_nav_menu"
+@export var nav_ok: String = "ok_nav_menu"
+@export var nav_back: String = "back_nav_menu"
+
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:

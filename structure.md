@@ -29,7 +29,6 @@
 
 ## What has been done
 
-dodo :
 - In Gameplay:
     - Fire Player : Complete
     - Ice Player : Complete
@@ -40,15 +39,29 @@ dodo :
     - KeyBoardSettings : Complete
     - TermoBar : Complete
     - add knockback
+    - camera shake when countering
 
+- add damage x2 after 30 seconds ✅
+- add controller version ✅
 ## what's left
 
-dodo :
 - In Gameplay:
     - fix gameplay
     - add combo
     - add sound effects
+- Credit page
+- Command menu
+- Game Over screen
+- Update Start Animation
+- Interface (Keyboard)
+- add K.O !
+- add text for damage x2 after 30 seconds (Sudden Death)
+
+- adapt controller menu navigation
 
 ## combo Idea
-- after blocked a ball attack, the next ball gonna be bigger and do more dmg
+- after blocked a ball attack, the next ball gonna be bigger and do more dmg ✅
+
+
+sur Itch cocher la case ArrayBuffer
 

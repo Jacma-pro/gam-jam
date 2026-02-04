@@ -4,6 +4,16 @@ extends CanvasLayer
 @onready var button_replay = $VBoxContainer/Button2
 @onready var button_menu = $VBoxContainer/Button3
 
+# Navigation actions (menu navigation)
+@export_category("Navigation")
+@export var nav_up: String = "up_nav_menu"
+@export var nav_down: String = "down_nav_menu"
+@export var nav_left: String = "left_nav_menu"
+@export var nav_right: String = "right_nav_menu"
+@export var nav_ok: String = "ok_nav_menu"
+@export var nav_back: String = "back_nav_menu"
+
+
 func _ready() -> void:
 	print("OverMenu: _ready appelé")
 	# Connexions des boutons
