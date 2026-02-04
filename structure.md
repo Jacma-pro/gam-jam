@@ -40,8 +40,9 @@
     - TermoBar : Complete ✅
     - add knockback ✅
     - camera shake when countering ✅
+    - add death animation (and time for T-bag) ✅
 
-- add damage x2 after 30 seconds ✅
+- add damage x2 after 30 seconds (sudden death) ✅
 - add controller version ✅
 ## what's left
 
