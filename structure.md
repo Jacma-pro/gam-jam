@@ -29,7 +29,6 @@
 
 ## What has been done
 
-dodo :
 - In Gameplay:
     - Fire Player : Complete
     - Ice Player : Complete
@@ -43,12 +42,16 @@ dodo :
 
 ## what's left
 
-dodo :
 - In Gameplay:
     - fix gameplay
     - add combo
     - add sound effects
+    - camera shake when countering
+- Credit page
+- Game Over screen
 
 ## combo Idea
 - after blocked a ball attack, the next ball gonna be bigger and do more dmg
+
+sur Itch cocher la case ArrayBuffer 
 

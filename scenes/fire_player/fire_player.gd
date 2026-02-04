@@ -4,8 +4,9 @@ extends CharacterBody2D
 @export var kick_scene = preload("res://scenes/fire_player/fire_kick/FireKick.tscn")
 
 @export_category("Mouvement")
-@export var speed = 500.0
-@export var jump_velocity = -500.0
+@export var speed = 400.0
+@export var jump_velocity = -600.0
+@export var fall_multiplier: float = 3.0
 
 @export_category("Controles")
 @export var action_left: String = "p1_left"
@@ -15,13 +16,25 @@ extends CharacterBody2D
 @export var action_shoot: String = "p1_shoot"
 @export var action_kick: String = "p1_kick"
 
+# animation category
+@export_category("Animation_fire")
+@export var animation_crouch: String = "p1_crouch"
+@export var animation_death: String = "p1_death"
+@export var animation_hurt: String = "p1_hurt"
+@export var animation_idle: String = "p1_idle"
+@export var animation_jump: String = "p1_jump"
+@export var animation_land: String = "p1_land"
+@export var animation_kick: String = "p1_kick"
+@export var animation_shoot: String = "p1_shoot"
+@export var animation_walk: String = "p1_walk"
+
 @export var shoot_cooldown: float = 2.0
 @export var kick_cooldown: float = 1.0
 var can_shoot: bool = true
 var can_kick: bool = true
 
 # Block gestion
-@export var max_block_time: float = 2.0
+@export var max_block_time: float = 0.5
 @export var block_cooldown: float = 2.0
 @export var counter_attack_timer: float = 2.0
 var can_counter_attack: bool = false
@@ -44,10 +57,15 @@ func _ready() -> void:
 	animated_sprite.stop()
 
 func _physics_process(delta: float) -> void:
-	# Add the gravity.
+	# Add the gravity with snappier jump behaviour.
 	if not is_on_floor():
-		velocity.y += gravity * delta
-	
+		# ascending: fixed gravity (no variable jump height)
+		if velocity.y < 0:
+			velocity.y += gravity * delta
+		# falling: amplified gravity for snappier fall
+		else:
+			velocity.y += gravity * fall_multiplier * delta
+
 	# Handle down (block)
 	is_blocking = false
 	if Input.is_action_pressed(action_down) and is_on_floor() and can_block:
@@ -60,10 +78,12 @@ func _physics_process(delta: float) -> void:
 
 	# Handle shooting.
 	if Input.is_action_just_pressed(action_shoot) and can_shoot and not is_blocking and not is_knocked:
+		animated_sprite.play(animation_shoot)
 		shoot()
 		
 	# Handle Kick
 	if Input.is_action_just_pressed(action_kick) and can_kick and not is_blocking and not is_knocked:
+		animated_sprite.play(animation_kick)
 		kick()
 
 	# Handle jump.    
@@ -84,22 +104,34 @@ func _physics_process(delta: float) -> void:
 
 
 func _update_animation(direction):
+	# Si une animation d'attaque est en train de jouer, on ne l'interrompt pas.
+	# Comme on désactive le loop dans shoot/kick, is_playing() passera à false à la fin.
+	if animated_sprite.is_playing() and (animated_sprite.animation == animation_shoot or animated_sprite.animation == animation_kick or animated_sprite.animation == animation_hurt):
+		return
+
+	var target := ""
 	if not is_on_floor():
-		animated_sprite.play("p1_jump")
-	elif direction != 0:
-		animated_sprite.play("p1_right")
+		target = animation_jump
 	elif is_blocking:
-		animated_sprite.play("p1_block")
+		target = animation_crouch
+	elif direction != 0:
+		target = animation_walk
 	else:
-		animated_sprite.play("p1_right")
-		animated_sprite.stop()
-		animated_sprite.frame = 0
+		target = animation_idle
+
+	if animated_sprite.animation != target:
+		animated_sprite.play(target)
 
 
 func shoot():
 	can_shoot = false
+	
+	# On s'assure que l'animation ne boucle pas (pour qu'elle finisse et is_playing devienne false)
+	if animated_sprite.sprite_frames.has_animation(animation_shoot):
+		animated_sprite.sprite_frames.set_animation_loop(animation_shoot, false)
+
 	var fireball = fireball_scene.instantiate()
-	fireball.position = position + Vector2(100, 50)
+	fireball.position = position + Vector2(100, 20)
 	# mark shooter so the projectile won't hit its owner
 	fireball.shooter = self
 
@@ -117,6 +149,11 @@ func shoot():
 
 func kick():
 	can_kick = false
+	
+	# On s'assure que l'animation ne boucle pas
+	if animated_sprite.sprite_frames.has_animation(animation_kick):
+		animated_sprite.sprite_frames.set_animation_loop(animation_kick, false)
+
 	var kick_instance = kick_scene.instantiate()
 
 	kick_instance.position = Vector2(50, 10)
@@ -147,7 +184,11 @@ func take_damage(amount):
 		start_counter_window()
 		print("FirePlayer a bloqué l'attaque !")
 		return
-		
+
+	# On s'assure que l'animation ne boucle pas
+	if animated_sprite.sprite_frames.has_animation(animation_hurt):
+		animated_sprite.sprite_frames.set_animation_loop(animation_hurt, false)
+	animated_sprite.play(animation_hurt)
 	print("Aïe ! FirePlayer a pris ", amount, " dégâts.")
 	
 	# petit recul vers la droite
