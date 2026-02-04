@@ -593,12 +593,11 @@ size = Vector2(138, 235)
 script = ExtResource("1_qqxw6")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
-modulate = Color(1, 0.58431375, 0.32156864, 1)
 position = Vector2(1, 0)
 scale = Vector2(2, 2)
 sprite_frames = SubResource("SpriteFrames_cqvoo")
 animation = &"p1_death"
-frame_progress = 0.82517284
+frame_progress = 0.718515
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2(-6, 11.5)
