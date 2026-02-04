@@ -80,9 +80,6 @@ func _on_sudden_death_timeout() -> void:
 		if p:
 			# set multiplier directly (players found by script/group are expected to have this var)
 			p.damage_received_multiplier = 2.0
-			# Optional visual feedback: only CanvasItem nodes have 'modulate'
-			if p is CanvasItem:
-				p.modulate = Color(1.5, 1.2, 1.2)
 
 func _on_game_over(winner_name: String) -> void:
 	print("SceneManager: VICTOIRE détectée pour ", winner_name)

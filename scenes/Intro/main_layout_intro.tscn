@@ -169,10 +169,10 @@ custom_minimum_size = Vector2(0, 500)
 layout_mode = 2
 
 [node name="FirePlayer" parent="VBoxContainer/GameSection" instance=ExtResource("2_lldya")]
-position = Vector2(302, 422)
+position = Vector2(302, 386)
 
 [node name="IcePlayer" parent="VBoxContainer/GameSection" instance=ExtResource("4_u0wmg")]
-position = Vector2(1004, 423)
+position = Vector2(1004, 386)
 
 [node name="Label" type="Label" parent="VBoxContainer/GameSection"]
 layout_mode = 0

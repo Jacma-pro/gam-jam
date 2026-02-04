@@ -5,8 +5,9 @@ extends CharacterBody2D
 
 @export_category("Mouvement")
 @export var speed = 400.0
-@export var jump_velocity = -600.0
+@export var jump_velocity = -670.0
 @export var fall_multiplier: float = 3.0
+@export var ground_deceleration: float = 1200.0 # pixels/s^2 used for move_toward
 
 @export_category("Controles")
 @export var action_left: String = "p1_left"
@@ -59,7 +60,7 @@ var is_dead: bool = false
 
 
 func _ready() -> void:
-	animated_sprite.play("default")
+	animated_sprite.play(animation_idle)
 	animated_sprite.stop()
 
 func _physics_process(delta: float) -> void:
@@ -105,7 +106,14 @@ func _physics_process(delta: float) -> void:
 	if direction:
 		velocity.x = direction * speed
 	else:
-		velocity.x = move_toward(velocity.x, 0, speed)
+		# If knocked, let the player slide back using reduced friction.
+		# Otherwise stop immediately to avoid unwanted walk sliding.
+		if is_knocked:
+			var decel_step = ground_deceleration * delta
+			decel_step *= 0.25
+			velocity.x = move_toward(velocity.x, 0, decel_step)
+		else:
+			velocity.x = 0
 
 	_update_animation(direction)
 	move_and_slide()
@@ -146,7 +154,7 @@ func shoot():
 		animated_sprite.sprite_frames.set_animation_loop(animation_shoot, false)
 
 	var fireball = fireball_scene.instantiate()
-	fireball.position = position + Vector2(100, 20)
+	fireball.position = position + Vector2(100, -50)
 	# mark shooter so the projectile won't hit its owner
 	fireball.shooter = self
 
