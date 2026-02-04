@@ -39,6 +39,7 @@
     - KeyBoardSettings : Complete
     - TermoBar : Complete
     - add knockback
+    - camera shake when countering
 
 ## what's left
 
@@ -46,12 +47,17 @@
     - fix gameplay
     - add combo
     - add sound effects
-    - camera shake when countering
 - Credit page
+- Command menu
 - Game Over screen
+- Update Start Animation
+- Interface (Keyboard)
+- add damage x2 after 30 seconds
+- add K.O !
 
 ## combo Idea
-- after blocked a ball attack, the next ball gonna be bigger and do more dmg
+- after blocked a ball attack, the next ball gonna be bigger and do more dmg ✅
 
-sur Itch cocher la case ArrayBuffer 
+
+sur Itch cocher la case ArrayBuffer
 
