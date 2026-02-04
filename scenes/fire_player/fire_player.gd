@@ -59,10 +59,8 @@ func _ready() -> void:
 func _physics_process(delta: float) -> void:
 	# Add the gravity with snappier jump behaviour.
 	if not is_on_floor():
-		# ascending: fixed gravity (no variable jump height)
 		if velocity.y < 0:
 			velocity.y += gravity * delta
-		# falling: amplified gravity for snappier fall
 		else:
 			velocity.y += gravity * fall_multiplier * delta
 
@@ -104,8 +102,7 @@ func _physics_process(delta: float) -> void:
 
 
 func _update_animation(direction):
-	# Si une animation d'attaque est en train de jouer, on ne l'interrompt pas.
-	# Comme on désactive le loop dans shoot/kick, is_playing() passera à false à la fin.
+	# If an attack animation is playing, don't interrupt it.
 	if animated_sprite.is_playing() and (animated_sprite.animation == animation_shoot or animated_sprite.animation == animation_kick or animated_sprite.animation == animation_hurt):
 		return
 
@@ -125,8 +122,8 @@ func _update_animation(direction):
 
 func shoot():
 	can_shoot = false
-	
-	# On s'assure que l'animation ne boucle pas (pour qu'elle finisse et is_playing devienne false)
+
+	# We ensure the shoot animation does not loop and play it
 	if animated_sprite.sprite_frames.has_animation(animation_shoot):
 		animated_sprite.sprite_frames.set_animation_loop(animation_shoot, false)
 
@@ -135,7 +132,7 @@ func shoot():
 	# mark shooter so the projectile won't hit its owner
 	fireball.shooter = self
 
-	# si counter actif, raise spawn and amplify
+	# if counter active, raise spawn and amplify
 	if can_counter_attack:
 		fireball.position += Vector2(0, -30 * counter_size)
 		if fireball.has_method("apply_counter"):
@@ -149,8 +146,8 @@ func shoot():
 
 func kick():
 	can_kick = false
-	
-	# On s'assure que l'animation ne boucle pas
+
+	# We ensure the kick animation does not loop and play it
 	if animated_sprite.sprite_frames.has_animation(animation_kick):
 		animated_sprite.sprite_frames.set_animation_loop(animation_kick, false)
 
@@ -185,13 +182,13 @@ func take_damage(amount):
 		print("FirePlayer a bloqué l'attaque !")
 		return
 
-	# On s'assure que l'animation ne boucle pas
+	# We ensure the hurt animation does not loop and play it
 	if animated_sprite.sprite_frames.has_animation(animation_hurt):
 		animated_sprite.sprite_frames.set_animation_loop(animation_hurt, false)
 	animated_sprite.play(animation_hurt)
 	print("Aïe ! FirePlayer a pris ", amount, " dégâts.")
-	
-	# petit recul vers la droite
+
+	# knockback
 	position += Vector2(-50, 0)
 
 	var termo = get_tree().get_first_node_in_group("termo_bar")

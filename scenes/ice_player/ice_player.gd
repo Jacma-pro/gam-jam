@@ -56,7 +56,6 @@ func _ready() -> void:
 	animated_sprite.play("default")
 	# face left by default
 	animated_sprite.flip_h = true
-	#animated_sprite.stop()
 
 func _physics_process(delta: float) -> void:
 	# Add the gravity.
@@ -112,8 +111,6 @@ func _physics_process(delta: float) -> void:
 
 
 func _update_animation(direction):
-	# Si une animation d'attaque est en train de jouer, on ne l'interrompt pas.
-	# Comme on désactive le loop dans shoot/kick, is_playing() passera à false à la fin.
 	if animated_sprite.is_playing() and (animated_sprite.animation == animation_shoot or animated_sprite.animation == animation_kick or animated_sprite.animation == animation_hurt):
 		return
 
@@ -133,19 +130,17 @@ func _update_animation(direction):
 
 func shoot():
 	can_shoot = false
-
-	# On s'assure que l'animation ne boucle pas (pour qu'elle finisse et is_playing devienne false)
+	# We ensure the shoot animation does not loop and play it
 	if animated_sprite.sprite_frames.has_animation(animation_shoot):
 		animated_sprite.sprite_frames.set_animation_loop(animation_shoot, false)
 
 	var fireball = fireball_scene.instantiate()
-	# spawn to the left
 	fireball.position = position + Vector2(-100, 20)
 	fireball.rotation = PI
 	# mark shooter so the projectile won't hit its owner
 	fireball.shooter = self
 
-	# si counter actif, raise spawn and amplify
+	# if counter active, raise spawn and amplify
 	if can_counter_attack:
 		fireball.position += Vector2(0, -30 * counter_size)
 		if fireball.has_method("apply_counter"):
@@ -159,8 +154,8 @@ func shoot():
 
 func kick():
 	can_kick = false
-	
-	# On s'assure que l'animation ne boucle pas
+
+	# We ensure the kick animation does not loop and play it
 	if animated_sprite.sprite_frames.has_animation(animation_kick):
 		animated_sprite.sprite_frames.set_animation_loop(animation_kick, false)
 
@@ -193,7 +188,7 @@ func take_damage(amount):
 		print("IcePlayer a bloqué l'attaque !")
 		return
 
-	# On s'assure que l'animation ne boucle pas
+	# We ensure the hurt animation does not loop and play it
 	if animated_sprite.sprite_frames.has_animation(animation_hurt):
 		animated_sprite.sprite_frames.set_animation_loop(animation_hurt, false)
 	animated_sprite.play(animation_hurt)

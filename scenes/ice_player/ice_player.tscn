@@ -590,7 +590,7 @@ animations = [{
 script = ExtResource("1_lhh8u")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-position = Vector2(-6, 12.25)
+position = Vector2(-6, 10)
 shape = SubResource("RectangleShape2D_3ggm3")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
@@ -598,5 +598,5 @@ modulate = Color(0.33570993, 0.74989945, 0.99999994, 1)
 position = Vector2(1, 0)
 scale = Vector2(2, 2)
 sprite_frames = SubResource("SpriteFrames_ntx00")
-animation = &"p2_death"
-frame_progress = 0.11535598
+animation = &"p2_idle"
+frame_progress = 0.52280426
