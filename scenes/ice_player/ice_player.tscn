@@ -349,6 +349,9 @@ animations = [{
 "texture": SubResource("AtlasTexture_wegox")
 }, {
 "duration": 1.0,
+"texture": SubResource("AtlasTexture_wegox")
+}, {
+"duration": 1.0,
 "texture": SubResource("AtlasTexture_vagxg")
 }, {
 "duration": 1.0,
@@ -371,7 +374,7 @@ animations = [{
 }],
 "loop": true,
 "name": &"p2_death",
-"speed": 6.0
+"speed": 5.0
 }, {
 "frames": [{
 "duration": 1.0,
@@ -598,5 +601,5 @@ modulate = Color(0.33570993, 0.74989945, 0.99999994, 1)
 position = Vector2(1, 0)
 scale = Vector2(2, 2)
 sprite_frames = SubResource("SpriteFrames_ntx00")
-animation = &"p2_idle"
-frame_progress = 0.52280426
+animation = &"p2_death"
+frame_progress = 0.8463638

@@ -52,12 +52,19 @@ var gravity = ProjectSettings.get_setting("physics/2d/default_gravity")
 
 @onready var animated_sprite = $AnimatedSprite2D
 
+# nouvel état de vie
+var is_dead: bool = false
+
 func _ready() -> void:
 	animated_sprite.play("default")
 	# face left by default
 	animated_sprite.flip_h = true
 
 func _physics_process(delta: float) -> void:
+	# If dead, don't process inputs or movement
+	if is_dead:
+		return
+
 	# Add the gravity.
 	if not is_on_floor():
 		# Ascending
@@ -111,6 +118,14 @@ func _physics_process(delta: float) -> void:
 
 
 func _update_animation(direction):
+	# si mort, forcer l'animation de mort et ne rien changer ensuite
+	if is_dead:
+		if animated_sprite.animation != animation_death:
+			if animated_sprite.sprite_frames.has_animation(animation_death):
+				animated_sprite.sprite_frames.set_animation_loop(animation_death, false)
+			animated_sprite.play(animation_death)
+		return
+
 	if animated_sprite.is_playing() and (animated_sprite.animation == animation_shoot or animated_sprite.animation == animation_kick or animated_sprite.animation == animation_hurt):
 		return
 
@@ -226,6 +241,37 @@ func start_counter_window():
 	# window during which next attack is amplified
 	await get_tree().create_timer(counter_attack_timer).timeout
 	can_counter_attack = false
+
+
+func die() -> void:
+	# Delete CollisionShape2D for T-bag
+	var collision_shape = $CollisionShape2D
+	if is_instance_valid(collision_shape):
+		collision_shape.queue_free()
+
+	if is_dead:
+		return
+	is_dead = true
+	can_shoot = false
+	can_kick = false
+	can_block = false
+	is_blocking = false
+	is_knocked = true
+
+	if animated_sprite.sprite_frames.has_animation(animation_death):
+		animated_sprite.sprite_frames.set_animation_loop(animation_death, false)
+		animated_sprite.play(animation_death)
+		# wait for the animation to finish
+		await animated_sprite.animation_finished
+		
+		# Stop FIRST, then force the frame to ensure it sticks
+		animated_sprite.stop()
+		var frames_count = animated_sprite.sprite_frames.get_frame_count(animation_death)
+		if frames_count > 0:
+			animated_sprite.animation = animation_death
+			animated_sprite.frame = frames_count - 1
+	else:
+		animated_sprite.stop()
 
 	
 	

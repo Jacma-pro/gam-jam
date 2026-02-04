@@ -346,6 +346,9 @@ animations = [{
 "texture": SubResource("AtlasTexture_wegox")
 }, {
 "duration": 1.0,
+"texture": SubResource("AtlasTexture_wegox")
+}, {
+"duration": 1.0,
 "texture": SubResource("AtlasTexture_vagxg")
 }, {
 "duration": 1.0,
@@ -368,7 +371,7 @@ animations = [{
 }],
 "loop": true,
 "name": &"p1_death",
-"speed": 10.0
+"speed": 5.0
 }, {
 "frames": [{
 "duration": 1.0,
@@ -594,8 +597,8 @@ modulate = Color(1, 0.58431375, 0.32156864, 1)
 position = Vector2(1, 0)
 scale = Vector2(2, 2)
 sprite_frames = SubResource("SpriteFrames_cqvoo")
-animation = &"p1_hurt"
-frame_progress = 0.7875145
+animation = &"p1_death"
+frame_progress = 0.82517284
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2(-6, 11.5)
