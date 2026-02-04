@@ -1,6 +1,6 @@
 extends CanvasLayer
 
-@onready var label = $VBoxContainer/Label
+@onready var label = $Label
 @onready var button_replay = $VBoxContainer/Button2
 @onready var button_menu = $VBoxContainer/Button3
 
@@ -30,7 +30,7 @@ func _ready() -> void:
 func set_winner(winner_name: String) -> void:
 	print("OverMenu: set_winner appelé avec ", winner_name)
 	if label:
-		label.text = "La faction " + winner_name + " l'a remporté !"
+		label.text = winner_name + " l'a remporté !"
 	else:
 		print("OverMenu: ERREUR - Label introuvable")
 

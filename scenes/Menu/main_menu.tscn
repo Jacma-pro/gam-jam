@@ -13,9 +13,9 @@ grow_vertical = 2
 [node name="VBoxContainer" type="VBoxContainer" parent="."]
 layout_mode = 0
 offset_left = 535.0
-offset_top = 312.0
+offset_top = 167.0
 offset_right = 748.333
-offset_bottom = 389.0
+offset_bottom = 253.0
 script = ExtResource("1_k0vh8")
 
 [node name="Button" type="Button" parent="VBoxContainer"]
@@ -28,3 +28,61 @@ text = "Audio on/off"
 
 [node name="HSlider" type="HSlider" parent="VBoxContainer"]
 layout_mode = 2
+
+[node name="Label" type="Label" parent="."]
+layout_mode = 0
+offset_left = 593.0
+offset_top = 296.0
+offset_right = 690.0
+offset_bottom = 319.0
+text = "Commandes"
+
+[node name="RichTextLabel" type="RichTextLabel" parent="Label"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 163.0
+offset_top = 118.0
+offset_right = 391.0
+offset_bottom = 335.0
+grow_horizontal = 2
+grow_vertical = 2
+text = "Joueur droite
+z : Saut
+q : Gauche
+s : Protection
+d : Droite
+a : Attaque corps à corps
+e : Attaque à distance
+
+Parer une attaque à distance avec s octroie une master attaque a distance."
+
+[node name="RichTextLabel2" type="RichTextLabel" parent="Label"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -222.0
+offset_top = 121.0
+offset_right = -9.0
+offset_bottom = 348.0
+grow_horizontal = 2
+grow_vertical = 2
+text = "Joueur gauche
+o : Saut
+k : Gauche
+l : Protection
+m : Droite
+p : Attaque corps à corps
+i : Attaque à distance
+
+Parer une attaque à distance avec l octroie une master attaque a distance."
+
+[node name="Label" type="Label" parent="Label"]
+layout_mode = 0
+offset_left = -46.0
+offset_top = 52.0
+offset_right = 176.0
+offset_bottom = 75.0
+text = "Menu pause : barre d'espace"

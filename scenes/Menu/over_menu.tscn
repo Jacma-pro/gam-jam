@@ -1,26 +1,33 @@
 [gd_scene load_steps=2 format=3 uid="uid://seq4cu7hxnbq"]
 
-[ext_resource type="Script" path="res://scenes/Menu/over_menu.gd" id="1_68sx6"]
+[ext_resource type="Script" uid="uid://bvd67lkitqn1h" path="res://scenes/Menu/over_menu.gd" id="1_68sx6"]
 
 [node name="OverMenu" type="CanvasLayer"]
 process_mode = 3
 script = ExtResource("1_68sx6")
 
 [node name="ColorRect" type="ColorRect" parent="."]
-offset_left = 519.0
-offset_top = 285.0
-offset_right = 762.0
-offset_bottom = 526.0
-color = Color(0, 0, 0, 0.45882353)
+offset_left = 449.0
+offset_top = 205.0
+offset_right = 829.0
+offset_bottom = 478.59998
+size_flags_horizontal = 4
+size_flags_vertical = 4
+color = Color(0.3019608, 0.3019608, 0.3019608, 1)
+
+[node name="Label" type="Label" parent="."]
+offset_left = 535.0
+offset_top = 253.0
+offset_right = 748.0
+offset_bottom = 276.0
 
 [node name="VBoxContainer" type="VBoxContainer" parent="."]
 offset_left = 535.0
 offset_top = 312.0
 offset_right = 748.333
 offset_bottom = 389.0
-
-[node name="Label" type="Label" parent="VBoxContainer"]
-layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
 
 [node name="Button2" type="Button" parent="VBoxContainer"]
 layout_mode = 2
