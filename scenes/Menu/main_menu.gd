@@ -9,6 +9,9 @@ extends VBoxContainer
 @export var nav_ok: String = "ok_nav_menu"
 @export var nav_back: String = "back_nav_menu"
 
+# Menu music: we search robustly because the AudioStreamPlayer2D may be reparented to the root
+@onready var menu_music: AudioStreamPlayer2D = null
+
 # Références aux nœuds (adaptées à la nouvelle structure)
 @onready var button_jouer: Button = $ButtonJouer
 @onready var button_commandes: Button = $ButtonCommandes
@@ -21,24 +24,48 @@ extends VBoxContainer
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
+	# Find or pick the MenuMusic node. Prefer an existing one in the scene tree root
+	if not menu_music:
+		var found = _find_node_by_name_in_tree("MenuMusic")
+		if found and found is AudioStreamPlayer2D:
+			menu_music = found
+		else:
+			var sibling = $"../MenuMusic" if has_node("../MenuMusic") else null
+			if sibling and sibling is AudioStreamPlayer2D:
+				menu_music = sibling
+
+	# If we found a MenuMusic and it isn't a child of the root, reparent it so it persists
+	if menu_music:
+		if menu_music.get_parent() != get_tree().root:
+			menu_music.get_parent().remove_child(menu_music)
+			get_tree().root.add_child(menu_music)
+			# Remove owner so the node isn't saved with the scene
+			menu_music.owner = null
+
+		# Start playing if not already
+		if not menu_music.playing:
+			menu_music.play()
+	else:
+		push_warning("MainMenu: MenuMusic node not found")
+
 	# Connexion des boutons
 	button_jouer.pressed.connect(_on_button_jouer_pressed)
 	button_commandes.pressed.connect(_on_button_commandes_pressed)
 	button_credits.pressed.connect(_on_button_credits_pressed)
-	
+
 	# Connexion des contrôles audio
 	check_button.toggled.connect(_on_check_button_toggled)
 	h_slider.value_changed.connect(_on_h_slider_value_changed)
-	
+
 	# Initialisation depuis le GameManager
 	# CheckButton ON = Son activé (donc is_muted = false)
 	check_button.button_pressed = not GameManager.is_muted
 	h_slider.step = 10
 	h_slider.value = GameManager.master_volume
-	
+
 	# Applique l'état visuel initial
 	h_slider.visible = check_button.button_pressed
-	
+
 	# Applique l'état audio initial
 	_apply_audio_settings()
 	
@@ -47,6 +74,25 @@ func _ready() -> void:
 		h_slider.grab_focus()
 	else:
 		check_button.grab_focus()
+
+
+func _find_node_by_name_in_tree(target_name: String) -> Node:
+	# Iterative DFS to avoid calling missing methods on unexpected root types
+	var stack: Array = []
+	stack.append(get_tree().root)
+
+	while stack.size() > 0:
+		var node = stack.pop_back()
+		# get_children may not exist on all root types; guard it
+		if not node.has_method("get_children"):
+			continue
+		for child in node.get_children():
+			if child is Node:
+				if String(child.name) == target_name:
+					return child
+				stack.append(child)
+
+	return null
 
 func _apply_audio_settings() -> void:
 	var master_bus_index = AudioServer.get_bus_index("Master")
@@ -57,6 +103,7 @@ func _apply_audio_settings() -> void:
 
 func _on_button_jouer_pressed() -> void:
 	get_tree().change_scene_to_file("res://scenes/Intro/main_layout_intro.tscn")
+	menu_music.stop()
 
 func _on_button_commandes_pressed() -> void:
 	get_tree().change_scene_to_file("res://scenes/Menu/commandes.tscn")
