@@ -19,6 +19,7 @@ func _ready() -> void:
 	# Initialisation depuis le GameManager
 	# CheckButton ON = Son activé (donc is_muted = false)
 	$CheckButton.button_pressed = not GameManager.is_muted
+	$HSlider.step = 10
 	$HSlider.value = GameManager.master_volume
 	
 	# Applique l'état visuel initial

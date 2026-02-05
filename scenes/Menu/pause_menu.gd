@@ -22,6 +22,7 @@ func _ready() -> void:
 	
 	# Initialisation Audio (comme dans le menu principal)
 	$CheckButton.button_pressed = not GameManager.is_muted
+	$HSlider.step = 10
 	$HSlider.value = GameManager.master_volume
 	
 	# Applique l'état visuel initial
