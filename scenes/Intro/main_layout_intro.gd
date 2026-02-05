@@ -7,14 +7,6 @@ const OVER_MENU_SCENE = preload("res://scenes/Menu/over_menu.tscn")
 func _ready() -> void:
 	print("MainLayoutIntro: _ready appelé")
 	
-	# Force le mode Pausable sur la section de jeu pour être sûr que les joueurs s'arrêtent
-	var game_section = get_node_or_null("VBoxContainer/GameSection")
-	if game_section:
-		game_section.process_mode = Node.PROCESS_MODE_PAUSABLE
-		print("MainLayoutIntro: GameSection mis en mode PAUSABLE")
-	else:
-		print("MainLayoutIntro: ATTENTION - GameSection introuvable")
-
 	# Vérifie que le GameManager est accessible (Autoload)
 	if GameManager:
 		print("MainLayoutIntro: GameManager trouvé")
@@ -24,7 +16,14 @@ func _ready() -> void:
 	else:
 		print("MainLayoutIntro: ERREUR - GameManager introuvable")
 
-	# ... suite du code
+func _process(_delta: float) -> void:
+	if Input.is_action_just_pressed("ui_cancel"): # Echap par défaut
+		_pause_game()
+
+func _pause_game() -> void:
+	var pause_menu = PAUSE_MENU_SCENE.instantiate()
+	add_child(pause_menu)
+	get_tree().paused = true
 
 func _on_game_over(winner_name: String) -> void:
 	print("MainLayoutIntro: _on_game_over appelé avec vainqueur : ", winner_name)

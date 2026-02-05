@@ -1,9 +1,8 @@
-[gd_scene load_steps=14 format=3 uid="uid://swrye7exddbs"]
+[gd_scene load_steps=13 format=3 uid="uid://swrye7exddbs"]
 
 [ext_resource type="PackedScene" uid="uid://wvuatb5lo2f0" path="res://scenes/fire_player/fire_player.tscn" id="2_lldya"]
 [ext_resource type="PackedScene" uid="uid://dt1dgs63g4kj5" path="res://scenes/termo_bar/TermoBar.tscn" id="2_v4xi0"]
 [ext_resource type="Script" uid="uid://dipmr6kk5j7i7" path="res://scenes/Intro/camera_shake.gd" id="2_yqm5v"]
-[ext_resource type="PackedScene" uid="uid://djh8bfpj3hko4" path="res://scenes/map/interfaceBottom.tscn" id="3_ev5j6"]
 [ext_resource type="PackedScene" uid="uid://btxb8d7p0fjw5" path="res://scenes/map/background_ambiance.tscn" id="3_v4xi0"]
 [ext_resource type="Script" uid="uid://bygyknw1rogl4" path="res://scenes/Intro/scene_manager.gd" id="4_manager"]
 [ext_resource type="PackedScene" uid="uid://dk5rsfk36y8rc" path="res://scenes/ice_player/ice_player.tscn" id="4_u0wmg"]
@@ -14,7 +13,7 @@ length = 0.001
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath("../VBoxContainer/GameSection/Label:visible_ratio")
+tracks/0/path = NodePath("../Label:visible_ratio")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
@@ -71,7 +70,7 @@ tracks/0/keys = {
 tracks/1/type = "value"
 tracks/1/imported = false
 tracks/1/enabled = true
-tracks/1/path = NodePath("../VBoxContainer/GameSection/Label:visible_ratio")
+tracks/1/path = NodePath("../Label:visible_ratio")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/keys = {
@@ -142,55 +141,32 @@ process_mode = 3
 position = Vector2(638, 360)
 script = ExtResource("2_yqm5v")
 
-[node name="VBoxContainer" type="VBoxContainer" parent="."]
-layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-theme_override_constants/separation = 0
-
-[node name="TopSection" type="Control" parent="VBoxContainer"]
-custom_minimum_size = Vector2(0, 40)
-layout_mode = 2
-
-[node name="TermoBar" parent="VBoxContainer/TopSection" instance=ExtResource("2_v4xi0")]
+[node name="TermoBar" parent="." instance=ExtResource("2_v4xi0")]
+visible = false
 layout_mode = 0
 offset_left = 353.0
 offset_top = -66.0
 offset_right = 953.0
 offset_bottom = 36.0
 
-[node name="GameSection" type="Control" parent="VBoxContainer"]
-process_mode = 1
-custom_minimum_size = Vector2(0, 500)
-layout_mode = 2
+[node name="FirePlayer" parent="." instance=ExtResource("2_lldya")]
+position = Vector2(302, 426)
 
-[node name="FirePlayer" parent="VBoxContainer/GameSection" instance=ExtResource("2_lldya")]
-position = Vector2(302, 386)
+[node name="IcePlayer" parent="." instance=ExtResource("4_u0wmg")]
+position = Vector2(1004, 426)
 
-[node name="IcePlayer" parent="VBoxContainer/GameSection" instance=ExtResource("4_u0wmg")]
-position = Vector2(1004, 386)
-
-[node name="Label" type="Label" parent="VBoxContainer/GameSection"]
+[node name="Label" type="Label" parent="."]
 layout_mode = 0
 offset_left = 509.0
-offset_top = 296.0
+offset_top = 336.0
 offset_right = 764.0
-offset_bottom = 379.0
+offset_bottom = 419.0
 theme_override_colors/font_color = Color(1, 0, 0, 1)
 theme_override_font_sizes/font_size = 60
 text = "FIGHT !!!!"
 
-[node name="BottomSection" type="Control" parent="VBoxContainer"]
-layout_mode = 2
-size_flags_vertical = 3
-
-[node name="BottomSection#InterfaceBottom" parent="VBoxContainer/BottomSection" instance=ExtResource("3_ev5j6")]
-position = Vector2(643, 99)
-
 [node name="StaticBody2D2" type="StaticBody2D" parent="."]
+position = Vector2(-3, 0)
 
 [node name="Boundaries#BottomWall" type="CollisionShape2D" parent="StaticBody2D2"]
 position = Vector2(640, 605)
@@ -200,14 +176,14 @@ shape = SubResource("RectangleShape2D_horiz")
 position = Vector2(-2, 38)
 
 [node name="Boundaries#LeftWall" type="CollisionShape2D" parent="StaticBody2D3"]
-position = Vector2(-48, 253)
+position = Vector2(-42, 253)
 shape = SubResource("RectangleShape2D_vert")
 
 [node name="StaticBody2D4" type="StaticBody2D" parent="."]
 position = Vector2(0, 41)
 
 [node name="Boundaries#RightWall" type="CollisionShape2D" parent="StaticBody2D4"]
-position = Vector2(1330, 250)
+position = Vector2(1325, 263)
 shape = SubResource("RectangleShape2D_vert")
 
 [node name="BackgroundAmbiance" parent="." instance=ExtResource("3_v4xi0")]
