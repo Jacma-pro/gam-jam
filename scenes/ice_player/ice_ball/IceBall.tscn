@@ -1,4 +1,4 @@
-[gd_scene load_steps=6 format=3 uid="uid://bus48s2a37avh"]
+[gd_scene load_steps=14 format=3 uid="uid://bus48s2a37avh"]
 
 [ext_resource type="Script" uid="uid://bq4u3xo3eepn" path="res://scenes/ice_player/ice_ball/ice_ball.gd" id="1_rpatp"]
 [ext_resource type="Texture2D" uid="uid://n65gvewe8qpj" path="res://assets/sprites/ice_player/ice-projectile-Sheet.png" id="2_h7box"]
@@ -7,15 +7,71 @@
 atlas = ExtResource("2_h7box")
 region = Rect2(0, 0, 192, 192)
 
+[sub_resource type="AtlasTexture" id="AtlasTexture_h7box"]
+atlas = ExtResource("2_h7box")
+region = Rect2(0, 0, 192, 192)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_0y1o4"]
+atlas = ExtResource("2_h7box")
+region = Rect2(192, 0, 192, 192)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_asonq"]
+atlas = ExtResource("2_h7box")
+region = Rect2(384, 0, 192, 192)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_u13q1"]
+atlas = ExtResource("2_h7box")
+region = Rect2(576, 0, 192, 192)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_loiq2"]
+atlas = ExtResource("2_h7box")
+region = Rect2(768, 0, 192, 192)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_r6dbm"]
+atlas = ExtResource("2_h7box")
+region = Rect2(960, 0, 192, 192)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_dfwqq"]
+atlas = ExtResource("2_h7box")
+region = Rect2(1152, 0, 192, 192)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_6tke4"]
+atlas = ExtResource("2_h7box")
+region = Rect2(1344, 0, 192, 192)
+
 [sub_resource type="SpriteFrames" id="SpriteFrames_lsum8"]
 animations = [{
 "frames": [{
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_l2kgc")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_h7box")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_0y1o4")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_asonq")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_u13q1")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_loiq2")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_r6dbm")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_dfwqq")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_6tke4")
 }],
 "loop": true,
 "name": &"default",
-"speed": 5.0
+"speed": 25.0
 }]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_h7box"]
@@ -26,6 +82,7 @@ script = ExtResource("1_rpatp")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 sprite_frames = SubResource("SpriteFrames_lsum8")
+frame_progress = 0.659774
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2(0.5, 7)

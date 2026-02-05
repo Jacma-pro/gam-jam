@@ -162,7 +162,7 @@ func shoot():
 		animated_sprite.sprite_frames.set_animation_loop(animation_shoot, false)
 
 	var iceball = iceball_scene.instantiate()
-	iceball.position = position + Vector2(-80, -40)
+	iceball.position = position + Vector2(-110, -50)
 	iceball.rotation = PI
 	# mark shooter so the projectile won't hit its owner
 	iceball.shooter = self
