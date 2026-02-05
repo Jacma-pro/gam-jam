@@ -57,6 +57,7 @@
 - Interface (Keyboard) **Need assets**
 - add K.O ! **Need assets**
 - add text for damage x2 after 30 seconds (Sudden Death)
+- add visual feedback for cooldown attacke/protection
 
 - adapt controller menu navigation
 
