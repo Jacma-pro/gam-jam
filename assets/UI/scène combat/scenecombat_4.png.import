@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://boepjthetk0jm"
-path="res://.godot/imported/menuprincipal_1.png-b9fdd03ec6d1ec3076ec5f28967f66f8.ctex"
+uid="uid://r4dst2des6te"
+path="res://.godot/imported/scenecombat_4.png-4488ccea4156d41012b0bde7a366de87.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/UI/[asset] menu principal/menuprincipal_1.png"
-dest_files=["res://.godot/imported/menuprincipal_1.png-b9fdd03ec6d1ec3076ec5f28967f66f8.ctex"]
+source_file="res://assets/UI/scène combat/scenecombat_4.png"
+dest_files=["res://.godot/imported/scenecombat_4.png-4488ccea4156d41012b0bde7a366de87.ctex"]
 
 [params]
 

@@ -1,3 +1,34 @@
-[gd_scene load_steps=0 format=3 uid="uid://dskfjjn2a7r65"]
+[gd_scene load_steps=4 format=3 uid="uid://dskfjjn2a7r65"]
+
+[ext_resource type="Texture2D" uid="uid://b0v61cbe2yh58" path="res://assets/UI/menu principal/menuprincipal_0.png" id="1_olbcw"]
+[ext_resource type="FontFile" uid="uid://c4auaft36pegl" path="res://assets/fonts/BoldPixels.ttf" id="2_fxijl"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_6xpyw"]
 
 [node name="Credits" type="Node2D"]
+
+[node name="Background" type="TextureRect" parent="."]
+offset_top = -2.0
+offset_right = 1280.0
+offset_bottom = 718.0
+texture = ExtResource("1_olbcw")
+
+[node name="VboxButton" type="VBoxContainer" parent="."]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 519.0
+offset_top = 198.0
+offset_right = 803.0
+offset_bottom = 239.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="ButtonMenuPrincipal" type="Button" parent="VboxButton"]
+layout_mode = 2
+size_flags_horizontal = 4
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_fonts/font = ExtResource("2_fxijl")
+theme_override_font_sizes/font_size = 46
+theme_override_styles/normal = SubResource("StyleBoxEmpty_6xpyw")
+text = "Menu principal"

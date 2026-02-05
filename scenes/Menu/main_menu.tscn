@@ -1,13 +1,13 @@
 [gd_scene load_steps=14 format=3 uid="uid://bxu5aqnqplx8l"]
 
 [ext_resource type="Script" uid="uid://ccja3467ceu5m" path="res://scenes/Menu/main_menu.gd" id="1_k0vh8"]
-[ext_resource type="Texture2D" uid="uid://b0v61cbe2yh58" path="res://assets/UI/[asset] menu principal/menuprincipal_0.png" id="1_n6xgq"]
+[ext_resource type="Texture2D" uid="uid://b0v61cbe2yh58" path="res://assets/UI/menu principal/menuprincipal_0.png" id="1_n6xgq"]
 [ext_resource type="FontFile" uid="uid://c4auaft36pegl" path="res://assets/fonts/BoldPixels.ttf" id="2_8mcyk"]
-[ext_resource type="Texture2D" uid="uid://boepjthetk0jm" path="res://assets/UI/[asset] menu principal/menuprincipal_1.png" id="2_akboc"]
+[ext_resource type="Texture2D" uid="uid://boepjthetk0jm" path="res://assets/UI/menu principal/menuprincipal_1.png" id="2_akboc"]
 [ext_resource type="FontFile" uid="uid://u87hkcwujixg" path="res://assets/fonts/m6x11plus.ttf" id="3_evs2v"]
-[ext_resource type="Texture2D" uid="uid://dawwavd3qogg4" path="res://assets/UI/[asset] menu principal/menuprincipal_2.png" id="3_xvd5r"]
-[ext_resource type="Texture2D" uid="uid://dbkma8yy31r04" path="res://assets/UI/[asset] menu principal/menuprincipal_3.png" id="4_gs3bo"]
-[ext_resource type="Texture2D" uid="uid://d22p4j471mlxv" path="res://assets/UI/[asset] menu principal/menuprincipal_4.png" id="5_akboc"]
+[ext_resource type="Texture2D" uid="uid://dawwavd3qogg4" path="res://assets/UI/menu principal/menuprincipal_2.png" id="3_xvd5r"]
+[ext_resource type="Texture2D" uid="uid://dbkma8yy31r04" path="res://assets/UI/menu principal/menuprincipal_3.png" id="4_gs3bo"]
+[ext_resource type="Texture2D" uid="uid://d22p4j471mlxv" path="res://assets/UI/menu principal/menuprincipal_4.png" id="5_akboc"]
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_4q1m5"]
 
@@ -47,13 +47,15 @@ texture = ExtResource("3_xvd5r")
 
 [node name="TextureRect4" type="TextureRect" parent="."]
 layout_mode = 0
-offset_right = 1280.0
+offset_left = 1.0
+offset_right = 1281.0
 offset_bottom = 720.0
 texture = ExtResource("4_gs3bo")
 
 [node name="TextureRect5" type="TextureRect" parent="."]
 layout_mode = 0
-offset_right = 1280.0
+offset_left = 3.0
+offset_right = 1283.0
 offset_bottom = 720.0
 texture = ExtResource("5_akboc")
 

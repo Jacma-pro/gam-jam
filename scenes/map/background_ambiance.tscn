@@ -1,10 +1,12 @@
-[gd_scene load_steps=12 format=3 uid="uid://btxb8d7p0fjw5"]
+[gd_scene load_steps=17 format=3 uid="uid://btxb8d7p0fjw5"]
 
-[ext_resource type="Texture2D" uid="uid://rw5qnmpws1m" path="res://assets/sprites/background 4/3.png" id="1_sb1nf"]
-[ext_resource type="Texture2D" uid="uid://b78rbk46dkshe" path="res://assets/sprites/background 4/4.png" id="2_6ipjb"]
-[ext_resource type="Texture2D" uid="uid://bmysug37nsdgm" path="res://assets/sprites/background 4/5.png" id="3_j36br"]
-[ext_resource type="Texture2D" uid="uid://dy0vlrhc7mfji" path="res://assets/sprites/background 4/6.png" id="4_ecimj"]
-[ext_resource type="Texture2D" uid="uid://rewbhin84v8s" path="res://assets/sprites/background 4/2.png" id="5_ew5m5"]
+[ext_resource type="Texture2D" uid="uid://de47e327pgm7f" path="res://assets/UI/scène combat/scenecombat_0.png" id="1_j36br"]
+[ext_resource type="Texture2D" uid="uid://bv8tqc07fly28" path="res://assets/UI/scène combat/scenecombat_1.png" id="2_ecimj"]
+[ext_resource type="Texture2D" uid="uid://c37d4m2xn43u1" path="res://assets/UI/scène combat/scenecombat_2.png" id="3_ew5m5"]
+[ext_resource type="Texture2D" uid="uid://b8go1ays6x6n" path="res://assets/UI/scène combat/scenecombat_3.png" id="4_ab87c"]
+[ext_resource type="Texture2D" uid="uid://r4dst2des6te" path="res://assets/UI/scène combat/scenecombat_4.png" id="5_mjep5"]
+[ext_resource type="Texture2D" uid="uid://b6ktr3wugexth" path="res://assets/UI/scène combat/scenecombat_5.png" id="6_ht6s7"]
+[ext_resource type="Texture2D" uid="uid://bb4hnd8p6l3cn" path="res://assets/UI/scène combat/scenecombat_6.png" id="7_sf3l7"]
 
 [sub_resource type="Gradient" id="Gradient_ash"]
 colors = PackedColorArray(1, 1, 1, 1, 1, 1, 1, 0)
@@ -27,24 +29,69 @@ color_ramp = SubResource("GradientTexture1D_ash")
 turbulence_enabled = true
 turbulence_noise_strength = 3.0
 
-[sub_resource type="Animation" id="Animation_ab87c"]
-resource_name = "plane-animated"
-length = 7.0
+[sub_resource type="Animation" id="Animation_sopmm"]
+resource_name = "BackCloudMove"
+length = 10.0
 loop_mode = 1
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath(".:position")
+tracks/0/path = NodePath(".:scale")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
-"times": PackedFloat32Array(0, 3.5, 7),
+"times": PackedFloat32Array(0, 5.0666666, 10),
 "transitions": PackedFloat32Array(1, 1, 1),
 "update": 0,
-"values": [Vector2(-200, 360), Vector2(640, 360), Vector2(1500, 360)]
+"values": [Vector2(2.222222, 2.228395), Vector2(2.4, 2.406), Vector2(2.222, 2.228)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath(".:position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 2.5, 5),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Vector2(640, 358.99997), Vector2(640, 340), Vector2(640, 360)]
 }
 
-[sub_resource type="Animation" id="Animation_mjep5"]
+[sub_resource type="Animation" id="Animation_wh52g"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:scale")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(2.222222, 2.228395)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath(".:position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(640, 358.99997)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_qadxn"]
+_data = {
+&"BackCloudMove": SubResource("Animation_sopmm"),
+&"RESET": SubResource("Animation_wh52g")
+}
+
+[sub_resource type="Animation" id="Animation_t3jeu"]
 length = 0.001
 tracks/0/type = "value"
 tracks/0/imported = false
@@ -56,13 +103,30 @@ tracks/0/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 0,
-"values": [Vector2(640, 360)]
+"values": [Vector2(640.49994, 360)]
 }
 
-[sub_resource type="AnimationLibrary" id="AnimationLibrary_ht6s7"]
+[sub_resource type="Animation" id="Animation_o4q32"]
+resource_name = "cloudMove"
+length = 20.0
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 20),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(-600, 360), Vector2(1280, 360)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_p4nqa"]
 _data = {
-&"RESET": SubResource("Animation_mjep5"),
-&"plane-animated": SubResource("Animation_ab87c")
+&"RESET": SubResource("Animation_t3jeu"),
+&"cloudMove": SubResource("Animation_o4q32")
 }
 
 [node name="BackgroundAmbiance" type="Node2D"]
@@ -76,33 +140,49 @@ preprocess = 10.0
 visibility_rect = Rect2(-1000, -1000, 2000, 2000)
 process_material = SubResource("ParticleProcessMaterial_ash")
 
-[node name="Sprite2D" type="Sprite2D" parent="."]
-position = Vector2(640, 360)
-scale = Vector2(2.2222223, 2.2098765)
-texture = ExtResource("1_sb1nf")
+[node name="Background0" type="Sprite2D" parent="."]
+position = Vector2(669, 374)
+scale = Vector2(2.9351847, 2.935185)
+texture = ExtResource("1_j36br")
 
-[node name="Sprite2D2" type="Sprite2D" parent="."]
-position = Vector2(643, 356)
-scale = Vector2(2.2256944, 2.2222223)
-texture = ExtResource("2_6ipjb")
+[node name="Background1" type="Sprite2D" parent="."]
+position = Vector2(640, 358.99997)
+scale = Vector2(2.222222, 2.228395)
+texture = ExtResource("2_ecimj")
 
-[node name="Sprite2D3" type="Sprite2D" parent="."]
-position = Vector2(638, 355)
-scale = Vector2(2.2291667, 2.1790123)
-texture = ExtResource("3_j36br")
-
-[node name="Sprite2D4" type="Sprite2D" parent="."]
-position = Vector2(643, 360)
-scale = Vector2(2.2256944, 2.2222223)
-texture = ExtResource("4_ecimj")
-
-[node name="Sprite2D5" type="Sprite2D" parent="."]
-position = Vector2(640, 360)
-scale = Vector2(2.2291667, 2.2222223)
-texture = ExtResource("5_ew5m5")
-
-[node name="AnimationPlayer" type="AnimationPlayer" parent="Sprite2D5"]
+[node name="AnimationPlayer" type="AnimationPlayer" parent="Background1"]
 libraries = {
-&"": SubResource("AnimationLibrary_ht6s7")
+&"": SubResource("AnimationLibrary_qadxn")
 }
-autoplay = "plane-animated"
+autoplay = "BackCloudMove"
+
+[node name="Background2" type="Sprite2D" parent="."]
+position = Vector2(640.49994, 360)
+scale = Vector2(2.2239583, 2.2222223)
+texture = ExtResource("3_ew5m5")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="Background2"]
+libraries = {
+&"": SubResource("AnimationLibrary_p4nqa")
+}
+autoplay = "cloudMove"
+
+[node name="Background3" type="Sprite2D" parent="."]
+position = Vector2(640, 359.99997)
+scale = Vector2(2.2222223, 2.222222)
+texture = ExtResource("4_ab87c")
+
+[node name="Background4" type="Sprite2D" parent="."]
+position = Vector2(639.99994, 310.99997)
+scale = Vector2(2.2222219, 2.5246913)
+texture = ExtResource("5_mjep5")
+
+[node name="Background5" type="Sprite2D" parent="."]
+position = Vector2(639.99994, 360)
+scale = Vector2(2.222222, 2.2222223)
+texture = ExtResource("6_ht6s7")
+
+[node name="Background6" type="Sprite2D" parent="."]
+position = Vector2(640, 384)
+scale = Vector2(2.222222, 2.3703704)
+texture = ExtResource("7_sf3l7")
