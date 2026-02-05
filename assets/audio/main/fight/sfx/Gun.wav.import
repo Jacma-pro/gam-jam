@@ -2,13 +2,13 @@
 
 importer="wav"
 type="AudioStreamWAV"
-uid="uid://ttu24t31vh5m"
-path="res://.godot/imported/Jump.wav-c4c03a0c63a26eae42e4bfb9c0cd6f80.sample"
+uid="uid://m5vsjqtiv0vo"
+path="res://.godot/imported/Gun.wav-11799f24c944704707324ac21635e94d.sample"
 
 [deps]
 
-source_file="res://assets/audio/main/fight/sfx/Jump.wav"
-dest_files=["res://.godot/imported/Jump.wav-c4c03a0c63a26eae42e4bfb9c0cd6f80.sample"]
+source_file="res://assets/audio/main/fight/sfx/Gun.wav"
+dest_files=["res://.godot/imported/Gun.wav-11799f24c944704707324ac21635e94d.sample"]
 
 [params]
 

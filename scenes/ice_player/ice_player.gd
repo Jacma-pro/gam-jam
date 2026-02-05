@@ -5,7 +5,7 @@ extends CharacterBody2D
 
 @export_category("Mouvement")
 @export var speed = 400.0
-@export var jump_velocity = -670.0
+@export var jump_velocity = -660.0
 @export var fall_multiplier: float = 3.0
 @export var ground_deceleration: float = 1200.0 # pixels/s^2 used for move_toward
 
@@ -28,6 +28,12 @@ extends CharacterBody2D
 @export var animation_kick: String = "p2_kick"
 @export var animation_shoot: String = "p2_shoot"
 @export var animation_walk: String = "p2_walk"
+
+# sfx category
+@onready var sfx_jump: AudioStreamPlayer2D = $"jump"
+@onready var sfx_kick: AudioStreamPlayer2D = $"kick"
+@onready var sfx_hurt: AudioStreamPlayer2D = $"hurt"
+@onready var sfx_shoot: AudioStreamPlayer2D = $"ice_shoot"
 
 @export var shoot_cooldown: float = 2.0
 @export var kick_cooldown: float = 1.0
@@ -109,6 +115,7 @@ func _physics_process(delta: float) -> void:
 	# Handle jump.	
 	if Input.is_action_just_pressed(action_jump) and is_on_floor() and not is_blocking and not is_knocked:
 		velocity.y = jump_velocity
+		sfx_jump.play()
 
 	# Get the input direction and handle the movement/deceleration.
 	var direction := 0.0
@@ -157,12 +164,17 @@ func _update_animation(direction):
 
 func shoot():
 	can_shoot = false
+	sfx_shoot.play()
 	# We ensure the shoot animation does not loop and play it
 	if animated_sprite.sprite_frames.has_animation(animation_shoot):
 		animated_sprite.sprite_frames.set_animation_loop(animation_shoot, false)
 
+	if not iceball_scene:
+		printerr("IcePlayer: iceball_scene manquant, chargement de secours...")
+		iceball_scene = load("res://scenes/ice_player/ice_ball/IceBall.tscn")
+
 	var iceball = iceball_scene.instantiate()
-	iceball.position = position + Vector2(-110, -50)
+	iceball.position = position + Vector2(-110, -40)
 	iceball.rotation = PI
 	# mark shooter so the projectile won't hit its owner
 	iceball.shooter = self
@@ -182,10 +194,15 @@ func shoot():
 
 func kick():
 	can_kick = false
+	sfx_kick.play()
 
 	# We ensure the kick animation does not loop and play it
 	if animated_sprite.sprite_frames.has_animation(animation_kick):
 		animated_sprite.sprite_frames.set_animation_loop(animation_kick, false)
+
+	if not kick_scene:
+		printerr("IcePlayer: kick_scene manquant, chargement de secours...")
+		kick_scene = load("res://scenes/ice_player/ice_kick/IceKick.tscn")
 
 	var kick_instance = kick_scene.instantiate()
 
@@ -223,6 +240,7 @@ func take_damage(amount):
 	if animated_sprite.sprite_frames.has_animation(animation_hurt):
 		animated_sprite.sprite_frames.set_animation_loop(animation_hurt, false)
 	animated_sprite.play(animation_hurt)
+	sfx_hurt.play()
 	print("Aïe ! IcePlayer a pris ", amount, " dégâts.")
 
 	position += Vector2(50, 0)
@@ -300,6 +318,3 @@ func die() -> void:
 			animated_sprite.frame = frames_count - 1
 	else:
 		animated_sprite.stop()
-
-	
-	
