@@ -1,6 +1,23 @@
-[gd_scene load_steps=2 format=3 uid="uid://bxu5aqnqplx8l"]
+[gd_scene load_steps=14 format=3 uid="uid://bxu5aqnqplx8l"]
 
 [ext_resource type="Script" uid="uid://ccja3467ceu5m" path="res://scenes/Menu/main_menu.gd" id="1_k0vh8"]
+[ext_resource type="Texture2D" uid="uid://b0v61cbe2yh58" path="res://assets/UI/[asset] menu principal/menuprincipal_0.png" id="1_n6xgq"]
+[ext_resource type="FontFile" uid="uid://c4auaft36pegl" path="res://assets/fonts/BoldPixels.ttf" id="2_8mcyk"]
+[ext_resource type="Texture2D" uid="uid://boepjthetk0jm" path="res://assets/UI/[asset] menu principal/menuprincipal_1.png" id="2_akboc"]
+[ext_resource type="FontFile" uid="uid://u87hkcwujixg" path="res://assets/fonts/m6x11plus.ttf" id="3_evs2v"]
+[ext_resource type="Texture2D" uid="uid://dawwavd3qogg4" path="res://assets/UI/[asset] menu principal/menuprincipal_2.png" id="3_xvd5r"]
+[ext_resource type="Texture2D" uid="uid://dbkma8yy31r04" path="res://assets/UI/[asset] menu principal/menuprincipal_3.png" id="4_gs3bo"]
+[ext_resource type="Texture2D" uid="uid://d22p4j471mlxv" path="res://assets/UI/[asset] menu principal/menuprincipal_4.png" id="5_akboc"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_4q1m5"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_1omn4"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_gm3l1"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_2itis"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_n6xgq"]
 
 [node name="MainMenu" type="Control"]
 layout_mode = 3
@@ -10,79 +27,89 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 
-[node name="VBoxContainer" type="VBoxContainer" parent="."]
+[node name="TextureRect" type="TextureRect" parent="."]
 layout_mode = 0
-offset_left = 535.0
-offset_top = 167.0
-offset_right = 748.333
-offset_bottom = 253.0
+offset_right = 1280.0
+offset_bottom = 720.0
+texture = ExtResource("1_n6xgq")
+
+[node name="TextureRect2" type="TextureRect" parent="."]
+layout_mode = 0
+offset_right = 1280.0
+offset_bottom = 720.0
+texture = ExtResource("2_akboc")
+
+[node name="TextureRect3" type="TextureRect" parent="."]
+layout_mode = 0
+offset_right = 1280.0
+offset_bottom = 720.0
+texture = ExtResource("3_xvd5r")
+
+[node name="TextureRect4" type="TextureRect" parent="."]
+layout_mode = 0
+offset_right = 1280.0
+offset_bottom = 720.0
+texture = ExtResource("4_gs3bo")
+
+[node name="TextureRect5" type="TextureRect" parent="."]
+layout_mode = 0
+offset_right = 1280.0
+offset_bottom = 720.0
+texture = ExtResource("5_akboc")
+
+[node name="MenuButton" type="VBoxContainer" parent="."]
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -131.09393
+offset_top = -209.0
+offset_right = 131.09393
+offset_bottom = -74.0
+grow_horizontal = 2
+grow_vertical = 0
 script = ExtResource("1_k0vh8")
 
-[node name="Button" type="Button" parent="VBoxContainer"]
+[node name="ButtonJouer" type="Button" parent="MenuButton"]
 layout_mode = 2
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_fonts/font = ExtResource("2_8mcyk")
+theme_override_font_sizes/font_size = 46
+theme_override_styles/normal = SubResource("StyleBoxEmpty_4q1m5")
 text = "Jouer"
 
-[node name="CheckButton" type="CheckButton" parent="VBoxContainer"]
+[node name="ButtonCommandes" type="Button" parent="MenuButton"]
 layout_mode = 2
-text = "Audio on/off"
-
-[node name="HSlider" type="HSlider" parent="VBoxContainer"]
-layout_mode = 2
-
-[node name="Label" type="Label" parent="."]
-layout_mode = 0
-offset_left = 593.0
-offset_top = 296.0
-offset_right = 690.0
-offset_bottom = 319.0
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_fonts/font = ExtResource("2_8mcyk")
+theme_override_font_sizes/font_size = 46
+theme_override_styles/normal = SubResource("StyleBoxEmpty_1omn4")
 text = "Commandes"
 
-[node name="RichTextLabel" type="RichTextLabel" parent="Label"]
-layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-offset_left = 163.0
-offset_top = 118.0
-offset_right = 391.0
-offset_bottom = 335.0
-grow_horizontal = 2
-grow_vertical = 2
-text = "Joueur droite
-z : Saut
-q : Gauche
-s : Protection
-d : Droite
-a : Attaque corps à corps
-e : Attaque à distance
+[node name="ButtonCredits" type="Button" parent="MenuButton"]
+layout_mode = 2
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_fonts/font = ExtResource("2_8mcyk")
+theme_override_font_sizes/font_size = 46
+theme_override_styles/normal = SubResource("StyleBoxEmpty_gm3l1")
+text = "Crédits"
 
-Parer une attaque à distance avec s octroie une master attaque a distance."
-
-[node name="RichTextLabel2" type="RichTextLabel" parent="Label"]
-layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-offset_left = -222.0
-offset_top = 121.0
-offset_right = -9.0
-offset_bottom = 348.0
-grow_horizontal = 2
-grow_vertical = 2
-text = "Joueur gauche
-o : Saut
-k : Gauche
-l : Protection
-m : Droite
-p : Attaque corps à corps
-i : Attaque à distance
-
-Parer une attaque à distance avec l octroie une master attaque a distance."
-
-[node name="Label" type="Label" parent="Label"]
+[node name="AudioControl" type="VBoxContainer" parent="."]
 layout_mode = 0
-offset_left = -46.0
-offset_top = 52.0
-offset_right = 176.0
-offset_bottom = 75.0
-text = "Menu pause : barre d'espace"
+offset_left = 1105.0
+offset_top = 22.0
+offset_right = 1245.0
+offset_bottom = 66.0
+
+[node name="CheckButtonOnOff" type="CheckButton" parent="AudioControl"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("3_evs2v")
+theme_override_font_sizes/font_size = 24
+theme_override_styles/normal = SubResource("StyleBoxEmpty_2itis")
+theme_override_styles/focus = SubResource("StyleBoxEmpty_n6xgq")
+text = "Audio on/off"
+
+[node name="HSliderVolume" type="HSlider" parent="AudioControl"]
+layout_mode = 2
