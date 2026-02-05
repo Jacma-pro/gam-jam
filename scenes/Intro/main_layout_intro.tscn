@@ -141,14 +141,6 @@ process_mode = 3
 position = Vector2(638, 360)
 script = ExtResource("2_yqm5v")
 
-[node name="TermoBar" parent="." instance=ExtResource("2_v4xi0")]
-visible = false
-layout_mode = 0
-offset_left = 353.0
-offset_top = -66.0
-offset_right = 953.0
-offset_bottom = 36.0
-
 [node name="FirePlayer" parent="." instance=ExtResource("2_lldya")]
 position = Vector2(302, 426)
 
@@ -164,6 +156,16 @@ offset_bottom = 419.0
 theme_override_colors/font_color = Color(1, 0, 0, 1)
 theme_override_font_sizes/font_size = 60
 text = "FIGHT !!!!"
+
+[node name="TermoBar" parent="." instance=ExtResource("2_v4xi0")]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -480.0
+offset_right = 480.0
+offset_bottom = 72.0
+grow_horizontal = 2
 
 [node name="StaticBody2D2" type="StaticBody2D" parent="."]
 position = Vector2(-3, 0)
@@ -192,13 +194,3 @@ position = Vector2(3, 0)
 [node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="."]
 stream = ExtResource("7_uprkd")
 autoplay = true
-
-[node name="TermoBar2" parent="." instance=ExtResource("2_v4xi0")]
-layout_mode = 1
-anchors_preset = 5
-anchor_left = 0.5
-anchor_right = 0.5
-offset_left = -480.0
-offset_right = 480.0
-offset_bottom = 72.0
-grow_horizontal = 2

@@ -65,6 +65,9 @@
 - test export and upload on itch
 - add meteor random system
 
+- adapt controller on itch
+- add a fullscreen method
+
 ## combo Idea
 - after blocked a ball attack, the next ball gonna be bigger and do more dmg ✅
 
