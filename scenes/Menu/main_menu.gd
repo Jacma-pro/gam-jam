@@ -108,16 +108,19 @@ func _play_hover_sfx() -> void:
 # --- Fonctions de navigation ---
 
 func _on_button_jouer_pressed() -> void:
-	validSFX.play()
-	get_tree().change_scene_to_file("res://scenes/Intro/main_layout_intro.tscn")
 	menu_music.stop()
+	validSFX.play()
+	await validSFX.finished
+	get_tree().change_scene_to_file("res://scenes/Intro/main_layout_intro.tscn")
 
 func _on_button_commandes_pressed() -> void:
 	validSFX.play()
+	await validSFX.finished
 	get_tree().change_scene_to_file("res://scenes/Menu/commandes.tscn")
 
 func _on_button_credits_pressed() -> void:
 	validSFX.play()
+	await validSFX.finished
 	get_tree().change_scene_to_file("res://scenes/Menu/credits.tscn")
 
 # --- Fonctions Audio ---
@@ -152,4 +155,5 @@ func _process(_delta: float) -> void:
 			elif focused_control == button_credits:
 				_on_button_credits_pressed()
 			elif focused_control == check_button:
+				validSFX.play()
 				check_button.button_pressed = not check_button.button_pressed
