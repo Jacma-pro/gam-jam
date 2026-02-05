@@ -1,4 +1,4 @@
-[gd_scene load_steps=88 format=3 uid="uid://wvuatb5lo2f0"]
+[gd_scene load_steps=90 format=3 uid="uid://wvuatb5lo2f0"]
 
 [ext_resource type="Script" uid="uid://dcn8olcl5w8o4" path="res://scenes/fire_player/fire_player.gd" id="1_qqxw6"]
 [ext_resource type="Texture2D" uid="uid://dn50mj36cq7th" path="res://assets/sprites/fire_player/Crouch-Idle-Sheet.png" id="2_l1spi"]
@@ -12,7 +12,9 @@
 [ext_resource type="AudioStream" uid="uid://ttu24t31vh5m" path="res://assets/audio/main/fight/sfx/Jump.wav" id="10_lq2nt"]
 [ext_resource type="AudioStream" uid="uid://dd4c50081ss45" path="res://assets/audio/main/fight/sfx/Hurt.wav" id="11_xpmm4"]
 [ext_resource type="AudioStream" uid="uid://hlisid5byq1m" path="res://assets/audio/main/fight/sfx/kick.wav" id="12_mihc8"]
+[ext_resource type="AudioStream" uid="uid://c8pvexsb11roe" path="res://assets/audio/main/fight/sfx/counter.wav" id="13_mihc8"]
 [ext_resource type="AudioStream" uid="uid://m5vsjqtiv0vo" path="res://assets/audio/main/fight/sfx/Gun.wav" id="13_xpmm4"]
+[ext_resource type="AudioStream" uid="uid://pnjsx6bo06jh" path="res://assets/audio/main/fight/sfx/block.wav" id="15_g1p2e"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_tk42r"]
 atlas = ExtResource("2_l1spi")
@@ -535,7 +537,7 @@ animations = [{
 }],
 "loop": true,
 "name": &"p1_shoot",
-"speed": 14.0
+"speed": 20.0
 }, {
 "frames": [{
 "duration": 1.0,
@@ -574,8 +576,8 @@ script = ExtResource("1_qqxw6")
 position = Vector2(1, 0)
 scale = Vector2(2, 2)
 sprite_frames = SubResource("SpriteFrames_cqvoo")
-animation = &"p1_crouch"
-frame_progress = 0.0014087972
+animation = &"p1_shoot"
+frame_progress = 0.6981419
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2(-6, 11.5)
@@ -593,6 +595,14 @@ volume_db = 5.0
 stream = ExtResource("12_mihc8")
 volume_db = 20.0
 
+[node name="counter" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("13_mihc8")
+volume_db = 5.0
+
 [node name="fire_shoot" type="AudioStreamPlayer2D" parent="."]
 stream = ExtResource("13_xpmm4")
+volume_db = 5.0
+
+[node name="block" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("15_g1p2e")
 volume_db = 5.0

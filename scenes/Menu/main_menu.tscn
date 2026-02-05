@@ -133,6 +133,8 @@ _data = {
 &"cloudMovement": SubResource("Animation_xvd5r")
 }
 
+[sub_resource type="SpriteFrames" id="SpriteFrames_gm3l1"]
+
 [node name="MainMenu" type="Control"]
 layout_mode = 3
 anchors_preset = 15
@@ -294,3 +296,8 @@ stream = ExtResource("11_gm3l1")
 
 [node name="MenuMusic" type="AudioStreamPlayer2D" parent="."]
 stream = ExtResource("12_gm3l1")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+position = Vector2(95, -170)
+sprite_frames = SubResource("SpriteFrames_gm3l1")
+frame_progress = 0.24066001
