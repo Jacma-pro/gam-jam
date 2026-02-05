@@ -1,6 +1,6 @@
 extends CharacterBody2D
 
-@export var fireball_scene = preload("res://scenes/ice_player/ice_ball/IceBall.tscn")
+@export var iceball_scene = preload("res://scenes/ice_player/ice_ball/IceBall.tscn")
 @export var kick_scene = preload("res://scenes/ice_player/ice_kick/IceKick.tscn")
 
 @export_category("Mouvement")
@@ -161,20 +161,21 @@ func shoot():
 	if animated_sprite.sprite_frames.has_animation(animation_shoot):
 		animated_sprite.sprite_frames.set_animation_loop(animation_shoot, false)
 
-	var fireball = fireball_scene.instantiate()
-	fireball.position = position + Vector2(-100, -50)
-	fireball.rotation = PI
+	var iceball = iceball_scene.instantiate()
+	iceball.position = position + Vector2(-80, -40)
+	iceball.rotation = PI
 	# mark shooter so the projectile won't hit its owner
-	fireball.shooter = self
+	iceball.shooter = self
 
 	# if counter active, raise spawn and amplify
 	if can_counter_attack:
-		fireball.position += Vector2(0, -30 * counter_size)
-		if fireball.has_method("apply_counter"):
-			fireball.apply_counter(2.5, counter_size)
+		iceball.position += Vector2(0, 0 * counter_size)
+		iceball.speed *= 2.5
+		if iceball.has_method("apply_counter"):
+			iceball.apply_counter(2.5, counter_size)
 		can_counter_attack = false
 
-	get_parent().add_child(fireball)
+	get_parent().add_child(iceball)
 
 	await get_tree().create_timer(shoot_cooldown).timeout
 	can_shoot = true

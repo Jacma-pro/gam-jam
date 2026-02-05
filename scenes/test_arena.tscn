@@ -1,9 +1,10 @@
-[gd_scene load_steps=5 format=3 uid="uid://6vplrocd82cm"]
+[gd_scene load_steps=6 format=3 uid="uid://6vplrocd82cm"]
 
 [ext_resource type="PackedScene" uid="uid://wvuatb5lo2f0" path="res://scenes/fire_player/fire_player.tscn" id="1_player"]
 [ext_resource type="PackedScene" uid="uid://c5evy6clrr0i1" path="res://scenes/map/map_element.tscn" id="2_platform"]
 [ext_resource type="PackedScene" uid="uid://dk5rsfk36y8rc" path="res://scenes/ice_player/ice_player.tscn" id="3_xjnh2"]
 [ext_resource type="PackedScene" uid="uid://dt1dgs63g4kj5" path="res://scenes/termo_bar/TermoBar.tscn" id="4_s42hq"]
+[ext_resource type="PackedScene" uid="uid://cjss1nhmdd7ys" path="res://scenes/meteor/Meteor.tscn" id="5_4brrt"]
 
 [node name="TestArena" type="Node2D"]
 
@@ -21,7 +22,14 @@ position = Vector2(179, 365)
 position = Vector2(934, 365)
 
 [node name="TermoBar" parent="." instance=ExtResource("4_s42hq")]
-offset_left = 346.0
-offset_top = -65.0
-offset_right = 946.0
-offset_bottom = 37.0
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = 150.0
+offset_top = 1.0
+offset_right = 1110.0
+offset_bottom = 103.0
+grow_horizontal = 2
+
+[node name="Meteor" parent="." instance=ExtResource("5_4brrt")]
+position = Vector2(285, -114)

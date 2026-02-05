@@ -1,11 +1,10 @@
-[gd_scene load_steps=4 format=3 uid="uid://dt1dgs63g4kj5"]
+[gd_scene load_steps=3 format=3 uid="uid://dt1dgs63g4kj5"]
 
-[ext_resource type="Texture2D" uid="uid://dgbn6ebnp5o0y" path="res://assets/blue.png" id="1_famnp"]
-[ext_resource type="Texture2D" uid="uid://btnjva2t05ghk" path="res://assets/orange.png" id="2_lo6gf"]
+[ext_resource type="Texture2D" uid="uid://cxxk0gys7kbu5" path="res://assets/sprites/health_bar/healthbar_red.png" id="1_famnp"]
 [ext_resource type="Script" uid="uid://htuv66ct6xkq" path="res://scenes/termo_bar/termo_bar.gd" id="3_lo6gf"]
 
 [node name="TermoBar" type="TextureProgressBar" groups=["termo_bar"]]
 value = 50.0
 texture_under = ExtResource("1_famnp")
-texture_progress = ExtResource("2_lo6gf")
+texture_progress = ExtResource("1_famnp")
 script = ExtResource("3_lo6gf")

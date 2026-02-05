@@ -63,6 +63,7 @@
 - add visual feedback for cooldown attacke/protection
 - not die in the air, add a ground check
 - test export and upload on itch
+- add meteor random system
 
 ## combo Idea
 - after blocked a ball attack, the next ball gonna be bigger and do more dmg ✅

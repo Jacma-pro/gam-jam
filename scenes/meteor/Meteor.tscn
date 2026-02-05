@@ -1,0 +1,46 @@
+[gd_scene load_steps=6 format=3 uid="uid://cjss1nhmdd7ys"]
+
+[ext_resource type="Texture2D" uid="uid://d22p4j471mlxv" path="res://assets/UI/[asset] menu principal/menuprincipal_4.png" id="1_w7kem"]
+
+[sub_resource type="GDScript" id="GDScript_w7kem"]
+script/source = "extends Area2D
+
+
+# Called when the node enters the scene tree for the first time.
+func _ready() -> void:
+	pass # Replace with function body.
+
+
+# Called every frame. 'delta' is the elapsed time since the previous frame.
+func _process(delta: float) -> void:
+	pass
+"
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_2eqx7"]
+atlas = ExtResource("1_w7kem")
+region = Rect2(520, 184, 52, 46)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_7xl6n"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_2eqx7")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_x6axe"]
+size = Vector2(52, 46)
+
+[node name="Meteor" type="Area2D"]
+script = SubResource("GDScript_w7kem")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+scale = Vector2(2, 2)
+sprite_frames = SubResource("SpriteFrames_7xl6n")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+scale = Vector2(2, 2)
+shape = SubResource("RectangleShape2D_x6axe")
