@@ -2,20 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-<<<<<<< HEAD
-uid="uid://hkakmpjeiwr6"
-=======
-uid="uid://djd03tkxq22p3"
->>>>>>> c9aa346fe56807d9680888839ca55f6ef4826867
-path="res://.godot/imported/menuprincipal_4.png-0d02ed9226cda3c52e86e5c02c1e9dfc.ctex"
+uid="uid://cqxaog2auh0l1"
+path="res://.godot/imported/Ice-Jump-Sheet.png-dca31528e019a3bbf6c1d646586760d9.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/UI/[asset] menu principal/menuprincipal_4.png"
-dest_files=["res://.godot/imported/menuprincipal_4.png-0d02ed9226cda3c52e86e5c02c1e9dfc.ctex"]
+source_file="res://assets/sprites/ice_player/Ice-Jump-Sheet.png"
+dest_files=["res://.godot/imported/Ice-Jump-Sheet.png-dca31528e019a3bbf6c1d646586760d9.ctex"]
 
 [params]
 

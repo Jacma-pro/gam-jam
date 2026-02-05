@@ -2,20 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-<<<<<<< HEAD
-uid="uid://hkakmpjeiwr6"
-=======
-uid="uid://djd03tkxq22p3"
->>>>>>> c9aa346fe56807d9680888839ca55f6ef4826867
-path="res://.godot/imported/menuprincipal_4.png-0d02ed9226cda3c52e86e5c02c1e9dfc.ctex"
+uid="uid://df64syq67ts7b"
+path="res://.godot/imported/Ice-Death-Sheet.png-1f7f880a75c200322a788127d3bcb1fa.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/UI/[asset] menu principal/menuprincipal_4.png"
-dest_files=["res://.godot/imported/menuprincipal_4.png-0d02ed9226cda3c52e86e5c02c1e9dfc.ctex"]
+source_file="res://assets/sprites/ice_player/Ice-Death-Sheet.png"
+dest_files=["res://.godot/imported/Ice-Death-Sheet.png-1f7f880a75c200322a788127d3bcb1fa.ctex"]
 
 [params]
 
