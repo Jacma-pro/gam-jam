@@ -86,12 +86,6 @@ func _on_sudden_death_timeout() -> void:
 func _on_game_over(winner_name: String) -> void:
 	print("SceneManager: VICTOIRE détectée pour ", winner_name)
 
-	# Afficher le KO et jouer le son
-	if ko_label:
-		ko_label.visible = true
-	if ko_sound:
-		ko_sound.play()
-
 	# Make sure the tree is not paused so the death animation can play
 	get_tree().paused = false
 
@@ -105,6 +99,15 @@ func _on_game_over(winner_name: String) -> void:
 	if loser and loser.has_method("die"):
 		loser.die()
 		print("SceneManager: Mort déclenchée pour le joueur perdant")
+
+	# Attendre 1 seconde après la mort avant le KO
+	await get_tree().create_timer(1.0).timeout
+
+	# Afficher le KO et jouer le son
+	if ko_label:
+		ko_label.visible = true
+	if ko_sound:
+		ko_sound.play()
 
 	# wait the configured end animation timer before showing the over menu
 	await get_tree().create_timer(end_animation_timer).timeout
