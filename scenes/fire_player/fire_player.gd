@@ -157,14 +157,14 @@ func shoot():
 		animated_sprite.sprite_frames.set_animation_loop(animation_shoot, false)
 
 	var fireball = fireball_scene.instantiate()
-	fireball.position = position + Vector2(80, -40)
+	fireball.position = position + Vector2(130, -50)
 	# mark shooter so the projectile won't hit its owner
 	fireball.shooter = self
 
 	# if counter active, raise spawn and amplify
 	if can_counter_attack:
 		fireball.position += Vector2(0,0 * counter_size)
-		fireball.speed *= 1.5
+		fireball.speed *= 2.5
 		if fireball.has_method("apply_counter"):
 			fireball.apply_counter(2.5, counter_size)
 		can_counter_attack = false

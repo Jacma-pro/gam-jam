@@ -1,60 +1,91 @@
-[gd_scene load_steps=9 format=3 uid="uid://dbtid3sd3epux"]
+[gd_scene load_steps=14 format=3 uid="uid://dbtid3sd3epux"]
 
 [ext_resource type="Script" uid="uid://crbny75e55ht" path="res://scenes/fire_player/fire_ball/fire_ball.gd" id="1_xw5oo"]
-[ext_resource type="Texture2D" uid="uid://blfqg621u87rd" path="res://icon.svg" id="2_x5xds"]
+[ext_resource type="Texture2D" uid="uid://n65gvewe8qpj" path="res://assets/sprites/ice_player/ice-projectile-Sheet.png" id="2_xw5oo"]
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_dsw6t"]
-atlas = ExtResource("2_x5xds")
-region = Rect2(0, 64, 64, 64)
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_xw5oo"]
+size = Vector2(63, 12)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_xw5oo"]
-atlas = ExtResource("2_x5xds")
-region = Rect2(64, 64, 64, 64)
+[sub_resource type="AtlasTexture" id="AtlasTexture_l2kgc"]
+atlas = ExtResource("2_xw5oo")
+region = Rect2(0, 0, 192, 192)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_x5xds"]
-atlas = ExtResource("2_x5xds")
-region = Rect2(0, 0, 64, 64)
+[sub_resource type="AtlasTexture" id="AtlasTexture_h7box"]
+atlas = ExtResource("2_xw5oo")
+region = Rect2(0, 0, 192, 192)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_thwfy"]
-atlas = ExtResource("2_x5xds")
-region = Rect2(64, 0, 64, 64)
+[sub_resource type="AtlasTexture" id="AtlasTexture_0y1o4"]
+atlas = ExtResource("2_xw5oo")
+region = Rect2(192, 0, 192, 192)
 
-[sub_resource type="SpriteFrames" id="SpriteFrames_lsum8"]
+[sub_resource type="AtlasTexture" id="AtlasTexture_asonq"]
+atlas = ExtResource("2_xw5oo")
+region = Rect2(384, 0, 192, 192)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_u13q1"]
+atlas = ExtResource("2_xw5oo")
+region = Rect2(576, 0, 192, 192)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_loiq2"]
+atlas = ExtResource("2_xw5oo")
+region = Rect2(768, 0, 192, 192)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_r6dbm"]
+atlas = ExtResource("2_xw5oo")
+region = Rect2(960, 0, 192, 192)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_dfwqq"]
+atlas = ExtResource("2_xw5oo")
+region = Rect2(1152, 0, 192, 192)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_6tke4"]
+atlas = ExtResource("2_xw5oo")
+region = Rect2(1344, 0, 192, 192)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_x5xds"]
 animations = [{
-"frames": [],
-"loop": true,
-"name": &"default",
-"speed": 5.0
-}, {
 "frames": [{
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_dsw6t")
+"texture": SubResource("AtlasTexture_l2kgc")
 }, {
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_xw5oo")
+"texture": SubResource("AtlasTexture_h7box")
 }, {
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_x5xds")
+"texture": SubResource("AtlasTexture_0y1o4")
 }, {
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_thwfy")
+"texture": SubResource("AtlasTexture_asonq")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_u13q1")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_loiq2")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_r6dbm")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_dfwqq")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_6tke4")
 }],
 "loop": true,
-"name": &"rotate",
-"speed": 60.0
+"name": &"default",
+"speed": 25.0
 }]
-
-[sub_resource type="CircleShape2D" id="CircleShape2D_xw5oo"]
-radius = 33.06055
 
 [node name="FireBall" type="Area2D"]
 script = ExtResource("1_xw5oo")
 
-[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
-modulate = Color(1, 0.23921569, 0, 1)
-sprite_frames = SubResource("SpriteFrames_lsum8")
-animation = &"rotate"
-frame_progress = 0.9029833
-
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-shape = SubResource("CircleShape2D_xw5oo")
+position = Vector2(0.5, 7)
+shape = SubResource("RectangleShape2D_xw5oo")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+modulate = Color(1, 0.27450982, 0.12941177, 1)
+sprite_frames = SubResource("SpriteFrames_x5xds")
+frame = 1
+frame_progress = 0.64755076
