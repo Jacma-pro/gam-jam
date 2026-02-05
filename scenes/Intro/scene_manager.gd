@@ -101,10 +101,11 @@ func _on_game_over(winner_name: String) -> void:
 		print("SceneManager: Mort déclenchée pour le joueur perdant")
 
 	# Attendre 1 seconde après la mort avant le KO
-	await get_tree().create_timer(1.0).timeout
+	await get_tree().create_timer(2.0).timeout
 
 	# Afficher le KO et jouer le son
 	if ko_label:
+		await get_tree().create_timer(1.0).timeout
 		ko_label.visible = true
 	if ko_sound:
 		ko_sound.play()
