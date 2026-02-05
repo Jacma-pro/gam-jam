@@ -58,6 +58,19 @@ func _on_main_menu_pressed() -> void:
 	get_tree().paused = false
 	get_tree().change_scene_to_file("res://scenes/Menu/main_menu.tscn")
 
+func _process(_delta: float) -> void:
+	if Input.is_action_just_pressed(nav_ok):
+		var focused_control = get_viewport().gui_get_focus_owner()
+		if focused_control:
+			if focused_control == $Button:
+				_on_resume_pressed()
+			if focused_control == $Button2:
+				_on_replay_pressed()
+			if focused_control == $Button3:
+				_on_main_menu_pressed()
+			elif focused_control == $CheckButton:
+				$CheckButton.button_pressed = not $CheckButton.button_pressed
+
 # --- Logique Audio (identique au Main Menu) ---
 
 func _on_check_button_toggled(toggled_on: bool) -> void:
