@@ -141,8 +141,8 @@ visibility_rect = Rect2(-1000, -1000, 2000, 2000)
 process_material = SubResource("ParticleProcessMaterial_ash")
 
 [node name="Background0" type="Sprite2D" parent="."]
-position = Vector2(669, 374)
-scale = Vector2(2.9351847, 2.935185)
+position = Vector2(640, 360.00003)
+scale = Vector2(2.2222223, 2.222222)
 texture = ExtResource("1_j36br")
 
 [node name="Background1" type="Sprite2D" parent="."]
@@ -173,8 +173,8 @@ scale = Vector2(2.2222223, 2.222222)
 texture = ExtResource("4_ab87c")
 
 [node name="Background4" type="Sprite2D" parent="."]
-position = Vector2(639.99994, 310.99997)
-scale = Vector2(2.2222219, 2.5246913)
+position = Vector2(639.9999, 359.99997)
+scale = Vector2(2.2222219, 2.2222219)
 texture = ExtResource("5_mjep5")
 
 [node name="Background5" type="Sprite2D" parent="."]
@@ -183,6 +183,6 @@ scale = Vector2(2.222222, 2.2222223)
 texture = ExtResource("6_ht6s7")
 
 [node name="Background6" type="Sprite2D" parent="."]
-position = Vector2(640, 384)
-scale = Vector2(2.222222, 2.3703704)
+position = Vector2(640, 359.99997)
+scale = Vector2(2.2222223, 2.222222)
 texture = ExtResource("7_sf3l7")
