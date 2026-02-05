@@ -34,6 +34,8 @@ extends CharacterBody2D
 @onready var sfx_kick: AudioStreamPlayer2D = $"kick"
 @onready var sfx_hurt: AudioStreamPlayer2D = $"hurt"
 @onready var sfx_shoot: AudioStreamPlayer2D = $"ice_shoot"
+@onready var sfx_counter: AudioStreamPlayer2D = $"counter"
+@onready var sfx_block: AudioStreamPlayer2D = $"block"
 
 @export var shoot_cooldown: float = 2.0
 @export var kick_cooldown: float = 1.0
@@ -181,6 +183,7 @@ func shoot():
 
 	# if counter active, raise spawn and amplify
 	if can_counter_attack:
+		sfx_counter.play()
 		iceball.position += Vector2(0, 0 * counter_size)
 		iceball.speed *= 2.5
 		if iceball.has_method("apply_counter"):
@@ -228,6 +231,7 @@ func start_block_penalty():
 
 func take_damage(amount):
 	if is_blocking:
+		sfx_block.play()
 		can_counter_attack = true
 		start_counter_window()
 		print("IcePlayer a bloqué l'attaque !")

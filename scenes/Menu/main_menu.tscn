@@ -1,4 +1,4 @@
-[gd_scene load_steps=33 format=3 uid="uid://bxu5aqnqplx8l"]
+[gd_scene load_steps=34 format=3 uid="uid://bxu5aqnqplx8l"]
 
 [ext_resource type="Script" uid="uid://ccja3467ceu5m" path="res://scenes/Menu/main_menu.gd" id="1_k0vh8"]
 [ext_resource type="Texture2D" uid="uid://b0v61cbe2yh58" path="res://assets/UI/menu principal/menuprincipal_0.png" id="1_n6xgq"]
@@ -132,6 +132,8 @@ _data = {
 &"RESET": SubResource("Animation_gs3bo"),
 &"cloudMovement": SubResource("Animation_xvd5r")
 }
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_gm3l1"]
 
 [node name="MainMenu" type="Control"]
 layout_mode = 3
@@ -293,3 +295,8 @@ stream = ExtResource("11_gm3l1")
 
 [node name="MenuMusic" type="AudioStreamPlayer2D" parent="."]
 stream = ExtResource("12_gm3l1")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+position = Vector2(95, -170)
+sprite_frames = SubResource("SpriteFrames_gm3l1")
+frame_progress = 0.24066001
