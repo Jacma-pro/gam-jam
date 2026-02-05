@@ -26,6 +26,7 @@ func _ready() -> void:
 	
 	# Applique l'état audio initial
 	_apply_audio_settings()
+	$Button.grab_focus()
 
 func _apply_audio_settings() -> void:
 	var master_bus_index = AudioServer.get_bus_index("Master")
@@ -48,6 +49,16 @@ func _on_check_button_toggled(toggled_on: bool) -> void:
 		if GameManager.master_volume == 0:
 			GameManager.master_volume = 100
 		$HSlider.value = GameManager.master_volume
+
+func _process(_delta: float) -> void:
+	if Input.is_action_just_pressed(nav_ok):
+		var focused_control = get_viewport().gui_get_focus_owner()
+		if focused_control:
+			if focused_control == $Button:
+				_on_button_pressed()
+			elif focused_control == $CheckButton:
+				$CheckButton.button_pressed = not $CheckButton.button_pressed
+
 
 func _on_h_slider_value_changed(value: float) -> void:
 	GameManager.master_volume = value
