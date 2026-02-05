@@ -1,6 +1,6 @@
 extends Area2D
 
-@export var damage: float = 20.0
+@export var damage: float = 15.0
 @export var knockback_base: float = 200.0
 @export var shove_margin: float = 4.0
 
