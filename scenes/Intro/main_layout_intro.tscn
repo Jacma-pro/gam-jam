@@ -1,4 +1,4 @@
-[gd_scene load_steps=18 format=3 uid="uid://swrye7exddbs"]
+[gd_scene load_steps=20 format=3 uid="uid://swrye7exddbs"]
 
 [ext_resource type="AudioStream" uid="uid://bs4mtdk0lhfgx" path="res://assets/audio/main/fight/sfx/explosionInverse.mp3" id="2_3t15v"]
 [ext_resource type="AudioStream" uid="uid://bpd88i5gtblng" path="res://assets/audio/16-bitMusic/2025 03 _ Clement Panchout - Music Weeklies 25 DM - 16 Bit GEN Death metalwav.wav" id="2_7hehe"]
@@ -12,6 +12,8 @@
 [ext_resource type="Texture2D" uid="uid://cvn4p2ue3ewuu" path="res://assets/UI/scène combat/fight.png" id="5_opo4b"]
 [ext_resource type="AudioStream" uid="uid://bfor8eip5hq7a" path="res://assets/audio/main/fight/music/Panda Beats & Newenx - Press Play 👾 (16-Bit Arcade No Copyright Music) 1.mp3" id="8_3t15v"]
 [ext_resource type="Script" path="res://scenes/Intro/meteor_spawner.gd" id="8_opo4b"]
+[ext_resource type="Texture2D" uid="uid://cdjbysylaua7v" path="res://assets/UI/scène combat/ko.png" id="9_ko_tex"]
+[ext_resource type="AudioStream" uid="uid://d0on0ui8gpg7a" path="res://assets/audio/voix/Rick Allen - Fighting Game Narrator - KO.wav" id="10_ko_snd"]
 
 [sub_resource type="Animation" id="Animation_5yswy"]
 length = 0.001
@@ -188,7 +190,7 @@ tracks/7/keys = {
 "times": PackedFloat32Array(6, 7.9666667),
 "transitions": PackedFloat32Array(1, 0.32987696),
 "update": 0,
-"values": [0.0, -23.375999999999998]
+"values": [0.0, -23.376]
 }
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_u0wmg"]
@@ -298,4 +300,19 @@ script = ExtResource("8_opo4b")
 bus = &"IntroMusic"
 
 [node name="AudioStreamPlayer2" type="AudioStreamPlayer" parent="."]
+bus = &"SFXintro"
+
+[node name="KOLabel" type="TextureRect" parent="."]
+visible = false
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("9_ko_tex")
+stretch_mode = 3
+
+[node name="KOSound" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("10_ko_snd")
 bus = &"SFXintro"

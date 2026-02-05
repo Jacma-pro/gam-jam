@@ -3,6 +3,8 @@ extends Node
 # Références aux noeuds via le parent car ce script sera sur un noeud enfant
 @onready var main_layout = get_parent()
 @onready var animation_player = main_layout.get_node("AnimationPlayer")
+@onready var ko_label = main_layout.get_node("KOLabel")
+@onready var ko_sound = main_layout.get_node("KOSound")
 
 @export var end_animation_timer: float = 5.0
 @export var sudden_death_time: float = 60.0
@@ -83,6 +85,12 @@ func _on_sudden_death_timeout() -> void:
 
 func _on_game_over(winner_name: String) -> void:
 	print("SceneManager: VICTOIRE détectée pour ", winner_name)
+
+	# Afficher le KO et jouer le son
+	if ko_label:
+		ko_label.visible = true
+	if ko_sound:
+		ko_sound.play()
 
 	# Make sure the tree is not paused so the death animation can play
 	get_tree().paused = false
