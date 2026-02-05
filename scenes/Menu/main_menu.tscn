@@ -1,4 +1,4 @@
-[gd_scene load_steps=33 format=3 uid="uid://bxu5aqnqplx8l"]
+[gd_scene load_steps=34 format=3 uid="uid://bxu5aqnqplx8l"]
 
 [ext_resource type="Script" uid="uid://ccja3467ceu5m" path="res://scenes/Menu/main_menu.gd" id="1_k0vh8"]
 [ext_resource type="Texture2D" uid="uid://b0v61cbe2yh58" path="res://assets/UI/menu principal/menuprincipal_0.png" id="1_n6xgq"]
@@ -157,6 +157,7 @@ offset_bottom = 720.0
 texture = ExtResource("2_akboc")
 
 [node name="TextureRect6" type="TextureRect" parent="."]
+visible = false
 layout_mode = 1
 anchors_preset = 8
 anchor_left = 0.5
