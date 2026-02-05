@@ -15,7 +15,8 @@ func _ready() -> void:
 	if not body_entered.is_connected(_on_body_entered):
 		body_entered.connect(_on_body_entered)
 	
-	animated_sprite.play("rotate")
+	animated_sprite.play("default")
+	animated_sprite.flip_v = true 
 	
 	await get_tree().create_timer(deleteTimer).timeout
 	if is_instance_valid(self):
