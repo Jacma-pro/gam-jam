@@ -2,6 +2,7 @@ extends Area2D
 
 @export var damage: float = 20.0
 @export var knockback_base: float = 200.0
+@export var shove_margin: float = 4.0
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
@@ -25,11 +26,32 @@ func _on_body_entered(body):
 		if is_instance_valid(get_parent()):
 			var hdir = 1 if body.global_position.x > get_parent().global_position.x else -1
 			var shove = Vector2(hdir * knockback_base * 1.5, 0)
-			# Move in global space to avoid local transform issues
-			body.global_position += shove
+			# Collision-safe movement: prefer move_and_collide for CharacterBody2D-like bodies
+			var margin: float = 4.0
+			if body.has_method("move_and_collide"):
+				# move_and_collide will respect collisions and return a collision if hit
+				var _collision = body.move_and_collide(shove)
+				# if collided, move_and_collide already prevented penetration
+			else:
+				# Fallback: raycast from current position to target and place just before the hit
+				var from = body.global_position
+				var to = from + shove
+				var space_state = get_world_2d().direct_space_state
+				var exclude = [get_parent(), self, body]
+				var params = PhysicsRayQueryParameters2D.new()
+				params.from = from
+				params.to = to
+				params.exclude = exclude
+				var res = space_state.intersect_ray(params)
+				if res:
+					var pos = res.position - res.normal * margin
+					body.global_position = pos
+				else:
+					body.global_position = to
+
 			# Apply a short stun without adding velocity if the body supports knockback
 			if body.has_method("knockback"):
-				body.knockback(Vector2(0, 0), 0.2)
+				body.knockback(Vector2.ZERO, 0.2)
 
 func apply_counter(multiplier: float, size_mult: float) -> void:
 	# amplify damage and visual size when player used counter-attack

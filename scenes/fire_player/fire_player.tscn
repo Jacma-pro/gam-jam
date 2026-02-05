@@ -1,4 +1,4 @@
-[gd_scene load_steps=94 format=3 uid="uid://wvuatb5lo2f0"]
+[gd_scene load_steps=84 format=3 uid="uid://wvuatb5lo2f0"]
 
 [ext_resource type="Script" uid="uid://dcn8olcl5w8o4" path="res://scenes/fire_player/fire_player.gd" id="1_qqxw6"]
 [ext_resource type="Texture2D" uid="uid://dn50mj36cq7th" path="res://assets/sprites/fire_player/Crouch-Idle-Sheet.png" id="2_l1spi"]
@@ -7,7 +7,6 @@
 [ext_resource type="Texture2D" uid="uid://cpnasilkaki5v" path="res://assets/sprites/fire_player/Idle-Sheet.png" id="5_lq2nt"]
 [ext_resource type="Texture2D" uid="uid://h31xo4ktmmj2" path="res://assets/sprites/fire_player/Jump-Sheet.png" id="6_xpmm4"]
 [ext_resource type="Texture2D" uid="uid://b82aa8tbag688" path="res://assets/sprites/fire_player/Punch-Sheet.png" id="7_mihc8"]
-[ext_resource type="Texture2D" uid="uid://c5hry55i3c0ha" path="res://assets/sprites/fire_player/Land-Sheet.png" id="8_g1p2e"]
 [ext_resource type="Texture2D" uid="uid://ur7d8cxbv30a" path="res://assets/sprites/fire_player/Walk-Sheet.png" id="9_2kph8"]
 [ext_resource type="Texture2D" uid="uid://c5a1xgxsb3dov" path="res://assets/sprites/fire_player/Shoot-Sheet.png" id="9_vbplr"]
 
@@ -230,42 +229,6 @@ region = Rect2(960, 0, 192, 192)
 [sub_resource type="AtlasTexture" id="AtlasTexture_iwrjq"]
 atlas = ExtResource("7_mihc8")
 region = Rect2(1152, 0, 192, 192)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_gjd4c"]
-atlas = ExtResource("8_g1p2e")
-region = Rect2(0, 0, 192, 192)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_alpgk"]
-atlas = ExtResource("8_g1p2e")
-region = Rect2(192, 0, 192, 192)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_us7p8"]
-atlas = ExtResource("8_g1p2e")
-region = Rect2(384, 0, 192, 192)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_xmnok"]
-atlas = ExtResource("8_g1p2e")
-region = Rect2(576, 0, 192, 192)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_v1ylg"]
-atlas = ExtResource("8_g1p2e")
-region = Rect2(768, 0, 192, 192)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_cvrvv"]
-atlas = ExtResource("8_g1p2e")
-region = Rect2(960, 0, 192, 192)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_htqbb"]
-atlas = ExtResource("8_g1p2e")
-region = Rect2(1152, 0, 192, 192)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_72ftv"]
-atlas = ExtResource("8_g1p2e")
-region = Rect2(1344, 0, 192, 192)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_kkcpi"]
-atlas = ExtResource("8_g1p2e")
-region = Rect2(1536, 0, 192, 192)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_2kph8"]
 atlas = ExtResource("9_vbplr")
@@ -537,38 +500,6 @@ animations = [{
 }, {
 "frames": [{
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_gjd4c")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_alpgk")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_us7p8")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_xmnok")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_v1ylg")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_cvrvv")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_htqbb")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_72ftv")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_kkcpi")
-}],
-"loop": true,
-"name": &"p1_land",
-"speed": 9.0
-}, {
-"frames": [{
-"duration": 1.0,
 "texture": SubResource("AtlasTexture_2kph8")
 }, {
 "duration": 1.0,
@@ -639,8 +570,8 @@ script = ExtResource("1_qqxw6")
 position = Vector2(1, 0)
 scale = Vector2(2, 2)
 sprite_frames = SubResource("SpriteFrames_cqvoo")
-animation = &"p1_shoot"
-frame_progress = 0.6083822
+animation = &"p1_crouch"
+frame_progress = 0.8715773
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2(-6, 11.5)
