@@ -62,6 +62,8 @@
 ## what's left
 
 - add text or sound for damage x2 after 60 seconds (Sudden Death)
+    - 30 secondes left
+    - 10 secondes left
 - add visual feedback for cooldown attacke/protection/counter attack
 - upload on itch
 
