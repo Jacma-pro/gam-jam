@@ -1,6 +1,6 @@
 extends CanvasLayer
 
-@onready var label = $Label
+@onready var label = $VBoxContainer/Label
 @onready var button_replay = $VBoxContainer/Button2
 @onready var button_menu = $VBoxContainer/Button3
 
@@ -19,6 +19,7 @@ func _ready() -> void:
 	# Connexions des boutons
 	if button_replay:
 		button_replay.pressed.connect(_on_replay_pressed)
+		button_replay.grab_focus() # Donne le focus au premier bouton
 	else:
 		print("OverMenu: ERREUR - Button2 (Replay) introuvable")
 
@@ -53,5 +54,4 @@ func _process(_delta: float) -> void:
 				_on_replay_pressed()
 			if focused_control == button_menu:
 				_on_main_menu_pressed()
-			elif focused_control == $CheckButton:
-				$CheckButton.button_pressed = not $CheckButton.button_pressed
+
