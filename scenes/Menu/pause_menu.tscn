@@ -14,15 +14,9 @@
 process_mode = 3
 
 [node name="ColorRect" type="ColorRect" parent="."]
-anchors_preset = 8
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-offset_left = -640.0
-offset_top = -362.0
-offset_right = 640.0
-offset_bottom = 358.0
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 color = Color(0.21960784, 0.26666668, 0.8509804, 0.3647059)
@@ -33,9 +27,9 @@ anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-offset_left = -237.38931
+offset_left = -237.3893
 offset_top = -114.0
-offset_right = 237.38931
+offset_right = 237.3893
 offset_bottom = 114.0
 grow_horizontal = 2
 grow_vertical = 2
@@ -74,9 +68,9 @@ theme_override_styles/normal = SubResource("StyleBoxEmpty_n04sb")
 text = "Menu principal"
 
 [node name="VBoxContainer2" type="VBoxContainer" parent="."]
-offset_left = 1090.0
+offset_left = 1105.0
 offset_top = 53.0
-offset_right = 1242.0
+offset_right = 1257.0
 offset_bottom = 105.0
 
 [node name="CheckButton" type="CheckButton" parent="VBoxContainer2"]
