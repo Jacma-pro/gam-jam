@@ -46,7 +46,8 @@
 - add controller version ✅
 - adapt controller menu navigation ✅
 - not die in the air, add a ground check ✅
-- add meteor random system ✅Ò
+- add meteor random system ✅
+- adapt controller on itch ✅
 
 
 ## what's left
@@ -66,7 +67,6 @@
 - test export and upload on itch
 - add an utility for jump
 
-- adapt controller on itch
 - add a fullscreen method
 
 ## combo Idea
