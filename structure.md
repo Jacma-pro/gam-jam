@@ -44,6 +44,9 @@
 
 - add damage x2 after 30 seconds (sudden death) ✅
 - add controller version ✅
+- adapt controller menu navigation ✅
+
+
 ## what's left
 
 - In Gameplay:
@@ -59,7 +62,6 @@
 - add text for damage x2 after 30 seconds (Sudden Death)
 - add visual feedback for cooldown attacke/protection
 - not die in the air, add a ground check
-- adapt controller menu navigation
 - test export and upload on itch
 
 ## combo Idea

@@ -66,6 +66,9 @@ func _ready() -> void:
 func _physics_process(delta: float) -> void:
 	# If dead, don't process inputs or movement
 	if is_dead:
+		if not is_on_floor():
+			velocity.y += gravity * delta
+			move_and_slide()
 		return
 
 	# Add the gravity with snappier jump behaviour.
@@ -246,18 +249,14 @@ func start_counter_window():
 	# window during which next attack is amplified
 	await get_tree().create_timer(counter_attack_timer).timeout
 	can_counter_attack = false
-
+	
 
 func die() -> void:
-	# Delete CollisionShape2D for T-bag
-	var collision_shape = $CollisionShape2D
-	if is_instance_valid(collision_shape):
-		collision_shape.queue_free()
-
 	# Prevent double-die
 	if is_dead:
 		return
 	is_dead = true
+	
 	# disable actions
 	can_shoot = false
 	can_kick = false
@@ -265,9 +264,19 @@ func die() -> void:
 	is_blocking = false
 	is_knocked = true
 	
-	# Stop logic immediately
+	# Si on est en l'air, on attend de toucher le sol
+	while not is_on_floor():
+		await get_tree().physics_frame
+	
+	# Une fois au sol, on coupe la physique
 	set_physics_process(false)
 	set_process(false)
+	
+	# MAINTENANT on peut supprimer la collision pour le "T-bag"
+	# (Si on le fait avant, on passe à travers le sol)
+	var collision_shape = $CollisionShape2D
+	if is_instance_valid(collision_shape):
+		collision_shape.queue_free()
 
 	if animated_sprite.sprite_frames.has_animation(animation_death):
 		animated_sprite.sprite_frames.set_animation_loop(animation_death, false)
