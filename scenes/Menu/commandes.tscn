@@ -1,10 +1,11 @@
-[gd_scene load_steps=8 format=3 uid="uid://hpciguwy5jrf"]
+[gd_scene load_steps=9 format=3 uid="uid://bqjyn0eb2mjhe"]
 
 [ext_resource type="Texture2D" uid="uid://b0v61cbe2yh58" path="res://assets/UI/menu principal/menuprincipal_0.png" id="1_75ee5"]
 [ext_resource type="Texture2D" uid="uid://iktt63qdwf3d" path="res://assets/UI/commandes_transparent.png" id="2_u56dc"]
 [ext_resource type="Texture2D" uid="uid://bblut8hljrul0" path="res://assets/UI/home.png" id="3_3yrts"]
 [ext_resource type="FontFile" uid="uid://u87hkcwujixg" path="res://assets/fonts/m6x11plus.ttf" id="4_gqkl3"]
-[ext_resource type="Script" uid="uid://b44ssti5p6iy5" path="res://scenes/Menu/commandes.gd" id="5_script"]
+[ext_resource type="Script" path="res://scenes/Menu/commandes.gd" id="5_script"]
+[ext_resource type="AudioStream" uid="uid://cravr2eeibuv5" path="res://assets/audio/menu/music/music_menu_2.wav" id="6_om5x0"]
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_m305f"]
 
@@ -54,3 +55,6 @@ text = "Audio on/off"
 
 [node name="HSliderVolume" type="HSlider" parent="AudioControl"]
 layout_mode = 2
+
+[node name="MusicMenu2" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("6_om5x0")
