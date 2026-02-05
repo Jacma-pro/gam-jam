@@ -1,0 +1,24 @@
+[remap]
+
+importer="wav"
+type="AudioStreamWAV"
+uid="uid://dpxb8ccpppwri"
+path="res://.godot/imported/16-Bit Beat Em All _Clement Panchout.wav-1639677d447b2c50e4d7c2681ae387eb.sample"
+
+[deps]
+
+source_file="res://assets/audio/16-bitMusic/16-Bit Beat Em All _Clement Panchout.wav"
+dest_files=["res://.godot/imported/16-Bit Beat Em All _Clement Panchout.wav-1639677d447b2c50e4d7c2681ae387eb.sample"]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=false
+edit/normalize=false
+edit/loop_mode=0
+edit/loop_begin=0
+edit/loop_end=-1
+compress/mode=2

@@ -1,0 +1,24 @@
+[remap]
+
+importer="wav"
+type="AudioStreamWAV"
+uid="uid://dcrq8q28ixq8t"
+path="res://.godot/imported/Rick Allen - Fighting Game Narrator - Winner.wav-8278ee1f6d5c28e2da2052643a4be40d.sample"
+
+[deps]
+
+source_file="res://assets/audio/voix/Rick Allen - Fighting Game Narrator - Winner.wav"
+dest_files=["res://.godot/imported/Rick Allen - Fighting Game Narrator - Winner.wav-8278ee1f6d5c28e2da2052643a4be40d.sample"]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=false
+edit/normalize=false
+edit/loop_mode=0
+edit/loop_begin=0
+edit/loop_end=-1
+compress/mode=2

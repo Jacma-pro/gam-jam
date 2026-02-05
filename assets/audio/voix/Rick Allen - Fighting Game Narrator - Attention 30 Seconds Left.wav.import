@@ -1,0 +1,24 @@
+[remap]
+
+importer="wav"
+type="AudioStreamWAV"
+uid="uid://bscwoxlkpwtqn"
+path="res://.godot/imported/Rick Allen - Fighting Game Narrator - Attention 30 Seconds Left.wav-6f8a2ada82bc88f4dbf5dd0946ff2fbe.sample"
+
+[deps]
+
+source_file="res://assets/audio/voix/Rick Allen - Fighting Game Narrator - Attention 30 Seconds Left.wav"
+dest_files=["res://.godot/imported/Rick Allen - Fighting Game Narrator - Attention 30 Seconds Left.wav-6f8a2ada82bc88f4dbf5dd0946ff2fbe.sample"]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=false
+edit/normalize=false
+edit/loop_mode=0
+edit/loop_begin=0
+edit/loop_end=-1
+compress/mode=2

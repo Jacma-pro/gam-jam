@@ -1,0 +1,24 @@
+[remap]
+
+importer="wav"
+type="AudioStreamWAV"
+uid="uid://bujt4u5smwal8"
+path="res://.godot/imported/Rick Allen - Fighting Game Narrator - Game Over Slow.wav-e354b8fbb32e4b69690e74020406fdbd.sample"
+
+[deps]
+
+source_file="res://assets/audio/voix/Rick Allen - Fighting Game Narrator - Game Over Slow.wav"
+dest_files=["res://.godot/imported/Rick Allen - Fighting Game Narrator - Game Over Slow.wav-e354b8fbb32e4b69690e74020406fdbd.sample"]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=false
+edit/normalize=false
+edit/loop_mode=0
+edit/loop_begin=0
+edit/loop_end=-1
+compress/mode=2

@@ -1,13 +1,16 @@
-[gd_scene load_steps=15 format=3 uid="uid://swrye7exddbs"]
+[gd_scene load_steps=18 format=3 uid="uid://swrye7exddbs"]
 
+[ext_resource type="AudioStream" uid="uid://bs4mtdk0lhfgx" path="res://assets/audio/main/fight/sfx/explosionInverse.mp3" id="2_3t15v"]
+[ext_resource type="AudioStream" uid="uid://bpd88i5gtblng" path="res://assets/audio/16-bitMusic/2025 03 _ Clement Panchout - Music Weeklies 25 DM - 16 Bit GEN Death metalwav.wav" id="2_7hehe"]
 [ext_resource type="PackedScene" uid="uid://wvuatb5lo2f0" path="res://scenes/fire_player/fire_player.tscn" id="2_lldya"]
 [ext_resource type="PackedScene" uid="uid://dt1dgs63g4kj5" path="res://scenes/termo_bar/TermoBar.tscn" id="2_v4xi0"]
 [ext_resource type="Script" uid="uid://dipmr6kk5j7i7" path="res://scenes/Intro/camera_shake.gd" id="2_yqm5v"]
 [ext_resource type="PackedScene" uid="uid://btxb8d7p0fjw5" path="res://scenes/map/background_ambiance.tscn" id="3_v4xi0"]
 [ext_resource type="Script" uid="uid://bygyknw1rogl4" path="res://scenes/Intro/scene_manager.gd" id="4_manager"]
 [ext_resource type="PackedScene" uid="uid://dk5rsfk36y8rc" path="res://scenes/ice_player/ice_player.tscn" id="4_u0wmg"]
+[ext_resource type="AudioStream" uid="uid://bypkt67slnixo" path="res://assets/audio/voix/Rick Allen - Fighting Games Narrator - Fight.wav" id="4_vw6lf"]
 [ext_resource type="Texture2D" uid="uid://cvn4p2ue3ewuu" path="res://assets/UI/scène combat/fight.png" id="5_opo4b"]
-[ext_resource type="AudioStream" uid="uid://djjlqtl4clhd8" path="res://Street Fighter II .mp3" id="7_uprkd"]
+[ext_resource type="AudioStream" uid="uid://bfor8eip5hq7a" path="res://assets/audio/main/fight/music/Panda Beats & Newenx - Press Play 👾 (16-Bit Arcade No Copyright Music) 1.mp3" id="8_3t15v"]
 [ext_resource type="Script" path="res://scenes/Intro/meteor_spawner.gd" id="8_opo4b"]
 
 [sub_resource type="Animation" id="Animation_5yswy"]
@@ -60,10 +63,22 @@ tracks/3/keys = {
 "update": 1,
 "values": [true]
 }
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("../AudioStreamPlayer:volume_db")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [0.0]
+}
 
 [sub_resource type="Animation" id="Animation_v5msw"]
 resource_name = "intro"
-length = 10.0
+length = 8.0
 tracks/0/type = "method"
 tracks/0/imported = false
 tracks/0/enabled = true
@@ -88,7 +103,7 @@ tracks/1/path = NodePath(".:zoom")
 tracks/1/interp = 0
 tracks/1/loop_wrap = true
 tracks/1/keys = {
-"times": PackedFloat32Array(0, 0.5, 1, 1.5, 3, 3.5, 4, 4.5, 6),
+"times": PackedFloat32Array(0, 0.5, 1, 1.5, 2.3666666, 2.8666666, 3.3666666, 3.8666666, 6),
 "transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1, 1),
 "update": 0,
 "values": [Vector2(1, 1), Vector2(1.5, 1.5), Vector2(2, 2), Vector2(3, 3), Vector2(1, 1), Vector2(1.5, 1.5), Vector2(2, 2), Vector2(3, 3), Vector2(1, 1)]
@@ -100,7 +115,7 @@ tracks/2/path = NodePath(".:position")
 tracks/2/interp = 0
 tracks/2/loop_wrap = true
 tracks/2/keys = {
-"times": PackedFloat32Array(0, 0.5, 1.5, 3, 3.5, 4.5, 6),
+"times": PackedFloat32Array(0, 0.5, 1.5, 2.3666666, 2.8666666, 3.8666666, 6),
 "transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1),
 "update": 0,
 "values": [Vector2(640, 360), Vector2(980, 417), Vector2(980, 417), Vector2(647, 351), Vector2(350, 410), Vector2(350, 410), Vector2(640, 360)]
@@ -124,10 +139,56 @@ tracks/4/path = NodePath("../TextureRect:visible")
 tracks/4/interp = 1
 tracks/4/loop_wrap = true
 tracks/4/keys = {
-"times": PackedFloat32Array(6, 9.8),
+"times": PackedFloat32Array(6, 7.9),
 "transitions": PackedFloat32Array(1, 1),
 "update": 1,
 "values": [true, false]
+}
+tracks/5/type = "audio"
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/path = NodePath("../AudioStreamPlayer")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/keys = {
+"clips": [{
+"end_offset": 0.0,
+"start_offset": 0.0,
+"stream": ExtResource("2_7hehe")
+}],
+"times": PackedFloat32Array(0.03333336)
+}
+tracks/5/use_blend = true
+tracks/6/type = "audio"
+tracks/6/imported = false
+tracks/6/enabled = true
+tracks/6/path = NodePath("../AudioStreamPlayer2")
+tracks/6/interp = 1
+tracks/6/loop_wrap = true
+tracks/6/keys = {
+"clips": [{
+"end_offset": 0.0,
+"start_offset": 0.0,
+"stream": ExtResource("2_3t15v")
+}, {
+"end_offset": 0.0,
+"start_offset": 0.0,
+"stream": ExtResource("4_vw6lf")
+}],
+"times": PackedFloat32Array(6.0666666, 7.4333334)
+}
+tracks/6/use_blend = true
+tracks/7/type = "value"
+tracks/7/imported = false
+tracks/7/enabled = true
+tracks/7/path = NodePath("../AudioStreamPlayer:volume_db")
+tracks/7/interp = 1
+tracks/7/loop_wrap = true
+tracks/7/keys = {
+"times": PackedFloat32Array(6, 7.9666667),
+"transitions": PackedFloat32Array(1, 0.32987696),
+"update": 0,
+"values": [0.0, -23.375999999999998]
 }
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_u0wmg"]
@@ -227,8 +288,14 @@ shape = SubResource("RectangleShape2D_vert")
 [node name="BackgroundAmbiance" parent="." instance=ExtResource("3_v4xi0")]
 
 [node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="."]
-stream = ExtResource("7_uprkd")
+stream = ExtResource("8_3t15v")
 autoplay = true
 
 [node name="meteor_spawner" type="Node2D" parent="."]
 script = ExtResource("8_opo4b")
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+bus = &"IntroMusic"
+
+[node name="AudioStreamPlayer2" type="AudioStreamPlayer" parent="."]
+bus = &"SFXintro"

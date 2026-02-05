@@ -1,0 +1,24 @@
+[remap]
+
+importer="wav"
+type="AudioStreamWAV"
+uid="uid://ce0aeottkrlrq"
+path="res://.godot/imported/Rick Allen - Fighting Game Narrator - Attention 10 Seconds Left.wav-5c4b6b8517434836dfada4e9058e6df5.sample"
+
+[deps]
+
+source_file="res://assets/audio/voix/Rick Allen - Fighting Game Narrator - Attention 10 Seconds Left.wav"
+dest_files=["res://.godot/imported/Rick Allen - Fighting Game Narrator - Attention 10 Seconds Left.wav-5c4b6b8517434836dfada4e9058e6df5.sample"]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=false
+edit/normalize=false
+edit/loop_mode=0
+edit/loop_begin=0
+edit/loop_end=-1
+compress/mode=2
