@@ -54,4 +54,3 @@ func _process(_delta: float) -> void:
 				_on_replay_pressed()
 			if focused_control == button_menu:
 				_on_main_menu_pressed()
-
