@@ -41,6 +41,8 @@
     - add knockback ✅
     - camera shake when countering ✅
     - add death animation (and time for T-bag) ✅
+    - add sound effects **Pack sound design downloaded** ✅
+    - fix gameplay ✅
 
 - add damage x2 after 30 seconds (sudden death) ✅
 - add controller version ✅
@@ -48,29 +50,26 @@
 - not die in the air, add a ground check ✅
 - add meteor random system ✅
 - adapt controller on itch ✅
+- Credit page
+- Command menu **Add but to design** ✅
+- Game Over screen **To polish** ✅
+- Update Start Animation **Up to date but need validation** ✅
+- Interface (Keyboard) **Need assets** ✅
+- add K.O ! **Need assets** ✅
+- after blocked a ball attack, the next ball gonna be bigger and do more dmg ✅
 
 
 ## what's left
 
-- In Gameplay:
-    - fix gameplay
-    - add combo
-    - add sound effects **Pack sound design downloaded**
-- Credit page
-- Command menu **Add but to design**
-- Game Over screen **To polish**
-- Update Start Animation **Up to date but need validation**
-- Interface (Keyboard) **Need assets**
-- add K.O ! **Need assets**
-- add text for damage x2 after 30 seconds (Sudden Death)
-- add visual feedback for cooldown attacke/protection
-- test export and upload on itch
-- add an utility for jump
+- add text or sound for damage x2 after 60 seconds (Sudden Death)
+- add visual feedback for cooldown attacke/protection/counter attack
+- upload on itch
 
-- add a fullscreen method
-
-## combo Idea
-- after blocked a ball attack, the next ball gonna be bigger and do more dmg ✅
+- add death sound
+- add animate logo
+- credit page content
+- add hover on house
+- add sfx on house
 
 
 sur Itch cocher la case ArrayBuffer
