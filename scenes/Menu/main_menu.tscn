@@ -28,35 +28,78 @@ grow_horizontal = 2
 grow_vertical = 2
 
 [node name="TextureRect" type="TextureRect" parent="."]
-layout_mode = 0
-offset_right = 1280.0
-offset_bottom = 720.0
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -640.0
+offset_top = -360.0
+offset_right = 640.0
+offset_bottom = 360.0
+grow_horizontal = 2
+grow_vertical = 2
 texture = ExtResource("1_n6xgq")
 
 [node name="TextureRect2" type="TextureRect" parent="."]
-layout_mode = 0
-offset_right = 1280.0
-offset_bottom = 720.0
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -640.0
+offset_top = -360.0
+offset_right = 640.0
+offset_bottom = 360.0
+grow_horizontal = 2
+grow_vertical = 2
 texture = ExtResource("2_akboc")
 
 [node name="TextureRect3" type="TextureRect" parent="."]
-layout_mode = 0
-offset_right = 1280.0
-offset_bottom = 720.0
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -640.0
+offset_top = -360.0
+offset_right = 640.0
+offset_bottom = 360.0
+grow_horizontal = 2
+grow_vertical = 2
 texture = ExtResource("3_xvd5r")
 
 [node name="TextureRect4" type="TextureRect" parent="."]
-layout_mode = 0
-offset_left = 1.0
-offset_right = 1281.0
-offset_bottom = 720.0
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -640.0
+offset_top = -360.0
+offset_right = 640.0
+offset_bottom = 360.0
+grow_horizontal = 2
+grow_vertical = 2
 texture = ExtResource("4_gs3bo")
 
 [node name="TextureRect5" type="TextureRect" parent="."]
-layout_mode = 0
-offset_left = 3.0
-offset_right = 1283.0
-offset_bottom = 720.0
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -640.0
+offset_top = -360.5
+offset_right = 640.0
+offset_bottom = 360.5
+grow_horizontal = 2
+grow_vertical = 2
 texture = ExtResource("5_akboc")
 
 [node name="MenuButton" type="VBoxContainer" parent="."]
@@ -115,3 +158,4 @@ text = "Audio on/off"
 
 [node name="HSliderVolume" type="HSlider" parent="AudioControl"]
 layout_mode = 2
+
