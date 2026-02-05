@@ -1,4 +1,4 @@
-[gd_scene load_steps=30 format=3 uid="uid://bxu5aqnqplx8l"]
+[gd_scene load_steps=33 format=3 uid="uid://bxu5aqnqplx8l"]
 
 [ext_resource type="Script" uid="uid://ccja3467ceu5m" path="res://scenes/Menu/main_menu.gd" id="1_k0vh8"]
 [ext_resource type="Texture2D" uid="uid://b0v61cbe2yh58" path="res://assets/UI/menu principal/menuprincipal_0.png" id="1_n6xgq"]
@@ -10,6 +10,8 @@
 [ext_resource type="Texture2D" uid="uid://dbkma8yy31r04" path="res://assets/UI/menu principal/menuprincipal_3.png" id="4_gs3bo"]
 [ext_resource type="Texture2D" uid="uid://d22p4j471mlxv" path="res://assets/UI/menu principal/menuprincipal_4.png" id="5_akboc"]
 [ext_resource type="AudioStream" uid="uid://brosdbagrnsso" path="res://assets/audio/menu/music/music_menu.mp3" id="9_xvd5r"]
+[ext_resource type="AudioStream" uid="uid://dmj6hcpkulpfd" path="res://assets/audio/menu/sfx/nav.ogg" id="10_1omn4"]
+[ext_resource type="AudioStream" uid="uid://dc5ik7a1ix58i" path="res://assets/audio/menu/sfx/confirm.ogg" id="11_gm3l1"]
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_4q1m5"]
 
@@ -45,6 +47,33 @@
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_n6xgq"]
 
+[sub_resource type="Animation" id="Animation_gs3bo"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("TextureRect2:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(0, 0)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("TextureRect3:position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(-73.77783, -36)]
+}
+
 [sub_resource type="Animation" id="Animation_xvd5r"]
 resource_name = "cloudMovement"
 length = 2.0
@@ -72,33 +101,6 @@ tracks/1/keys = {
 "transitions": PackedFloat32Array(1, 1, 1, 1, 1),
 "update": 0,
 "values": [Vector2(-68, -36), Vector2(-68, -36), Vector2(-72, -36), Vector2(-68, -36), Vector2(-72, -36)]
-}
-
-[sub_resource type="Animation" id="Animation_gs3bo"]
-length = 0.001
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("TextureRect2:position")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [Vector2(0, 0)]
-}
-tracks/1/type = "value"
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/path = NodePath("TextureRect3:position")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [Vector2(-73.77783, -36)]
 }
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_1omn4"]
@@ -260,5 +262,12 @@ layout_mode = 2
 libraries = {
 &"": SubResource("AnimationLibrary_1omn4")
 }
+
+[node name="HoverSFX" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("10_1omn4")
+
+[node name="ValidSFX" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("11_gm3l1")
+
 [node name="MenuMusic" type="AudioStreamPlayer2D" parent="."]
 stream = ExtResource("9_xvd5r")
