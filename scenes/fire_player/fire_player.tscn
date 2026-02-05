@@ -1,4 +1,4 @@
-[gd_scene load_steps=84 format=3 uid="uid://wvuatb5lo2f0"]
+[gd_scene load_steps=88 format=3 uid="uid://wvuatb5lo2f0"]
 
 [ext_resource type="Script" uid="uid://dcn8olcl5w8o4" path="res://scenes/fire_player/fire_player.gd" id="1_qqxw6"]
 [ext_resource type="Texture2D" uid="uid://dn50mj36cq7th" path="res://assets/sprites/fire_player/Crouch-Idle-Sheet.png" id="2_l1spi"]
@@ -9,6 +9,10 @@
 [ext_resource type="Texture2D" uid="uid://b82aa8tbag688" path="res://assets/sprites/fire_player/Punch-Sheet.png" id="7_mihc8"]
 [ext_resource type="Texture2D" uid="uid://ur7d8cxbv30a" path="res://assets/sprites/fire_player/Walk-Sheet.png" id="9_2kph8"]
 [ext_resource type="Texture2D" uid="uid://c5a1xgxsb3dov" path="res://assets/sprites/fire_player/Shoot-Sheet.png" id="9_vbplr"]
+[ext_resource type="AudioStream" uid="uid://ttu24t31vh5m" path="res://assets/audio/main/fight/sfx/Jump.wav" id="10_lq2nt"]
+[ext_resource type="AudioStream" uid="uid://dd4c50081ss45" path="res://assets/audio/main/fight/sfx/Hurt.wav" id="11_xpmm4"]
+[ext_resource type="AudioStream" uid="uid://hlisid5byq1m" path="res://assets/audio/main/fight/sfx/kick.wav" id="12_mihc8"]
+[ext_resource type="AudioStream" uid="uid://m5vsjqtiv0vo" path="res://assets/audio/main/fight/sfx/Gun.wav" id="13_xpmm4"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_tk42r"]
 atlas = ExtResource("2_l1spi")
@@ -571,8 +575,24 @@ position = Vector2(1, 0)
 scale = Vector2(2, 2)
 sprite_frames = SubResource("SpriteFrames_cqvoo")
 animation = &"p1_crouch"
-frame_progress = 0.8715773
+frame_progress = 0.0014087972
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2(-6, 11.5)
 shape = SubResource("RectangleShape2D_l1spi")
+
+[node name="jump" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("10_lq2nt")
+volume_db = 5.0
+
+[node name="hurt" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("11_xpmm4")
+volume_db = 5.0
+
+[node name="kick" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("12_mihc8")
+volume_db = 20.0
+
+[node name="fire_shoot" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("13_xpmm4")
+volume_db = 5.0

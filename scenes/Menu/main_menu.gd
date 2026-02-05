@@ -27,19 +27,29 @@ extends VBoxContainer
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
-	# If we found a MenuMusic and it isn't a child of the root, reparent it so it persists
-	if menu_music:
-		if menu_music.get_parent() != get_tree().root:
-			menu_music.get_parent().remove_child(menu_music)
-			get_tree().root.add_child(menu_music)
-			# Remove owner so the node isn't saved with the scene
-			menu_music.owner = null
-
-		# Start playing if not already
-		if not menu_music.playing:
-			menu_music.play()
+	# Gestion de la musique persistante
+	if get_tree().root.has_node("MenuMusic"):
+		# Une musique joue déjà, on l'utilise
+		var persistent_music = get_tree().root.get_node("MenuMusic")
+		
+		# Si on a une musique locale (du tscn), on la supprime pour ne pas avoir de doublon
+		if menu_music and menu_music != persistent_music:
+			menu_music.queue_free()
+		
+		# On met à jour la référence
+		menu_music = persistent_music
 	else:
-		push_warning("MainMenu: MenuMusic node not found")
+		# Pas de musique en cours, on promeut la nôtre
+		if menu_music:
+			if menu_music.get_parent() != get_tree().root:
+				menu_music.get_parent().remove_child(menu_music)
+				get_tree().root.add_child(menu_music)
+				menu_music.owner = null
+			
+			if not menu_music.playing:
+				menu_music.play()
+		else:
+			push_warning("MainMenu: MenuMusic node not found")
 
 	# Connexion des boutons
 	button_jouer.pressed.connect(_on_button_jouer_pressed)
@@ -108,7 +118,11 @@ func _play_hover_sfx() -> void:
 # --- Fonctions de navigation ---
 
 func _on_button_jouer_pressed() -> void:
-	menu_music.stop()
+	# On arrête et on nettoie la musique du menu avant de lancer le jeu
+	if menu_music and is_instance_valid(menu_music):
+		menu_music.stop()
+		menu_music.queue_free()
+	
 	validSFX.play()
 	await validSFX.finished
 	get_tree().change_scene_to_file("res://scenes/Intro/main_layout_intro.tscn")

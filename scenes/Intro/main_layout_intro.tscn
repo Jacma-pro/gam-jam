@@ -1,4 +1,4 @@
-[gd_scene load_steps=22 format=3 uid="uid://swrye7exddbs"]
+[gd_scene load_steps=25 format=3 uid="uid://swrye7exddbs"]
 
 [ext_resource type="AudioStream" uid="uid://bs4mtdk0lhfgx" path="res://assets/audio/main/fight/sfx/explosionInverse.mp3" id="2_3t15v"]
 [ext_resource type="AudioStream" uid="uid://bpd88i5gtblng" path="res://assets/audio/16-bitMusic/2025 03 _ Clement Panchout - Music Weeklies 25 DM - 16 Bit GEN Death metalwav.wav" id="2_7hehe"]
@@ -16,6 +16,9 @@
 [ext_resource type="Script" path="res://scenes/Intro/meteor_spawner.gd" id="8_opo4b"]
 [ext_resource type="Texture2D" uid="uid://cdjbysylaua7v" path="res://assets/UI/scène combat/ko.png" id="9_ko_tex"]
 [ext_resource type="AudioStream" uid="uid://d0on0ui8gpg7a" path="res://assets/audio/voix/Rick Allen - Fighting Game Narrator - KO.wav" id="10_ko_snd"]
+[ext_resource type="Texture2D" uid="uid://f50xnj83ui1b" path="res://assets/UI/controles/touches_clavierLEFT.png" id="17_kvmcm"]
+[ext_resource type="Texture2D" uid="uid://csxvm7gxx3efv" path="res://assets/UI/controles/touches_manette.png" id="18_1e6gc"]
+[ext_resource type="Texture2D" uid="uid://rmjuy4cxvxfd" path="res://assets/UI/controles/touches_clavierRIGHT.png" id="18_a0313"]
 
 [sub_resource type="Animation" id="Animation_5yswy"]
 length = 0.001
@@ -79,6 +82,42 @@ tracks/4/keys = {
 "update": 0,
 "values": [0.0]
 }
+tracks/5/type = "value"
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/path = NodePath("../controles_clavier_gauche2:visible")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+tracks/6/type = "value"
+tracks/6/imported = false
+tracks/6/enabled = true
+tracks/6/path = NodePath("../controles_manettes:visible")
+tracks/6/interp = 1
+tracks/6/loop_wrap = true
+tracks/6/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+tracks/7/type = "value"
+tracks/7/imported = false
+tracks/7/enabled = true
+tracks/7/path = NodePath("../controles_clavier_droite2:visible")
+tracks/7/interp = 1
+tracks/7/loop_wrap = true
+tracks/7/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
 
 [sub_resource type="Animation" id="Animation_v5msw"]
 resource_name = "intro"
@@ -122,7 +161,7 @@ tracks/2/keys = {
 "times": PackedFloat32Array(0, 0.5, 1.5, 2.3666666, 2.8666666, 3.8666666, 5.0333333),
 "transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1),
 "update": 0,
-"values": [Vector2(640, 360), Vector2(980, 417), Vector2(980, 417), Vector2(647, 351), Vector2(350, 410), Vector2(350, 410), Vector2(640, 360)]
+"values": [Vector2(640, 360), Vector2(980, 417), Vector2(980, 400), Vector2(647, 351), Vector2(350, 410), Vector2(350, 400), Vector2(640, 360)]
 }
 tracks/3/type = "value"
 tracks/3/imported = false
@@ -202,6 +241,42 @@ tracks/7/keys = {
 "update": 0,
 "values": [0.0, -23.376]
 }
+tracks/8/type = "value"
+tracks/8/imported = false
+tracks/8/enabled = true
+tracks/8/path = NodePath("../controles_clavier_gauche2:visible")
+tracks/8/interp = 1
+tracks/8/loop_wrap = true
+tracks/8/keys = {
+"times": PackedFloat32Array(0, 8),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [false, true]
+}
+tracks/9/type = "value"
+tracks/9/imported = false
+tracks/9/enabled = true
+tracks/9/path = NodePath("../controles_manettes:visible")
+tracks/9/interp = 1
+tracks/9/loop_wrap = true
+tracks/9/keys = {
+"times": PackedFloat32Array(0, 8),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [false, true]
+}
+tracks/10/type = "value"
+tracks/10/imported = false
+tracks/10/enabled = true
+tracks/10/path = NodePath("../controles_clavier_droite2:visible")
+tracks/10/interp = 1
+tracks/10/loop_wrap = true
+tracks/10/keys = {
+"times": PackedFloat32Array(0, 8),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [false, true]
+}
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_u0wmg"]
 _data = {
@@ -245,10 +320,10 @@ limit_bottom = 720
 script = ExtResource("2_yqm5v")
 
 [node name="FirePlayer" parent="." instance=ExtResource("2_lldya")]
-position = Vector2(356, 431)
+position = Vector2(356, 391)
 
 [node name="IcePlayer" parent="." instance=ExtResource("4_u0wmg")]
-position = Vector2(997, 431)
+position = Vector2(997, 391)
 
 [node name="TextureRect" type="TextureRect" parent="."]
 layout_mode = 1
@@ -277,7 +352,7 @@ offset_bottom = 72.0
 grow_horizontal = 2
 
 [node name="StaticBody2D2" type="StaticBody2D" parent="."]
-position = Vector2(0, 8)
+position = Vector2(0, -32)
 
 [node name="Boundaries#BottomWall" type="CollisionShape2D" parent="StaticBody2D2"]
 position = Vector2(640, 571)
@@ -326,3 +401,48 @@ stretch_mode = 3
 [node name="KOSound" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("10_ko_snd")
 bus = &"SFXintro"
+
+[node name="controles_clavier_gauche2" type="TextureRect" parent="."]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -640.0
+offset_top = -360.0
+offset_right = 640.0
+offset_bottom = 360.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("17_kvmcm")
+
+[node name="controles_manettes" type="TextureRect" parent="."]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -640.0
+offset_top = -360.0
+offset_right = 640.0
+offset_bottom = 360.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("18_1e6gc")
+
+[node name="controles_clavier_droite2" type="TextureRect" parent="."]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -640.0
+offset_top = -360.0
+offset_right = 640.0
+offset_bottom = 360.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("18_a0313")
