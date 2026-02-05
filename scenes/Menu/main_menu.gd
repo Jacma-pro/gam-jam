@@ -9,6 +9,9 @@ extends VBoxContainer
 @export var nav_ok: String = "ok_nav_menu"
 @export var nav_back: String = "back_nav_menu"
 
+# Menu music: we search robustly because the AudioStreamPlayer2D may be reparented to the root
+@onready var menu_music: AudioStreamPlayer2D = null
+
 # Références aux nœuds (adaptées à la nouvelle structure)
 @onready var button_jouer: Button = $ButtonJouer
 @onready var button_commandes: Button = $ButtonCommandes
@@ -21,6 +24,29 @@ extends VBoxContainer
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
+	# Find or pick the MenuMusic node. Prefer an existing one in the scene tree root
+	if not menu_music:
+		var found = get_tree().root.find_node("MenuMusic", true, false)
+		if found and found is AudioStreamPlayer2D:
+			menu_music = found
+		else:
+			var sibling = $"../MenuMusic" if has_node("../MenuMusic") else null
+			if sibling and sibling is AudioStreamPlayer2D:
+				menu_music = sibling
+
+	# If we found a MenuMusic and it isn't a child of the root, reparent it so it persists
+	if menu_music:
+		if menu_music.get_parent() != get_tree().root:
+			menu_music.get_parent().remove_child(menu_music)
+			get_tree().root.add_child(menu_music)
+			# Remove owner so the node isn't saved with the scene
+			menu_music.owner = null
+
+		# Start playing if not already
+		if not menu_music.playing:
+			menu_music.play()
+	else:
+		push_warning("MainMenu: MenuMusic node not found")
 	# Connexion des boutons
 	button_jouer.pressed.connect(_on_button_jouer_pressed)
 	button_commandes.pressed.connect(_on_button_commandes_pressed)
@@ -54,6 +80,7 @@ func _apply_audio_settings() -> void:
 
 func _on_button_jouer_pressed() -> void:
 	get_tree().change_scene_to_file("res://scenes/Intro/main_layout_intro.tscn")
+	menu_music.stop()
 
 func _on_button_commandes_pressed() -> void:
 	get_tree().change_scene_to_file("res://scenes/Menu/commandes.tscn")
