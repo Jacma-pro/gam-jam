@@ -1,4 +1,4 @@
-[gd_scene load_steps=13 format=3 uid="uid://swrye7exddbs"]
+[gd_scene load_steps=15 format=3 uid="uid://swrye7exddbs"]
 
 [ext_resource type="PackedScene" uid="uid://wvuatb5lo2f0" path="res://scenes/fire_player/fire_player.tscn" id="2_lldya"]
 [ext_resource type="PackedScene" uid="uid://dt1dgs63g4kj5" path="res://scenes/termo_bar/TermoBar.tscn" id="2_v4xi0"]
@@ -6,7 +6,9 @@
 [ext_resource type="PackedScene" uid="uid://btxb8d7p0fjw5" path="res://scenes/map/background_ambiance.tscn" id="3_v4xi0"]
 [ext_resource type="Script" uid="uid://bygyknw1rogl4" path="res://scenes/Intro/scene_manager.gd" id="4_manager"]
 [ext_resource type="PackedScene" uid="uid://dk5rsfk36y8rc" path="res://scenes/ice_player/ice_player.tscn" id="4_u0wmg"]
+[ext_resource type="PackedScene" uid="uid://de73l078sd57o" path="res://scenes/meteor/meteor_scene.tscn" id="5_yqm5v"]
 [ext_resource type="AudioStream" uid="uid://djjlqtl4clhd8" path="res://Street Fighter II .mp3" id="7_uprkd"]
+[ext_resource type="Script" uid="uid://0hrjvu6tyxeq" path="res://scenes/Intro/spawn_meteor.gd" id="9_opo4b"]
 
 [sub_resource type="Animation" id="Animation_5yswy"]
 length = 0.001
@@ -147,6 +149,9 @@ position = Vector2(356, 431)
 [node name="IcePlayer" parent="." instance=ExtResource("4_u0wmg")]
 position = Vector2(997, 431)
 
+[node name="MeteorScene" parent="." instance=ExtResource("5_yqm5v")]
+position = Vector2(538, -181)
+
 [node name="Label" type="Label" parent="."]
 layout_mode = 0
 offset_left = 509.0
@@ -193,3 +198,6 @@ shape = SubResource("RectangleShape2D_vert")
 [node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="."]
 stream = ExtResource("7_uprkd")
 autoplay = true
+
+[node name="Node2D" type="Node2D" parent="."]
+script = ExtResource("9_opo4b")
