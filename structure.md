@@ -45,6 +45,8 @@
 - add damage x2 after 30 seconds (sudden death) ✅
 - add controller version ✅
 - adapt controller menu navigation ✅
+- not die in the air, add a ground check ✅
+- add meteor random system ✅Ò
 
 
 ## what's left
@@ -61,9 +63,8 @@
 - add K.O ! **Need assets**
 - add text for damage x2 after 30 seconds (Sudden Death)
 - add visual feedback for cooldown attacke/protection
-- not die in the air, add a ground check
 - test export and upload on itch
-- add meteor random system
+- add an utility for jump
 
 - adapt controller on itch
 - add a fullscreen method
@@ -74,3 +75,17 @@
 
 sur Itch cocher la case ArrayBuffer
 
+
+## audio copyright
+- menu :
+    - sfx :
+        - https://obsydianx.itch.io/interface-sfx-pack-1
+    - music :
+        - https://www.youtube.com/watch?v=l7SwiFWOQqM&list=PLwJjxqYuirCLkq42mGw4XKGQlpZSfxsYd&index=5
+
+- fight :
+    - sfx :
+        - https://opengameart.org/content/8-bit-sound-effects-library
+        - https://leohpaz.itch.io/rpg-essentials-sfx-free
+    - music :
+        - https://www.youtube.com/watch?v=Wth5wynwxq0&list=PLPEwKpHq_H2A2EO8gOed-UcQty2AB4Zea
