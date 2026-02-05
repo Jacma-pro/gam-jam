@@ -1,23 +1,110 @@
-[gd_scene load_steps=14 format=3 uid="uid://bxu5aqnqplx8l"]
+[gd_scene load_steps=30 format=3 uid="uid://bxu5aqnqplx8l"]
 
 [ext_resource type="Script" uid="uid://ccja3467ceu5m" path="res://scenes/Menu/main_menu.gd" id="1_k0vh8"]
 [ext_resource type="Texture2D" uid="uid://b0v61cbe2yh58" path="res://assets/UI/menu principal/menuprincipal_0.png" id="1_n6xgq"]
 [ext_resource type="FontFile" uid="uid://c4auaft36pegl" path="res://assets/fonts/BoldPixels.ttf" id="2_8mcyk"]
 [ext_resource type="Texture2D" uid="uid://boepjthetk0jm" path="res://assets/UI/menu principal/menuprincipal_1.png" id="2_akboc"]
 [ext_resource type="FontFile" uid="uid://u87hkcwujixg" path="res://assets/fonts/m6x11plus.ttf" id="3_evs2v"]
+[ext_resource type="Texture2D" uid="uid://djjvqskgjgdli" path="res://assets/UI/logo 1.png" id="3_gs3bo"]
 [ext_resource type="Texture2D" uid="uid://dawwavd3qogg4" path="res://assets/UI/menu principal/menuprincipal_2.png" id="3_xvd5r"]
 [ext_resource type="Texture2D" uid="uid://dbkma8yy31r04" path="res://assets/UI/menu principal/menuprincipal_3.png" id="4_gs3bo"]
 [ext_resource type="Texture2D" uid="uid://d22p4j471mlxv" path="res://assets/UI/menu principal/menuprincipal_4.png" id="5_akboc"]
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_4q1m5"]
 
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_rnqyn"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_xvd5r"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_a4h6l"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_p7m1c"]
+
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_1omn4"]
 
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_vy2io"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_gs3bo"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_xtkql"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_skbq3"]
+
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_gm3l1"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_6gbcu"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_7x3yx"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_cqf4b"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_2q8my"]
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_2itis"]
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_n6xgq"]
+
+[sub_resource type="Animation" id="Animation_xvd5r"]
+resource_name = "cloudMovement"
+length = 2.0
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("TextureRect2:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(-0.033333335, 0.5, 1, 1.5666667, 2.0333333, 2.5, 3.0333333, 3.3333335, 3.8666668, 4.366667, 4.9333334, 5.4, 5.866667, 6.4),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1),
+"update": 0,
+"values": [Vector2(0, 0), Vector2(10, 0), Vector2(8, 0), Vector2(12, 0), Vector2(9, 0), Vector2(0, 0), Vector2(0, 0), Vector2(0, 0), Vector2(10, 0), Vector2(8, 0), Vector2(12, 0), Vector2(9, 0), Vector2(0, 0), Vector2(0, 0)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("TextureRect3:position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(-0.033333335, 0.46666667, 1.0666667, 1.6333333, 1.9666667),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1),
+"update": 0,
+"values": [Vector2(-68, -36), Vector2(-68, -36), Vector2(-72, -36), Vector2(-68, -36), Vector2(-72, -36)]
+}
+
+[sub_resource type="Animation" id="Animation_gs3bo"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("TextureRect2:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(0, 0)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("TextureRect3:position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(-73.77783, -36)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_1omn4"]
+_data = {
+&"RESET": SubResource("Animation_gs3bo"),
+&"cloudMovement": SubResource("Animation_xvd5r")
+}
 
 [node name="MainMenu" type="Control"]
 layout_mode = 3
@@ -45,11 +132,32 @@ grow_horizontal = 2
 grow_vertical = 2
 texture = ExtResource("2_akboc")
 
+[node name="TextureRect6" type="TextureRect" parent="."]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -356.0
+offset_top = -221.5
+offset_right = 356.0
+offset_bottom = 13.5
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("3_gs3bo")
+
 [node name="TextureRect3" type="TextureRect" parent="."]
 layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -713.77783
+offset_top = -396.0
+offset_right = 613.22217
+offset_bottom = 359.0
 grow_horizontal = 2
 grow_vertical = 2
 texture = ExtResource("3_xvd5r")
@@ -74,42 +182,60 @@ texture = ExtResource("5_akboc")
 
 [node name="MenuButton" type="VBoxContainer" parent="."]
 layout_mode = 1
-anchors_preset = 7
+anchors_preset = 8
 anchor_left = 0.5
-anchor_top = 1.0
+anchor_top = 0.5
 anchor_right = 0.5
-anchor_bottom = 1.0
-offset_left = -131.09393
-offset_top = -209.0
-offset_right = 131.09393
-offset_bottom = -74.0
+anchor_bottom = 0.5
+offset_left = -218.45404
+offset_top = 87.0
+offset_right = 218.45404
+offset_bottom = 329.0
 grow_horizontal = 2
-grow_vertical = 0
+grow_vertical = 2
 script = ExtResource("1_k0vh8")
 
 [node name="ButtonJouer" type="Button" parent="MenuButton"]
 layout_mode = 2
 theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_colors/font_focus_color = Color(0.12156863, 0.078431375, 0.25882354, 1)
+theme_override_colors/font_hover_color = Color(0.12156863, 0.078431375, 0.25882354, 1)
 theme_override_fonts/font = ExtResource("2_8mcyk")
-theme_override_font_sizes/font_size = 46
+theme_override_font_sizes/font_size = 66
 theme_override_styles/normal = SubResource("StyleBoxEmpty_4q1m5")
-text = "Jouer"
+theme_override_styles/pressed = SubResource("StyleBoxEmpty_rnqyn")
+theme_override_styles/hover = SubResource("StyleBoxEmpty_xvd5r")
+theme_override_styles/disabled = SubResource("StyleBoxEmpty_a4h6l")
+theme_override_styles/focus = SubResource("StyleBoxEmpty_p7m1c")
+text = "JOUER"
 
 [node name="ButtonCommandes" type="Button" parent="MenuButton"]
 layout_mode = 2
 theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_colors/font_focus_color = Color(0.12156863, 0.078431375, 0.25882354, 1)
+theme_override_colors/font_hover_color = Color(0.12156863, 0.078431375, 0.25882354, 1)
 theme_override_fonts/font = ExtResource("2_8mcyk")
-theme_override_font_sizes/font_size = 46
+theme_override_font_sizes/font_size = 66
 theme_override_styles/normal = SubResource("StyleBoxEmpty_1omn4")
-text = "Commandes"
+theme_override_styles/pressed = SubResource("StyleBoxEmpty_vy2io")
+theme_override_styles/hover = SubResource("StyleBoxEmpty_gs3bo")
+theme_override_styles/disabled = SubResource("StyleBoxEmpty_xtkql")
+theme_override_styles/focus = SubResource("StyleBoxEmpty_skbq3")
+text = "COMMANDES"
 
 [node name="ButtonCredits" type="Button" parent="MenuButton"]
 layout_mode = 2
 theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_colors/font_focus_color = Color(0.12156863, 0.078431375, 0.25882354, 1)
+theme_override_colors/font_hover_color = Color(0.12156863, 0.078431375, 0.25882354, 1)
 theme_override_fonts/font = ExtResource("2_8mcyk")
-theme_override_font_sizes/font_size = 46
+theme_override_font_sizes/font_size = 66
 theme_override_styles/normal = SubResource("StyleBoxEmpty_gm3l1")
-text = "Crédits"
+theme_override_styles/pressed = SubResource("StyleBoxEmpty_6gbcu")
+theme_override_styles/hover = SubResource("StyleBoxEmpty_7x3yx")
+theme_override_styles/disabled = SubResource("StyleBoxEmpty_cqf4b")
+theme_override_styles/focus = SubResource("StyleBoxEmpty_2q8my")
+text = "CRÉDITS"
 
 [node name="AudioControl" type="VBoxContainer" parent="."]
 layout_mode = 0
@@ -128,3 +254,8 @@ text = "Audio on/off"
 
 [node name="HSliderVolume" type="HSlider" parent="AudioControl"]
 layout_mode = 2
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+&"": SubResource("AnimationLibrary_1omn4")
+}
