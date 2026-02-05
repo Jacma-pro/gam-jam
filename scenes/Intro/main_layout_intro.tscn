@@ -111,10 +111,10 @@ _data = {
 }
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_horiz"]
-size = Vector2(1280, 100)
+size = Vector2(1280, 32)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_vert"]
-size = Vector2(100, 500)
+size = Vector2(8, 500)
 
 [node name="MainLayout" type="Control"]
 layout_mode = 3
@@ -150,10 +150,10 @@ offset_right = 953.0
 offset_bottom = 36.0
 
 [node name="FirePlayer" parent="." instance=ExtResource("2_lldya")]
-position = Vector2(302, 426)
+position = Vector2(356, 431)
 
 [node name="IcePlayer" parent="." instance=ExtResource("4_u0wmg")]
-position = Vector2(1004, 426)
+position = Vector2(997, 431)
 
 [node name="Label" type="Label" parent="."]
 layout_mode = 0
@@ -166,28 +166,27 @@ theme_override_font_sizes/font_size = 60
 text = "FIGHT !!!!"
 
 [node name="StaticBody2D2" type="StaticBody2D" parent="."]
-position = Vector2(-3, 0)
+position = Vector2(0, 8)
 
 [node name="Boundaries#BottomWall" type="CollisionShape2D" parent="StaticBody2D2"]
-position = Vector2(640, 605)
+position = Vector2(640, 571)
 shape = SubResource("RectangleShape2D_horiz")
 
 [node name="StaticBody2D3" type="StaticBody2D" parent="."]
 position = Vector2(-2, 38)
 
 [node name="Boundaries#LeftWall" type="CollisionShape2D" parent="StaticBody2D3"]
-position = Vector2(-42, 253)
+position = Vector2(6, 307)
 shape = SubResource("RectangleShape2D_vert")
 
 [node name="StaticBody2D4" type="StaticBody2D" parent="."]
 position = Vector2(0, 41)
 
 [node name="Boundaries#RightWall" type="CollisionShape2D" parent="StaticBody2D4"]
-position = Vector2(1325, 263)
+position = Vector2(1276, 304)
 shape = SubResource("RectangleShape2D_vert")
 
 [node name="BackgroundAmbiance" parent="." instance=ExtResource("3_v4xi0")]
-position = Vector2(3, 0)
 
 [node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="."]
 stream = ExtResource("7_uprkd")
