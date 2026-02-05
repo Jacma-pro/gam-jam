@@ -10,7 +10,7 @@ extends VBoxContainer
 @export var nav_back: String = "back_nav_menu"
 
 # Menu music: we search robustly because the AudioStreamPlayer2D may be reparented to the root
-@onready var menu_music: AudioStreamPlayer2D = null
+@onready var menu_music: AudioStreamPlayer2D = $"../MenuMusic"
 
 # Références aux nœuds (adaptées à la nouvelle structure)
 @onready var button_jouer: Button = $ButtonJouer
@@ -21,19 +21,12 @@ extends VBoxContainer
 @onready var check_button: CheckButton = $"../AudioControl/CheckButtonOnOff"
 @onready var h_slider: HSlider = $"../AudioControl/HSliderVolume"
 
+@onready var hoverSFX: AudioStreamPlayer2D = $"../HoverSFX"
+@onready var validSFX: AudioStreamPlayer2D = $"../ValidSFX"
+
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
-	# Find or pick the MenuMusic node. Prefer an existing one in the scene tree root
-	if not menu_music:
-		var found = _find_node_by_name_in_tree("MenuMusic")
-		if found and found is AudioStreamPlayer2D:
-			menu_music = found
-		else:
-			var sibling = $"../MenuMusic" if has_node("../MenuMusic") else null
-			if sibling and sibling is AudioStreamPlayer2D:
-				menu_music = sibling
-
 	# If we found a MenuMusic and it isn't a child of the root, reparent it so it persists
 	if menu_music:
 		if menu_music.get_parent() != get_tree().root:
@@ -75,6 +68,13 @@ func _ready() -> void:
 	else:
 		check_button.grab_focus()
 
+	# --- AJOUT: Connexion des effets sonores de survol (Souris + Clavier/Manette) ---
+	# On connecte les signaux APRÈS le focus initial pour éviter de jouer le son au lancement
+	var interactive_elements = [button_jouer, button_commandes, button_credits, check_button, h_slider]
+	for element in interactive_elements:
+		element.mouse_entered.connect(_play_hover_sfx)
+		element.focus_entered.connect(_play_hover_sfx)
+	# ---------------------------------------------------------------------------------
 
 func _find_node_by_name_in_tree(target_name: String) -> Node:
 	# Iterative DFS to avoid calling missing methods on unexpected root types
@@ -92,23 +92,32 @@ func _find_node_by_name_in_tree(target_name: String) -> Node:
 					return child
 				stack.append(child)
 
-	return null
+	return null	
 
 func _apply_audio_settings() -> void:
 	var master_bus_index = AudioServer.get_bus_index("Master")
 	AudioServer.set_bus_mute(master_bus_index, GameManager.is_muted)
 	AudioServer.set_bus_volume_db(master_bus_index, linear_to_db(GameManager.master_volume / 100.0))
 
+# --- Fonction utilitaire SFX ---
+
+func _play_hover_sfx() -> void:
+	if hoverSFX:
+		hoverSFX.play()
+
 # --- Fonctions de navigation ---
 
 func _on_button_jouer_pressed() -> void:
+	validSFX.play()
 	get_tree().change_scene_to_file("res://scenes/Intro/main_layout_intro.tscn")
 	menu_music.stop()
 
 func _on_button_commandes_pressed() -> void:
+	validSFX.play()
 	get_tree().change_scene_to_file("res://scenes/Menu/commandes.tscn")
 
 func _on_button_credits_pressed() -> void:
+	validSFX.play()
 	get_tree().change_scene_to_file("res://scenes/Menu/credits.tscn")
 
 # --- Fonctions Audio ---
