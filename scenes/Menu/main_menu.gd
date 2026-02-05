@@ -68,9 +68,12 @@ func _ready() -> void:
 
 	# Applique l'état audio initial
 	_apply_audio_settings()
-
-	# Focus initial sur le bouton Jouer
-	button_jouer.grab_focus()
+	
+	# Focus initial sur la barre de volume si possible, sinon le bouton audio
+	if h_slider.visible:
+		h_slider.grab_focus()
+	else:
+		check_button.grab_focus()
 
 
 func _find_node_by_name_in_tree(target_name: String) -> Node:
