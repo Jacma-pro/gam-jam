@@ -60,6 +60,7 @@
 - add visual feedback for cooldown attacke/protection
 
 - adapt controller menu navigation
+- test export and upload on itch
 
 ## combo Idea
 - after blocked a ball attack, the next ball gonna be bigger and do more dmg ✅
