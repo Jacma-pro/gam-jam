@@ -117,7 +117,13 @@ func _on_game_over(winner_name: String) -> void:
 	# Ajout direct à la racine de l'arbre pour éviter les problèmes d'héritage de pause ou de visibilité
 	get_tree().root.add_child(over_menu)
 
-	over_menu.set_winner(winner_name)
+	var display_name = winner_name
+	if "ice" in winner_name.to_lower():
+		display_name = "CRYO TEAM"
+	elif "fire" in winner_name.to_lower():
+		display_name = "PYRO TEAM"
+
+	over_menu.set_winner(display_name)
 
 	# On remet le jeu en pause pour tout figer
 	get_tree().paused = true
