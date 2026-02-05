@@ -26,7 +26,7 @@ extends VBoxContainer
 func _ready() -> void:
 	# Find or pick the MenuMusic node. Prefer an existing one in the scene tree root
 	if not menu_music:
-		var found = get_tree().root.find_node("MenuMusic", true, false)
+		var found = _find_node_by_name_in_tree("MenuMusic")
 		if found and found is AudioStreamPlayer2D:
 			menu_music = found
 		else:
@@ -47,29 +47,49 @@ func _ready() -> void:
 			menu_music.play()
 	else:
 		push_warning("MainMenu: MenuMusic node not found")
+
 	# Connexion des boutons
 	button_jouer.pressed.connect(_on_button_jouer_pressed)
 	button_commandes.pressed.connect(_on_button_commandes_pressed)
 	button_credits.pressed.connect(_on_button_credits_pressed)
-	
+
 	# Connexion des contrôles audio
 	check_button.toggled.connect(_on_check_button_toggled)
 	h_slider.value_changed.connect(_on_h_slider_value_changed)
-	
+
 	# Initialisation depuis le GameManager
 	# CheckButton ON = Son activé (donc is_muted = false)
 	check_button.button_pressed = not GameManager.is_muted
 	h_slider.step = 10
 	h_slider.value = GameManager.master_volume
-	
+
 	# Applique l'état visuel initial
 	h_slider.visible = check_button.button_pressed
-	
+
 	# Applique l'état audio initial
 	_apply_audio_settings()
-	
+
 	# Focus initial sur le bouton Jouer
 	button_jouer.grab_focus()
+
+
+func _find_node_by_name_in_tree(target_name: String) -> Node:
+	# Iterative DFS to avoid calling missing methods on unexpected root types
+	var stack: Array = []
+	stack.append(get_tree().root)
+
+	while stack.size() > 0:
+		var node = stack.pop_back()
+		# get_children may not exist on all root types; guard it
+		if not node.has_method("get_children"):
+			continue
+		for child in node.get_children():
+			if child is Node:
+				if String(child.name) == target_name:
+					return child
+				stack.append(child)
+
+	return null
 
 func _apply_audio_settings() -> void:
 	var master_bus_index = AudioServer.get_bus_index("Master")
