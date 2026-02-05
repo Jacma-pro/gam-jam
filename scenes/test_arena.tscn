@@ -5,13 +5,10 @@
 [ext_resource type="PackedScene" uid="uid://c5evy6clrr0i1" path="res://scenes/map/map_element.tscn" id="2_platform"]
 [ext_resource type="PackedScene" uid="uid://dk5rsfk36y8rc" path="res://scenes/ice_player/ice_player.tscn" id="3_xjnh2"]
 [ext_resource type="PackedScene" uid="uid://dt1dgs63g4kj5" path="res://scenes/termo_bar/TermoBar.tscn" id="4_s42hq"]
-[ext_resource type="PackedScene" uid="uid://dd4vj1so6vimj" path="res://scenes/meteor/Meteor.tscn" id="5_4brrt"]
+[ext_resource type="PackedScene" uid="uid://de73l078sd57o" path="res://scenes/meteor/meteor_scene.tscn" id="6_i8g6w"]
 
 [node name="TestArena" type="Node2D"]
 script = ExtResource("1_i8g6w")
-meteor_scene = null
-meteor_interval_min = null
-meteor_interval_max = null
 
 [node name="Camera2D" type="Camera2D" parent="."]
 position = Vector2(640, 360)
@@ -36,5 +33,5 @@ offset_right = 1110.0
 offset_bottom = 103.0
 grow_horizontal = 2
 
-[node name="Meteor" parent="." instance=ExtResource("5_4brrt")]
-position = Vector2(551, -102)
+[node name="MeteorScene" parent="." instance=ExtResource("6_i8g6w")]
+position = Vector2(439, -140)

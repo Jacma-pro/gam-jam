@@ -2,7 +2,7 @@
 
 extends Node2D 
 
-#@export var meteor_scene: PackedScene = preload("res://scenes/meteor/Meteor.tscn)
+@export var meteor_scene: PackedScene = preload("res://scenes/meteor/meteor_scene.tscn")
 @export var meteor_interval_min: float = 1.0
 @export var meteor_interval_max: float = 3.0
 

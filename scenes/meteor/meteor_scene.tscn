@@ -1,0 +1,33 @@
+[gd_scene load_steps=6 format=3 uid="uid://de73l078sd57o"]
+
+[ext_resource type="Script" uid="uid://djca5lcbnuxe6" path="res://scenes/meteor/meteor_scene.gd" id="1_jxcpg"]
+[ext_resource type="Texture2D" uid="uid://clfe6jrrjkbnu" path="res://assets/sprites/meteor/Asteroid 01 - Base.png" id="2_jxcpg"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_fid5d"]
+radius = 76.1643
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_fip4f"]
+atlas = ExtResource("2_jxcpg")
+region = Rect2(0, 0, 192, 192)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_fip4f"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_fip4f")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+
+[node name="MeteorScene" type="Area2D"]
+script = ExtResource("1_jxcpg")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(0, -4)
+shape = SubResource("CircleShape2D_fid5d")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+scale = Vector2(2, 2)
+sprite_frames = SubResource("SpriteFrames_fip4f")
