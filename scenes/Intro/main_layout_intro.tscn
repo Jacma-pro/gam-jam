@@ -1,4 +1,4 @@
-[gd_scene load_steps=14 format=3 uid="uid://swrye7exddbs"]
+[gd_scene load_steps=15 format=3 uid="uid://swrye7exddbs"]
 
 [ext_resource type="PackedScene" uid="uid://wvuatb5lo2f0" path="res://scenes/fire_player/fire_player.tscn" id="2_lldya"]
 [ext_resource type="PackedScene" uid="uid://dt1dgs63g4kj5" path="res://scenes/termo_bar/TermoBar.tscn" id="2_v4xi0"]
@@ -6,8 +6,9 @@
 [ext_resource type="PackedScene" uid="uid://btxb8d7p0fjw5" path="res://scenes/map/background_ambiance.tscn" id="3_v4xi0"]
 [ext_resource type="Script" uid="uid://bygyknw1rogl4" path="res://scenes/Intro/scene_manager.gd" id="4_manager"]
 [ext_resource type="PackedScene" uid="uid://dk5rsfk36y8rc" path="res://scenes/ice_player/ice_player.tscn" id="4_u0wmg"]
+[ext_resource type="FontFile" uid="uid://c4auaft36pegl" path="res://assets/fonts/BoldPixels.ttf" id="5_opo4b"]
 [ext_resource type="AudioStream" uid="uid://djjlqtl4clhd8" path="res://Street Fighter II .mp3" id="7_uprkd"]
-[ext_resource type="Script" uid="uid://bopsmmsgnrjbr" path="res://scenes/Intro/meteor_spawner.gd" id="8_opo4b"]
+[ext_resource type="Script" path="res://scenes/Intro/meteor_spawner.gd" id="8_opo4b"]
 
 [sub_resource type="Animation" id="Animation_5yswy"]
 length = 0.001
@@ -33,7 +34,7 @@ tracks/1/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 0,
-"values": [Vector2(700, 360)]
+"values": [Vector2(640, 360)]
 }
 tracks/2/type = "value"
 tracks/2/imported = false
@@ -87,10 +88,10 @@ tracks/2/path = NodePath(".:zoom")
 tracks/2/interp = 0
 tracks/2/loop_wrap = true
 tracks/2/keys = {
-"times": PackedFloat32Array(0, 1.5, 3, 4.5, 6),
-"transitions": PackedFloat32Array(1, 1, 1, 1, 1),
+"times": PackedFloat32Array(0, 0.5, 1, 1.5, 3, 3.5, 4, 4.5, 6),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1, 1),
 "update": 0,
-"values": [Vector2(1, 1), Vector2(3, 3), Vector2(1, 1), Vector2(3, 3), Vector2(1, 1)]
+"values": [Vector2(1, 1), Vector2(1.5, 1.5), Vector2(2, 2), Vector2(3, 3), Vector2(1, 1), Vector2(1.5, 1.5), Vector2(2, 2), Vector2(3, 3), Vector2(1, 1)]
 }
 tracks/3/type = "value"
 tracks/3/imported = false
@@ -99,10 +100,10 @@ tracks/3/path = NodePath(".:position")
 tracks/3/interp = 0
 tracks/3/loop_wrap = true
 tracks/3/keys = {
-"times": PackedFloat32Array(0, 1.5, 3, 4.5, 6),
-"transitions": PackedFloat32Array(1, 1, 1, 1, 1),
+"times": PackedFloat32Array(0, 0.5, 1.5, 3, 3.5, 4.5, 6),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1),
 "update": 0,
-"values": [Vector2(640, 360), Vector2(980, 417), Vector2(647, 351), Vector2(350, 410), Vector2(642, 357)]
+"values": [Vector2(640, 360), Vector2(980, 417), Vector2(980, 417), Vector2(647, 351), Vector2(350, 410), Vector2(350, 410), Vector2(640, 360)]
 }
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_u0wmg"]
@@ -139,7 +140,7 @@ autoplay = "intro"
 
 [node name="Camera2D2" type="Camera2D" parent="." groups=["camera_shakers"]]
 process_mode = 3
-position = Vector2(700, 360)
+position = Vector2(640, 360)
 limit_left = 0
 limit_top = 0
 limit_right = 1280
@@ -153,13 +154,21 @@ position = Vector2(356, 431)
 position = Vector2(997, 431)
 
 [node name="Label" type="Label" parent="."]
-layout_mode = 0
-offset_left = 509.0
-offset_top = 336.0
-offset_right = 764.0
-offset_bottom = 419.0
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -127.5
+offset_top = -41.5
+offset_right = 127.5
+offset_bottom = 41.5
+grow_horizontal = 2
+grow_vertical = 2
 theme_override_colors/font_color = Color(1, 0, 0, 1)
-theme_override_font_sizes/font_size = 60
+theme_override_fonts/font = ExtResource("5_opo4b")
+theme_override_font_sizes/font_size = 92
 text = "FIGHT !!!!"
 
 [node name="TermoBar" parent="." instance=ExtResource("2_v4xi0")]
@@ -199,32 +208,5 @@ shape = SubResource("RectangleShape2D_vert")
 stream = ExtResource("7_uprkd")
 autoplay = true
 
-[node name="FrameSafe" type="ColorRect" parent="."]
-layout_mode = 0
-offset_left = -80.0
-offset_top = -80.0
-offset_right = 1360.0
-color = Color(0, 0, 0, 1)
-
-[node name="FrameSafe3" type="ColorRect" parent="."]
-layout_mode = 0
-offset_left = -80.0
-offset_bottom = 720.0
-color = Color(0.12156863, 0.078431375, 0.25882354, 1)
-
-[node name="FrameSafe4" type="ColorRect" parent="."]
-layout_mode = 0
-offset_left = 1280.0
-offset_right = 1360.0
-offset_bottom = 720.0
-color = Color(0.12156863, 0.078431375, 0.25882354, 1)
-
-[node name="FrameSafe2" type="ColorRect" parent="."]
-layout_mode = 0
-offset_left = -78.0
-offset_top = 720.0
-offset_right = 1360.0
-offset_bottom = 800.0
-color = Color(0, 0, 0, 1)
 [node name="meteor_spawner" type="Node2D" parent="."]
 script = ExtResource("8_opo4b")

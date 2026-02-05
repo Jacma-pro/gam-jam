@@ -578,6 +578,8 @@ position = Vector2(-6, 10)
 shape = SubResource("RectangleShape2D_3ggm3")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+modulate = Color(1.8247963, 1.8247963, 1.8247963, 1)
+position = Vector2(-1, 1)
 scale = Vector2(2, 2)
 sprite_frames = SubResource("SpriteFrames_ntx00")
 animation = &"p2_shoot"
