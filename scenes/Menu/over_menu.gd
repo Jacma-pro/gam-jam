@@ -31,7 +31,7 @@ func _ready() -> void:
 func set_winner(winner_name: String) -> void:
 	print("OverMenu: set_winner appelé avec ", winner_name)
 	if label:
-		label.text = winner_name + " l'a remporté !"
+		label.text = winner_name + " WINS!"
 	else:
 		print("OverMenu: ERREUR - Label introuvable")
 

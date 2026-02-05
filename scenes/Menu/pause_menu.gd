@@ -9,28 +9,40 @@ extends VBoxContainer
 @export var nav_ok: String = "ok_nav_menu"
 @export var nav_back: String = "back_nav_menu"
 
+# Références aux nœuds
+@onready var btn_resume = $Button
+@onready var btn_replay = $Button2
+@onready var btn_menu = $Button3
+
+# Les contrôles Audio sont maintenant dans un autre VBoxContainer (VBoxContainer2)
+@onready var check_audio = $"../VBoxContainer2/CheckButton"
+@onready var slider_audio = $"../VBoxContainer2/HSlider"
+
 
 func _ready() -> void:
 	# Connexions des boutons
-	$Button.pressed.connect(_on_resume_pressed)       # Reprendre
-	$Button2.pressed.connect(_on_replay_pressed)      # Rejouer
-	$Button3.pressed.connect(_on_main_menu_pressed)   # Menu principal
+	btn_resume.pressed.connect(_on_resume_pressed)       # Reprendre
+	btn_replay.pressed.connect(_on_replay_pressed)      # Rejouer
+	btn_menu.pressed.connect(_on_main_menu_pressed)   # Menu principal
 	
 	# Connexions Audio
-	$CheckButton.toggled.connect(_on_check_button_toggled)
-	$HSlider.value_changed.connect(_on_h_slider_value_changed)
+	if check_audio:
+		check_audio.toggled.connect(_on_check_button_toggled)
+		# Initialisation Audio
+		check_audio.button_pressed = not GameManager.is_muted
 	
-	# Initialisation Audio (comme dans le menu principal)
-	$CheckButton.button_pressed = not GameManager.is_muted
-	$HSlider.step = 10
-	$HSlider.value = GameManager.master_volume
-	
-	# Applique l'état visuel initial
-	$HSlider.visible = $CheckButton.button_pressed
+	if slider_audio:
+		slider_audio.value_changed.connect(_on_h_slider_value_changed)
+		slider_audio.step = 10
+		slider_audio.value = GameManager.master_volume
+		# Applique l'état visuel initial
+		slider_audio.visible = check_audio.button_pressed
+
+	# Applique l'état audio initial
 	_apply_audio_settings()
 	
 	# Donne le focus au bouton Reprendre pour qu'Espace fonctionne naturellement (ui_accept)
-	$Button.grab_focus()
+	btn_resume.grab_focus()
 
 func _apply_audio_settings() -> void:
 	var master_bus_index = AudioServer.get_bus_index("Master")
@@ -63,14 +75,14 @@ func _process(_delta: float) -> void:
 	if Input.is_action_just_pressed(nav_ok):
 		var focused_control = get_viewport().gui_get_focus_owner()
 		if focused_control:
-			if focused_control == $Button:
+			if focused_control == btn_resume:
 				_on_resume_pressed()
-			if focused_control == $Button2:
+			if focused_control == btn_replay:
 				_on_replay_pressed()
-			if focused_control == $Button3:
+			if focused_control == btn_menu:
 				_on_main_menu_pressed()
-			elif focused_control == $CheckButton:
-				$CheckButton.button_pressed = not $CheckButton.button_pressed
+			elif focused_control == check_audio:
+				check_audio.button_pressed = not check_audio.button_pressed
 
 # --- Logique Audio (identique au Main Menu) ---
 
@@ -81,12 +93,12 @@ func _on_check_button_toggled(toggled_on: bool) -> void:
 	var master_bus_index = AudioServer.get_bus_index("Master")
 	AudioServer.set_bus_mute(master_bus_index, GameManager.is_muted)
 	
-	$HSlider.visible = toggled_on
-	
-	if toggled_on:
-		if GameManager.master_volume == 0:
-			GameManager.master_volume = 100
-		$HSlider.value = GameManager.master_volume
+	if slider_audio:
+		slider_audio.visible = toggled_on
+		if toggled_on:
+			if GameManager.master_volume == 0:
+				GameManager.master_volume = 100
+			slider_audio.value = GameManager.master_volume
 
 func _on_h_slider_value_changed(value: float) -> void:
 	GameManager.master_volume = value
