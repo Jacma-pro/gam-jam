@@ -1,12 +1,17 @@
-[gd_scene load_steps=6 format=3 uid="uid://6vplrocd82cm"]
+[gd_scene load_steps=7 format=3 uid="uid://6vplrocd82cm"]
 
+[ext_resource type="Script" uid="uid://duh1wnptrtlyk" path="res://scenes/test_arena.gd" id="1_i8g6w"]
 [ext_resource type="PackedScene" uid="uid://wvuatb5lo2f0" path="res://scenes/fire_player/fire_player.tscn" id="1_player"]
 [ext_resource type="PackedScene" uid="uid://c5evy6clrr0i1" path="res://scenes/map/map_element.tscn" id="2_platform"]
 [ext_resource type="PackedScene" uid="uid://dk5rsfk36y8rc" path="res://scenes/ice_player/ice_player.tscn" id="3_xjnh2"]
 [ext_resource type="PackedScene" uid="uid://dt1dgs63g4kj5" path="res://scenes/termo_bar/TermoBar.tscn" id="4_s42hq"]
-[ext_resource type="PackedScene" uid="uid://cjss1nhmdd7ys" path="res://scenes/meteor/Meteor.tscn" id="5_4brrt"]
+[ext_resource type="PackedScene" uid="uid://dd4vj1so6vimj" path="res://scenes/meteor/Meteor.tscn" id="5_4brrt"]
 
 [node name="TestArena" type="Node2D"]
+script = ExtResource("1_i8g6w")
+meteor_scene = null
+meteor_interval_min = null
+meteor_interval_max = null
 
 [node name="Camera2D" type="Camera2D" parent="."]
 position = Vector2(640, 360)
@@ -32,4 +37,4 @@ offset_bottom = 103.0
 grow_horizontal = 2
 
 [node name="Meteor" parent="." instance=ExtResource("5_4brrt")]
-position = Vector2(285, -114)
+position = Vector2(551, -102)
