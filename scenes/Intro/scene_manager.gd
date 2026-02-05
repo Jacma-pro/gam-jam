@@ -5,7 +5,7 @@ extends Node
 @onready var animation_player = main_layout.get_node("AnimationPlayer")
 
 @export var end_animation_timer: float = 5.0
-@export var sudden_death_time: float = 30.0
+@export var sudden_death_time: float = 60.0
 
 const PAUSE_MENU_SCENE = preload("res://scenes/Menu/pause_menu.tscn")
 const OVER_MENU_SCENE = preload("res://scenes/Menu/over_menu.tscn")

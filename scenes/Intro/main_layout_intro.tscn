@@ -1,4 +1,4 @@
-[gd_scene load_steps=13 format=3 uid="uid://swrye7exddbs"]
+[gd_scene load_steps=14 format=3 uid="uid://swrye7exddbs"]
 
 [ext_resource type="PackedScene" uid="uid://wvuatb5lo2f0" path="res://scenes/fire_player/fire_player.tscn" id="2_lldya"]
 [ext_resource type="PackedScene" uid="uid://dt1dgs63g4kj5" path="res://scenes/termo_bar/TermoBar.tscn" id="2_v4xi0"]
@@ -7,6 +7,7 @@
 [ext_resource type="Script" uid="uid://bygyknw1rogl4" path="res://scenes/Intro/scene_manager.gd" id="4_manager"]
 [ext_resource type="PackedScene" uid="uid://dk5rsfk36y8rc" path="res://scenes/ice_player/ice_player.tscn" id="4_u0wmg"]
 [ext_resource type="AudioStream" uid="uid://djjlqtl4clhd8" path="res://Street Fighter II .mp3" id="7_uprkd"]
+[ext_resource type="Script" uid="uid://bopsmmsgnrjbr" path="res://scenes/Intro/meteor_spawner.gd" id="8_opo4b"]
 
 [sub_resource type="Animation" id="Animation_5yswy"]
 length = 0.001
@@ -198,6 +199,7 @@ shape = SubResource("RectangleShape2D_vert")
 stream = ExtResource("7_uprkd")
 autoplay = true
 
+<<<<<<< HEAD
 [node name="FrameSafe" type="ColorRect" parent="."]
 layout_mode = 0
 offset_left = -80.0
@@ -225,3 +227,7 @@ offset_top = 720.0
 offset_right = 1360.0
 offset_bottom = 800.0
 color = Color(0, 0, 0, 1)
+=======
+[node name="meteor_spawner" type="Node2D" parent="."]
+script = ExtResource("8_opo4b")
+>>>>>>> 163637233c9c8f10dcdbbe33aa590c7ff97c8b33

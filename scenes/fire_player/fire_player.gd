@@ -166,7 +166,7 @@ func shoot():
 		fireball.position += Vector2(0,0 * counter_size)
 		fireball.speed *= 2.5
 		if fireball.has_method("apply_counter"):
-			fireball.apply_counter(2.5, counter_size)
+			fireball.apply_counter(2.0, counter_size)
 		can_counter_attack = false
 
 	get_parent().add_child(fireball)

@@ -172,7 +172,7 @@ func shoot():
 		iceball.position += Vector2(0, 0 * counter_size)
 		iceball.speed *= 2.5
 		if iceball.has_method("apply_counter"):
-			iceball.apply_counter(2.5, counter_size)
+			iceball.apply_counter(2.0, counter_size)
 		can_counter_attack = false
 
 	get_parent().add_child(iceball)
