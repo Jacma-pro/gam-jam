@@ -134,23 +134,43 @@ func _play_hover_sfx() -> void:
 
 func _on_button_jouer_pressed() -> void:
 	# On arrête et on nettoie la musique du menu avant de lancer le jeu
+	# Capture reference to SceneTree before yielding (await). If the node is
+	# freed while awaiting, get_tree() would become null; storing it avoids that.
+	var scene_tree = get_tree()
 	if menu_music and is_instance_valid(menu_music):
 		menu_music.stop()
 		menu_music.queue_free()
 	
-	validSFX.play()
-	await validSFX.finished
-	get_tree().change_scene_to_file("res://scenes/cinematique.tscn")
+	if validSFX:
+		validSFX.play()
+		await validSFX.finished
+
+	if scene_tree:
+		scene_tree.change_scene_to_file("res://scenes/cinematique.tscn")
+	else:
+		push_warning("MainMenu: SceneTree unavailable when attempting to change to cinematics scene")
 
 func _on_button_commandes_pressed() -> void:
-	validSFX.play()
-	await validSFX.finished
-	get_tree().change_scene_to_file("res://scenes/Menu/commandes.tscn")
+	var scene_tree = get_tree()
+	if validSFX:
+		validSFX.play()
+		await validSFX.finished
+
+	if scene_tree:
+		scene_tree.change_scene_to_file("res://scenes/Menu/commandes.tscn")
+	else:
+		push_warning("MainMenu: SceneTree unavailable when attempting to change to commandes scene")
 
 func _on_button_credits_pressed() -> void:
-	validSFX.play()
-	await validSFX.finished
-	get_tree().change_scene_to_file("res://scenes/Menu/credits.tscn")
+	var scene_tree = get_tree()
+	if validSFX:
+		validSFX.play()
+		await validSFX.finished
+
+	if scene_tree:
+		scene_tree.change_scene_to_file("res://scenes/Menu/credits.tscn")
+	else:
+		push_warning("MainMenu: SceneTree unavailable when attempting to change to credits scene")
 
 # --- Fonctions Audio ---
 
