@@ -92,6 +92,7 @@ layout_mode = 2
 
 [node name="MusicMenu2" type="AudioStreamPlayer2D" parent="."]
 stream = ExtResource("4_lhvqg")
+bus = &"MusiqueFond"
 
 [node name="ColorRect" type="ColorRect" parent="."]
 offset_left = 583.0
