@@ -24,6 +24,10 @@ extends VBoxContainer
 @onready var hoverSFX: AudioStreamPlayer2D = $"../HoverSFX"
 @onready var validSFX: AudioStreamPlayer2D = $"../ValidSFX"
 
+# Logo animé (AnimatedSprite2D) — lance l'animation "default" au démarrage et la boucle
+# Le node est un frère (sibling) du conteneur, on remonte d'un niveau
+@onready var animated_logo: AnimatedSprite2D = $"../AnimatedSprite2D"
+
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
@@ -78,6 +82,14 @@ func _ready() -> void:
 	else:
 		check_button.grab_focus()
 
+	# Lance l'animation du logo (si présente). La boucle doit être gérée par la ressource SpriteFrames.
+	if animated_logo:
+		# Utiliser la propriété sprite_frames en Godot 4
+		if animated_logo.sprite_frames and animated_logo.sprite_frames.has_animation("default"):
+			animated_logo.play("default")
+		else:
+			push_warning("MainMenu: AnimatedSprite2D 'default' animation not found on AnimatedSprite2D")
+
 	# --- AJOUT: Connexion des effets sonores de survol (Souris + Clavier/Manette) ---
 	# On connecte les signaux APRÈS le focus initial pour éviter de jouer le son au lancement
 	var interactive_elements = [button_jouer, button_commandes, button_credits, check_button, h_slider]
@@ -114,6 +126,9 @@ func _apply_audio_settings() -> void:
 func _play_hover_sfx() -> void:
 	if hoverSFX:
 		hoverSFX.play()
+
+# Callback pour boucler l'animation du logo (AnimatedSprite2D)
+# (La boucle du logo est prise en charge par la ressource SpriteFrames de l'éditeur)
 
 # --- Fonctions de navigation ---
 
