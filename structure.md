@@ -57,6 +57,7 @@
 - Interface (Keyboard) **Need assets** ✅
 - add K.O ! **Need assets** ✅
 - after blocked a ball attack, the next ball gonna be bigger and do more dmg ✅
+- add visual feedback for cooldown attacke/protection/counter attack ✅
 
 
 ## what's left
@@ -64,7 +65,6 @@
 - add text or sound for damage x2 after 60 seconds (Sudden Death)
     - 30 secondes left
     - 10 secondes left
-- add visual feedback for cooldown attacke/protection/counter attack
 - upload on itch
 
 - add death sound
