@@ -18,6 +18,10 @@ extends VBoxContainer
 @onready var check_audio = $"../VBoxContainer2/CheckButton"
 @onready var slider_audio = $"../VBoxContainer2/HSlider"
 
+# SFX optionnels (si présents dans la scène parente)
+@onready var hoverSFX: AudioStreamPlayer2D = get_node_or_null("../HoverSFX")
+@onready var validSFX: AudioStreamPlayer2D = get_node_or_null("../ValidSFX")
+
 
 func _ready() -> void:
 	# Connexions des boutons
@@ -40,9 +44,32 @@ func _ready() -> void:
 
 	# Applique l'état audio initial
 	_apply_audio_settings()
-	
-	# Donne le focus au bouton Reprendre pour qu'Espace fonctionne naturellement (ui_accept)
-	btn_resume.grab_focus()
+
+	# Focus initial: si audio visible, commencer par le slider pour cohérence avec les menus
+	if slider_audio and slider_audio.visible:
+		slider_audio.grab_focus()
+	else:
+		btn_resume.grab_focus()
+
+	# Connect hover/focus SFX (si disponibles)
+	var interactive_elements = [btn_resume, btn_replay, btn_menu, check_audio, slider_audio]
+	for element in interactive_elements:
+		if element:
+			if element.has_signal("mouse_entered"):
+				element.mouse_entered.connect(_play_hover_sfx)
+			if element.has_signal("focus_entered"):
+				element.focus_entered.connect(_play_hover_sfx)
+
+	# Focus neighbors pour navigation manette
+	if slider_audio and btn_resume:
+		slider_audio.focus_neighbor_bottom = btn_resume.get_path()
+		btn_resume.focus_neighbor_top = slider_audio.get_path()
+	if btn_resume and btn_replay:
+		btn_resume.focus_neighbor_bottom = btn_replay.get_path()
+		btn_replay.focus_neighbor_top = btn_resume.get_path()
+	if btn_replay and btn_menu:
+		btn_replay.focus_neighbor_bottom = btn_menu.get_path()
+		btn_menu.focus_neighbor_top = btn_replay.get_path()
 
 func _apply_audio_settings() -> void:
 	var master_bus_index = AudioServer.get_bus_index("Master")
@@ -82,7 +109,24 @@ func _process(_delta: float) -> void:
 			if focused_control == btn_menu:
 				_on_main_menu_pressed()
 			elif focused_control == check_audio:
+				if validSFX:
+					validSFX.play()
 				check_audio.button_pressed = not check_audio.button_pressed
+
+func _unhandled_input(event: InputEvent) -> void:
+	# Navigation manette/clavier personnalisée si les voisins ne suffisent pas
+	if event.is_action_pressed(nav_down):
+		var focused = get_viewport().gui_get_focus_owner()
+		if focused == slider_audio or focused == check_audio:
+			btn_resume.grab_focus()
+			_play_hover_sfx()
+			get_viewport().set_input_as_handled()
+	elif event.is_action_pressed(nav_up):
+		var focused2 = get_viewport().gui_get_focus_owner()
+		if focused2 == btn_resume and slider_audio and slider_audio.visible:
+			slider_audio.grab_focus()
+			_play_hover_sfx()
+			get_viewport().set_input_as_handled()
 
 # --- Logique Audio (identique au Main Menu) ---
 
@@ -99,8 +143,14 @@ func _on_check_button_toggled(toggled_on: bool) -> void:
 			if GameManager.master_volume == 0:
 				GameManager.master_volume = 100
 			slider_audio.value = GameManager.master_volume
+			# Donner le focus au slider quand on (ré)active le son
+			slider_audio.grab_focus()
 
 func _on_h_slider_value_changed(value: float) -> void:
 	GameManager.master_volume = value
 	var master_bus_index = AudioServer.get_bus_index("Master")
 	AudioServer.set_bus_volume_db(master_bus_index, linear_to_db(value / 100.0))
+
+func _play_hover_sfx() -> void:
+	if hoverSFX:
+		hoverSFX.play()

@@ -1,4 +1,4 @@
-[gd_scene load_steps=6 format=3 uid="uid://seq4cu7hxnbq"]
+[gd_scene load_steps=8 format=3 uid="uid://seq4cu7hxnbq"]
 
 [ext_resource type="Script" uid="uid://bvd67lkitqn1h" path="res://scenes/Menu/over_menu.gd" id="1_68sx6"]
 [ext_resource type="FontFile" uid="uid://u87hkcwujixg" path="res://assets/fonts/m6x11plus.ttf" id="2_qh7j3"]
@@ -6,7 +6,11 @@
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_8d5c1"]
 
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_qh7j3"]
+
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_fkm3k"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_1v4df"]
 
 [node name="OverMenu" type="CanvasLayer"]
 process_mode = 3
@@ -46,15 +50,21 @@ theme_override_font_sizes/font_size = 92
 [node name="Button2" type="Button" parent="VBoxContainer"]
 layout_mode = 2
 theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_colors/font_focus_color = Color(0.12156863, 0.078431375, 0.25882354, 1)
+theme_override_colors/font_hover_color = Color(0.12156863, 0.078431375, 0.25882354, 1)
 theme_override_fonts/font = ExtResource("3_1v4df")
 theme_override_font_sizes/font_size = 66
 theme_override_styles/normal = SubResource("StyleBoxEmpty_8d5c1")
+theme_override_styles/focus = SubResource("StyleBoxEmpty_qh7j3")
 text = "REJOUER"
 
 [node name="Button3" type="Button" parent="VBoxContainer"]
 layout_mode = 2
 theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_colors/font_focus_color = Color(0.12156863, 0.078431375, 0.25882354, 1)
+theme_override_colors/font_hover_color = Color(0.12156863, 0.078431375, 0.25882354, 1)
 theme_override_fonts/font = ExtResource("3_1v4df")
 theme_override_font_sizes/font_size = 66
 theme_override_styles/normal = SubResource("StyleBoxEmpty_fkm3k")
+theme_override_styles/focus = SubResource("StyleBoxEmpty_1v4df")
 text = "MENU PRINCIPAL"

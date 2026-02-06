@@ -29,6 +29,11 @@ func _ready() -> void:
 	else:
 		print("OverMenu: ERREUR - Button3 (Menu) introuvable")
 
+	# Configure les voisins de focus pour la navigation manette/clavier
+	if button_replay and button_menu:
+		button_replay.focus_neighbor_bottom = button_menu.get_path()
+		button_menu.focus_neighbor_top = button_replay.get_path()
+
 func set_winner(winner_name: String) -> void:
 	print("OverMenu: set_winner appelé avec ", winner_name)
 	if label:
@@ -66,3 +71,17 @@ func _process(_delta: float) -> void:
 				_on_replay_pressed()
 			if focused_control == button_menu:
 				_on_main_menu_pressed()
+
+
+func _unhandled_input(event: InputEvent) -> void:
+	# Navigation manette/clavier personnalisée si les voisins ne suffisent pas
+	if event.is_action_pressed(nav_down):
+		var focused = get_viewport().gui_get_focus_owner()
+		if focused == button_replay:
+			button_menu.grab_focus()
+			get_viewport().set_input_as_handled()
+	elif event.is_action_pressed(nav_up):
+		var focused2 = get_viewport().gui_get_focus_owner()
+		if focused2 == button_menu:
+			button_replay.grab_focus()
+			get_viewport().set_input_as_handled()
