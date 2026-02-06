@@ -58,21 +58,19 @@
 - add K.O ! **Need assets** ✅
 - after blocked a ball attack, the next ball gonna be bigger and do more dmg ✅
 - add visual feedback for cooldown attacke/protection/counter attack ✅
+- add animate logo ✅
+- credit page content ✅
+- add hover on house ✅
+- add sfx on house ✅
+- add text or sound for damage x2 after 60 seconds (Sudden Death) ✅
+    - 30 secondes left
+    - 10 secondes left
 
 
 ## what's left
-
-- add text or sound for damage x2 after 60 seconds (Sudden Death)
-    - 30 secondes left
-    - 10 secondes left
 - upload on itch
 
-- add death sound
-- add animate logo
-- credit page content
-- add hover on house
-- add sfx on house
-
+- Fight Animation
 
 sur Itch cocher la case ArrayBuffer
 

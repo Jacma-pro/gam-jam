@@ -1,4 +1,4 @@
-[gd_scene load_steps=56 format=3 uid="uid://swrye7exddbs"]
+[gd_scene load_steps=57 format=3 uid="uid://swrye7exddbs"]
 
 [ext_resource type="AudioStream" uid="uid://bs4mtdk0lhfgx" path="res://assets/audio/main/fight/sfx/explosionInverse.mp3" id="2_3t15v"]
 [ext_resource type="AudioStream" uid="uid://bpd88i5gtblng" path="res://assets/audio/16-bitMusic/2025 03 _ Clement Panchout - Music Weeklies 25 DM - 16 Bit GEN Death metalwav.wav" id="2_7hehe"]
@@ -11,7 +11,8 @@
 [ext_resource type="Script" uid="uid://bygyknw1rogl4" path="res://scenes/Intro/scene_manager.gd" id="4_manager"]
 [ext_resource type="PackedScene" uid="uid://dk5rsfk36y8rc" path="res://scenes/ice_player/ice_player.tscn" id="4_u0wmg"]
 [ext_resource type="AudioStream" uid="uid://bypkt67slnixo" path="res://assets/audio/voix/Rick Allen - Fighting Games Narrator - Fight.wav" id="4_vw6lf"]
-[ext_resource type="Script" path="res://scenes/Intro/meteor_spawner.gd" id="8_opo4b"]
+[ext_resource type="Texture2D" uid="uid://cvn4p2ue3ewuu" path="res://assets/UI/scène combat/fight.png" id="5_opo4b"]
+[ext_resource type="Script" uid="uid://bopsmmsgnrjbr" path="res://scenes/Intro/meteor_spawner.gd" id="8_opo4b"]
 [ext_resource type="PackedScene" uid="uid://d20bh0fid3tqh" path="res://scenes/fire_player/fire_cooldown/shoot/ShootCoolDown.tscn" id="9_anxwy"]
 [ext_resource type="Texture2D" uid="uid://cdjbysylaua7v" path="res://assets/UI/scène combat/ko.png" id="9_ko_tex"]
 [ext_resource type="Script" uid="uid://cwxnmjpajbytc" path="res://scenes/fire_player/fire_cooldown/FireBlock/fire_block.gd" id="9_r1ntn"]
@@ -519,6 +520,8 @@ position = Vector2(997, 391)
 position = Vector2(-374, 335)
 scale = Vector2(1.4500002, 1.45)
 sprite_frames = SubResource("SpriteFrames_q0v1x")
+frame = 14
+frame_progress = 0.27125362
 
 [node name="TermoBar" parent="." instance=ExtResource("2_v4xi0")]
 layout_mode = 1
@@ -556,16 +559,13 @@ shape = SubResource("RectangleShape2D_vert")
 [node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="."]
 stream = ExtResource("13_1e6gc")
 autoplay = true
-bus = &"MusiqueFond"
 
 [node name="meteor_spawner" type="Node2D" parent="."]
 script = ExtResource("8_opo4b")
 
 [node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
-bus = &"SFX"
 
 [node name="AudioStreamPlayer2" type="AudioStreamPlayer" parent="."]
-bus = &"SFX"
 
 [node name="KOLabel" type="TextureRect" parent="."]
 visible = false
@@ -580,7 +580,6 @@ stretch_mode = 3
 
 [node name="KOSound" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("10_ko_snd")
-bus = &"SFX"
 
 [node name="controles_clavier_gauche2" type="TextureRect" parent="."]
 layout_mode = 1
