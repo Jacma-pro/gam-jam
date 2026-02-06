@@ -38,6 +38,8 @@ size_flags_vertical = 4
 [node name="Label" type="Label" parent="VBoxContainer"]
 layout_mode = 2
 theme_override_colors/font_color = Color(1, 0, 0, 1)
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 0.6)
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
 theme_override_fonts/font = ExtResource("2_qh7j3")
 theme_override_font_sizes/font_size = 92
 
@@ -45,14 +47,14 @@ theme_override_font_sizes/font_size = 92
 layout_mode = 2
 theme_override_colors/font_color = Color(1, 1, 1, 1)
 theme_override_fonts/font = ExtResource("3_1v4df")
-theme_override_font_sizes/font_size = 46
+theme_override_font_sizes/font_size = 66
 theme_override_styles/normal = SubResource("StyleBoxEmpty_8d5c1")
-text = "Rejouer"
+text = "REJOUER"
 
 [node name="Button3" type="Button" parent="VBoxContainer"]
 layout_mode = 2
 theme_override_colors/font_color = Color(1, 1, 1, 1)
 theme_override_fonts/font = ExtResource("3_1v4df")
-theme_override_font_sizes/font_size = 46
+theme_override_font_sizes/font_size = 66
 theme_override_styles/normal = SubResource("StyleBoxEmpty_fkm3k")
-text = "Menu principal"
+text = "MENU PRINCIPAL"

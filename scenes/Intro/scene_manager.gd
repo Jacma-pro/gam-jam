@@ -9,6 +9,10 @@ extends Node
 @export var end_animation_timer: float = 5.0
 @export var sudden_death_time: float = 60.0
 
+var _is_game_over: bool = false
+
+const THIRTY_SECONDS_SOUND = preload("res://assets/audio/voix/Rick Allen - Fighting Game Narrator - Attention 30 Seconds Left.wav")
+const FINISH_HIM_SOUND = preload("res://assets/audio/voix/Rick Allen - Fighting Game Narrator - Finish Him.wav")
 const PAUSE_MENU_SCENE = preload("res://scenes/Menu/pause_menu.tscn")
 const OVER_MENU_SCENE = preload("res://scenes/Menu/over_menu.tscn")
 
@@ -33,7 +37,7 @@ func _ready() -> void:
 func _unhandled_input(event: InputEvent) -> void:
 	# Gestion de la pause manuelle
 	# On utilise _unhandled_input pour que si le MenuPause consomme l'événement, on ne le re-traite pas ici
-	if event.is_action_pressed("pause"):
+	if event.is_action_pressed("pause") and not _is_game_over:
 		if not get_tree().paused:
 			pause_game()
 			# On consomme l'événement pour éviter qu'il ne remonte ailleurs
@@ -52,6 +56,7 @@ func _on_animation_finished(anim_name: StringName) -> void:
 		print("SceneManager: Fin de l'intro, reprise du jeu")
 		get_tree().paused = false
 
+		_start_30_seconds_timer()
 		# Lancer le timer de mort subite (dégâts doublés) après la reprise
 		_start_sudden_death_timer()
 
@@ -62,9 +67,31 @@ func _start_sudden_death_timer() -> void:
 	await get_tree().create_timer(sudden_death_time).timeout
 	_on_sudden_death_timeout()
 
+func _start_30_seconds_timer() -> void:
+	print("SceneManager: Timer 30s démarré")
+	await get_tree().create_timer(30.0).timeout
+	_play_30_seconds_sound()
+
+func _play_30_seconds_sound() -> void:
+	print("SceneManager: 30 secondes écoulées - Son joué")
+	var audio_player = AudioStreamPlayer.new()
+	audio_player.stream = THIRTY_SECONDS_SOUND
+	add_child(audio_player)
+	audio_player.play()
+	# Nettoyage après lecture
+	await audio_player.finished
+	audio_player.queue_free()
 
 func _on_sudden_death_timeout() -> void:
 	print("SceneManager: MORT SUBITE ! Dégâts doublés !")
+	
+	# Jouer le son "Finish Him"
+	var audio_player = AudioStreamPlayer.new()
+	audio_player.stream = FINISH_HIM_SOUND
+	add_child(audio_player)
+	audio_player.play()
+	# Nettoyage automatique du player sans bloquer
+	audio_player.finished.connect(audio_player.queue_free)
 
 	# Find players: prefer using groups if present
 	var players: Array = []
@@ -84,6 +111,7 @@ func _on_sudden_death_timeout() -> void:
 			p.damage_received_multiplier = 2.0
 
 func _on_game_over(winner_name: String) -> void:
+	_is_game_over = true
 	print("SceneManager: VICTOIRE détectée pour ", winner_name)
 
 	# Make sure the tree is not paused so the death animation can play

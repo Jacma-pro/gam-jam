@@ -3,6 +3,7 @@ extends CanvasLayer
 @onready var label = $VBoxContainer/Label
 @onready var button_replay = $VBoxContainer/Button2
 @onready var button_menu = $VBoxContainer/Button3
+@onready var color_rect = $ColorRect
 
 # Navigation actions (menu navigation)
 @export_category("Navigation")
@@ -32,6 +33,17 @@ func set_winner(winner_name: String) -> void:
 	print("OverMenu: set_winner appelé avec ", winner_name)
 	if label:
 		label.text = winner_name + " WINS!"
+		
+		if winner_name == "PYRO TEAM":
+			# Pyro gagne : Fond Rouge transparent, Texte Bleu
+			if color_rect:
+				color_rect.color = Color(0.85, 0.22, 0.22, 0.36)
+			label.add_theme_color_override("font_color", Color(0.85, 0.0, 0.0, 1.0))
+		else:
+			# Cryo gagne : Fond Bleu transparent, Texte Rouge
+			if color_rect:
+				color_rect.color = Color(0.22, 0.27, 0.85, 0.36)
+			label.add_theme_color_override("font_color", Color(0.116, 0.142, 0.89, 1.0))
 	else:
 		print("OverMenu: ERREUR - Label introuvable")
 
