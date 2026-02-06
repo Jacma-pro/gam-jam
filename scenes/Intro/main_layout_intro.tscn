@@ -1,4 +1,4 @@
-[gd_scene load_steps=57 format=3 uid="uid://swrye7exddbs"]
+[gd_scene load_steps=35 format=3 uid="uid://swrye7exddbs"]
 
 [ext_resource type="AudioStream" uid="uid://bs4mtdk0lhfgx" path="res://assets/audio/main/fight/sfx/explosionInverse.mp3" id="2_3t15v"]
 [ext_resource type="AudioStream" uid="uid://bpd88i5gtblng" path="res://assets/audio/16-bitMusic/2025 03 _ Clement Panchout - Music Weeklies 25 DM - 16 Bit GEN Death metalwav.wav" id="2_7hehe"]
@@ -12,7 +12,7 @@
 [ext_resource type="PackedScene" uid="uid://dk5rsfk36y8rc" path="res://scenes/ice_player/ice_player.tscn" id="4_u0wmg"]
 [ext_resource type="AudioStream" uid="uid://bypkt67slnixo" path="res://assets/audio/voix/Rick Allen - Fighting Games Narrator - Fight.wav" id="4_vw6lf"]
 [ext_resource type="Texture2D" uid="uid://cvn4p2ue3ewuu" path="res://assets/UI/scène combat/fight.png" id="5_opo4b"]
-[ext_resource type="Script" uid="uid://bopsmmsgnrjbr" path="res://scenes/Intro/meteor_spawner.gd" id="8_opo4b"]
+[ext_resource type="Script" path="res://scenes/Intro/meteor_spawner.gd" id="8_opo4b"]
 [ext_resource type="PackedScene" uid="uid://d20bh0fid3tqh" path="res://scenes/fire_player/fire_cooldown/shoot/ShootCoolDown.tscn" id="9_anxwy"]
 [ext_resource type="Texture2D" uid="uid://cdjbysylaua7v" path="res://assets/UI/scène combat/ko.png" id="9_ko_tex"]
 [ext_resource type="Script" uid="uid://cwxnmjpajbytc" path="res://scenes/fire_player/fire_cooldown/FireBlock/fire_block.gd" id="9_r1ntn"]
@@ -24,7 +24,6 @@
 [ext_resource type="Texture2D" uid="uid://f50xnj83ui1b" path="res://assets/UI/controles/touches_clavierLEFT.png" id="17_kvmcm"]
 [ext_resource type="Texture2D" uid="uid://csxvm7gxx3efv" path="res://assets/UI/controles/touches_manette.png" id="18_1e6gc"]
 [ext_resource type="Texture2D" uid="uid://rmjuy4cxvxfd" path="res://assets/UI/controles/touches_clavierRIGHT.png" id="18_a0313"]
-[ext_resource type="Texture2D" uid="uid://doh6w1yluktw0" path="res://assets/UI/animation_fight-Sheet.png" id="19_3mou3"]
 [ext_resource type="PackedScene" uid="uid://b2smikm8pkqms" path="res://scenes/ice_player/ice_cooldown/block/BlockIce.tscn" id="20_dur0x"]
 [ext_resource type="PackedScene" uid="uid://tcc8aw1m3idc" path="res://scenes/ice_player/ice_cooldown/shoot/ShootCoolDown.tscn" id="21_lx71a"]
 [ext_resource type="PackedScene" uid="uid://c1liqpemva1qo" path="res://scenes/fire_player/fire_cooldown/FireBlock/FireBlock.tscn" id="26_f0f5o"]
@@ -108,19 +107,19 @@ tracks/5/keys = {
 tracks/6/type = "value"
 tracks/6/imported = false
 tracks/6/enabled = true
-tracks/6/path = NodePath("../Fight:position")
+tracks/6/path = NodePath("../TextureRect:position")
 tracks/6/interp = 1
 tracks/6/loop_wrap = true
 tracks/6/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
+"times": PackedFloat32Array(),
+"transitions": PackedFloat32Array(),
 "update": 0,
-"values": [Vector2(-374, 335)]
+"values": []
 }
 tracks/7/type = "value"
 tracks/7/imported = false
 tracks/7/enabled = true
-tracks/7/path = NodePath("../Fight:visible")
+tracks/7/path = NodePath("../TextureRect:visible")
 tracks/7/interp = 1
 tracks/7/loop_wrap = true
 tracks/7/keys = {
@@ -128,18 +127,6 @@ tracks/7/keys = {
 "transitions": PackedFloat32Array(1),
 "update": 1,
 "values": [true]
-}
-tracks/8/type = "value"
-tracks/8/imported = false
-tracks/8/enabled = true
-tracks/8/path = NodePath("../Fight:frame")
-tracks/8/interp = 1
-tracks/8/loop_wrap = true
-tracks/8/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 1,
-"values": [0]
 }
 
 [sub_resource type="Animation" id="Animation_v5msw"]
@@ -279,23 +266,23 @@ tracks/8/keys = {
 tracks/9/type = "value"
 tracks/9/imported = false
 tracks/9/enabled = true
-tracks/9/path = NodePath("../Fight:position")
+tracks/9/path = NodePath("../TextureRect:position")
 tracks/9/interp = 2
 tracks/9/loop_wrap = true
 tracks/9/keys = {
-"times": PackedFloat32Array(0, 6, 6.6),
-"transitions": PackedFloat32Array(1, 1, 0.025382917),
+"times": PackedFloat32Array(6, 6.6),
+"transitions": PackedFloat32Array(1, 0.062500104),
 "update": 0,
-"values": [Vector2(-374, 335), Vector2(-374, 335), Vector2(660, 335)]
+"values": [Vector2(-779, 203), Vector2(300, 203)]
 }
 tracks/10/type = "value"
 tracks/10/imported = false
 tracks/10/enabled = true
-tracks/10/path = NodePath("../Fight:visible")
+tracks/10/path = NodePath("../TextureRect:visible")
 tracks/10/interp = 1
 tracks/10/loop_wrap = true
 tracks/10/keys = {
-"times": PackedFloat32Array(4.9666667, 7.9666667),
+"times": PackedFloat32Array(5.3333335, 7.9666667),
 "transitions": PackedFloat32Array(1, 1),
 "update": 1,
 "values": [true, false]
@@ -306,154 +293,6 @@ _data = {
 &"RESET": SubResource("Animation_5yswy"),
 &"intro": SubResource("Animation_v5msw")
 }
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_3vy8f"]
-atlas = ExtResource("19_3mou3")
-region = Rect2(0, 0, 640, 210)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_hdhdu"]
-atlas = ExtResource("19_3mou3")
-region = Rect2(640, 0, 640, 210)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_5ilbr"]
-atlas = ExtResource("19_3mou3")
-region = Rect2(1280, 0, 640, 210)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_vm5hp"]
-atlas = ExtResource("19_3mou3")
-region = Rect2(1920, 0, 640, 210)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_x7v4n"]
-atlas = ExtResource("19_3mou3")
-region = Rect2(2560, 0, 640, 210)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_l5bfu"]
-atlas = ExtResource("19_3mou3")
-region = Rect2(3200, 0, 640, 210)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_1c4ml"]
-atlas = ExtResource("19_3mou3")
-region = Rect2(3840, 0, 640, 210)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_01b6n"]
-atlas = ExtResource("19_3mou3")
-region = Rect2(4480, 0, 640, 210)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_2u8h4"]
-atlas = ExtResource("19_3mou3")
-region = Rect2(5120, 0, 640, 210)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_dithk"]
-atlas = ExtResource("19_3mou3")
-region = Rect2(5760, 0, 640, 210)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_e8b1j"]
-atlas = ExtResource("19_3mou3")
-region = Rect2(6400, 0, 640, 210)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_80cvo"]
-atlas = ExtResource("19_3mou3")
-region = Rect2(7040, 0, 640, 210)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_x3bep"]
-atlas = ExtResource("19_3mou3")
-region = Rect2(7680, 0, 640, 210)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_8448k"]
-atlas = ExtResource("19_3mou3")
-region = Rect2(8320, 0, 640, 210)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_y3xf8"]
-atlas = ExtResource("19_3mou3")
-region = Rect2(8960, 0, 640, 210)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_pdfm5"]
-atlas = ExtResource("19_3mou3")
-region = Rect2(9600, 0, 640, 210)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_kmpxm"]
-atlas = ExtResource("19_3mou3")
-region = Rect2(10240, 0, 640, 210)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_r2obb"]
-atlas = ExtResource("19_3mou3")
-region = Rect2(10880, 0, 640, 210)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_lcrrm"]
-atlas = ExtResource("19_3mou3")
-region = Rect2(11520, 0, 640, 210)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_phmog"]
-atlas = ExtResource("19_3mou3")
-region = Rect2(12160, 0, 640, 210)
-
-[sub_resource type="SpriteFrames" id="SpriteFrames_q0v1x"]
-animations = [{
-"frames": [{
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_3vy8f")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_hdhdu")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_5ilbr")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_vm5hp")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_x7v4n")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_l5bfu")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_1c4ml")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_01b6n")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_2u8h4")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_dithk")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_e8b1j")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_80cvo")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_x3bep")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_8448k")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_y3xf8")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_pdfm5")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_kmpxm")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_r2obb")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_lcrrm")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_phmog")
-}],
-"loop": true,
-"name": &"default",
-"speed": 5.0
-}]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_horiz"]
 size = Vector2(1280, 32)
@@ -515,13 +354,6 @@ script = ExtResource("15_f0f5o")
 
 [node name="IcePlayer" parent="." instance=ExtResource("4_u0wmg")]
 position = Vector2(997, 391)
-
-[node name="Fight" type="AnimatedSprite2D" parent="."]
-position = Vector2(-374, 335)
-scale = Vector2(1.4500002, 1.45)
-sprite_frames = SubResource("SpriteFrames_q0v1x")
-frame = 14
-frame_progress = 0.27125362
 
 [node name="TermoBar" parent="." instance=ExtResource("2_v4xi0")]
 layout_mode = 1
@@ -641,3 +473,11 @@ offset_left = 1142.0
 offset_right = 1234.0
 offset_bottom = 92.0
 texture = ExtResource("29_3vy8f")
+
+[node name="TextureRect" type="TextureRect" parent="."]
+layout_mode = 0
+offset_left = 300.0
+offset_top = 203.0
+offset_right = 1052.2721
+offset_bottom = 404.0
+texture = ExtResource("5_opo4b")
