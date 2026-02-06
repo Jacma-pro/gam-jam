@@ -577,7 +577,7 @@ position = Vector2(1, 0)
 scale = Vector2(2, 2)
 sprite_frames = SubResource("SpriteFrames_cqvoo")
 animation = &"p1_shoot"
-frame_progress = 0.6981419
+frame_progress = 0.47804856
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2(-6, 11.5)
