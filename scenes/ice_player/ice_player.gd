@@ -62,6 +62,10 @@ var damage_received_multiplier: float = 1.0
 var gravity = ProjectSettings.get_setting("physics/2d/default_gravity")
 
 @onready var animated_sprite = $AnimatedSprite2D
+# référence optionnelle au visuel de cooldown du tir
+var shoot_visual: Node = null
+# référence optionnelle au visuel du block
+var block_visual: Node = null
 
 # nouvel état de vie
 var is_dead: bool = false
@@ -70,6 +74,20 @@ func _ready() -> void:
 	animated_sprite.play(animation_idle)
 	# face left by default
 	animated_sprite.flip_h = true
+
+	# essayer de récupérer le ShootCoolDown placé dans le même parent (Intro scene) ou à la racine
+	if get_parent():
+		if get_parent().has_node("ShootCoolDown"):
+			shoot_visual = get_parent().get_node("ShootCoolDown")
+		elif get_tree().root.has_node("ShootCoolDown"):
+			shoot_visual = get_tree().root.get_node("ShootCoolDown")
+
+	# essayer de récupérer le BlockIce placé dans la même scène (parent) ou à la racine
+	if get_parent():
+		if get_parent().has_node("BlockIce"):
+			block_visual = get_parent().get_node("BlockIce")
+		elif get_tree().root.has_node("BlockIce"):
+			block_visual = get_tree().root.get_node("BlockIce")
 
 func _physics_process(delta: float) -> void:
 	# If dead, don't process inputs or movement
@@ -171,6 +189,10 @@ func shoot():
 	if animated_sprite.sprite_frames.has_animation(animation_shoot):
 		animated_sprite.sprite_frames.set_animation_loop(animation_shoot, false)
 
+	# start visual cooldown if present
+	if shoot_visual and shoot_visual.has_method("start_cooldown"):
+		shoot_visual.start_cooldown(shoot_cooldown)
+
 	if not iceball_scene:
 		printerr("IcePlayer: iceball_scene manquant, chargement de secours...")
 		iceball_scene = load("res://scenes/ice_player/ice_ball/IceBall.tscn")
@@ -225,6 +247,9 @@ func kick():
 func start_block_penalty():
 	can_block = false
 	is_blocking = false
+	# Feedback visuel : on cache le bouclier si présent
+	if block_visual and block_visual.has_method("start_cooldown"):
+		block_visual.start_cooldown(block_cooldown)
 	await get_tree().create_timer(block_cooldown).timeout
 	can_block = true
 	current_block_time = 0.0

@@ -62,6 +62,10 @@ var damage_received_multiplier: float = 1.0
 var gravity = ProjectSettings.get_setting("physics/2d/default_gravity")
 
 @onready var animated_sprite = $AnimatedSprite2D
+# référence optionnelle au visuel de cooldown du tir
+var shoot_visual: Node = null
+# référence optionnelle au visuel du block
+var block_visual: Node = null
 
 # état de vie
 var is_dead: bool = false
@@ -70,6 +74,56 @@ var is_dead: bool = false
 func _ready() -> void:
 	animated_sprite.play(animation_idle)
 	animated_sprite.stop()
+
+	# essayer de récupérer le ShootCoolDown placé dans le même parent (Intro scene) ou à la racine
+	if get_parent():
+		if get_parent().has_node("ShootCoolDown2"):
+			shoot_visual = get_parent().get_node("ShootCoolDown2")
+		elif get_parent().has_node("ShootCoolDown"):
+			shoot_visual = get_parent().get_node("ShootCoolDown")
+		elif get_tree().root.has_node("ShootCoolDown2"):
+			shoot_visual = get_tree().root.get_node("ShootCoolDown2")
+		elif get_tree().root.has_node("ShootCoolDown"):
+			shoot_visual = get_tree().root.get_node("ShootCoolDown")
+
+	# recherche robuste du visuel du block: supporte "FireBlock" et "BlockFire" et recherche globale
+	if get_parent():
+		if get_parent().has_node("FireBlock"):
+			block_visual = get_parent().get_node("FireBlock")
+		elif get_parent().has_node("BlockFire"):
+			block_visual = get_parent().get_node("BlockFire")
+
+	# fallback: recherche globale par nom
+	if not block_visual:
+		block_visual = get_tree().root.find_node("FireBlock", true, false)
+	if not block_visual:
+		block_visual = get_tree().root.find_node("BlockFire", true, false)
+
+	# dernier fallback: recherche par script resource basename
+	if not block_visual:
+		var stack: Array = []
+		stack.append(get_tree().root)
+		while stack.size() > 0:
+			var node = stack.pop_back()
+			if node is Node:
+				var sc = node.get_script()
+				if sc and typeof(sc) == TYPE_OBJECT:
+					var path = String(sc.resource_path)
+					if path.ends_with("fire_block.gd") or path.ends_with("block_fire.gd"):
+						block_visual = node
+				for child in node.get_children():
+					stack.append(child)
+
+	if block_visual:
+		print("FirePlayer: fallback trouvé -> ", block_visual.get_path(), " script=", block_visual.get_script().resource_path)
+	else:
+		print("FirePlayer: AUCUN block_visual trouvé après toutes les recherches")
+
+	if block_visual and block_visual.has_method("start_cooldown"):
+		print("FirePlayer: block_visual trouvé -> ", block_visual.get_path())
+	else:
+		print("FirePlayer: block_visual NON trouvé ou méthode manquante. (Cherché FireBlock/BlockFire)")
+
 
 func _physics_process(delta: float) -> void:
 	# If dead, don't process inputs or movement
@@ -162,6 +216,10 @@ func shoot():
 	can_shoot = false
 	sfx_shoot.play()
 
+	# start visual cooldown if present
+	if shoot_visual and shoot_visual.has_method("start_cooldown"):
+		shoot_visual.start_cooldown(shoot_cooldown)
+
 	# We ensure the shoot animation does not loop and play it
 	if animated_sprite.sprite_frames.has_animation(animation_shoot):
 		animated_sprite.sprite_frames.set_animation_loop(animation_shoot, false)
@@ -211,6 +269,10 @@ func start_block_penalty():
 	is_blocking = false
 	print("Block brisé ! Surchauffe !")
 	
+	# Feedback visuel : on cache le bouclier si présent
+	if block_visual and block_visual.has_method("start_cooldown"):
+		block_visual.start_cooldown(block_cooldown)
+
 	await get_tree().create_timer(block_cooldown).timeout
 	
 	can_block = true

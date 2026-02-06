@@ -1,0 +1,7 @@
+[gd_scene load_steps=2 format=3 uid="uid://b2smikm8pkqms"]
+
+[ext_resource type="Texture2D" uid="uid://dgh6qqghst3or" path="res://assets/sprites/Sheid.png" id="1_w3ap2"]
+
+[node name="BlockIce" type="Sprite2D"]
+scale = Vector2(2, 2)
+texture = ExtResource("1_w3ap2")

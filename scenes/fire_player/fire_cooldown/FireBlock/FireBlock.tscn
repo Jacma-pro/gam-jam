@@ -1,0 +1,7 @@
+[gd_scene load_steps=2 format=3 uid="uid://c1liqpemva1qo"]
+
+[ext_resource type="Texture2D" uid="uid://dgh6qqghst3or" path="res://assets/sprites/Sheid.png" id="1_ppvl4"]
+
+[node name="FireBlock" type="Sprite2D"]
+scale = Vector2(2, 2)
+texture = ExtResource("1_ppvl4")

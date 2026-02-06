@@ -1,4 +1,4 @@
-[gd_scene load_steps=25 format=3 uid="uid://swrye7exddbs"]
+[gd_scene load_steps=33 format=3 uid="uid://swrye7exddbs"]
 
 [ext_resource type="AudioStream" uid="uid://bs4mtdk0lhfgx" path="res://assets/audio/main/fight/sfx/explosionInverse.mp3" id="2_3t15v"]
 [ext_resource type="AudioStream" uid="uid://bpd88i5gtblng" path="res://assets/audio/16-bitMusic/2025 03 _ Clement Panchout - Music Weeklies 25 DM - 16 Bit GEN Death metalwav.wav" id="2_7hehe"]
@@ -13,12 +13,20 @@
 [ext_resource type="AudioStream" uid="uid://bypkt67slnixo" path="res://assets/audio/voix/Rick Allen - Fighting Games Narrator - Fight.wav" id="4_vw6lf"]
 [ext_resource type="Texture2D" uid="uid://cvn4p2ue3ewuu" path="res://assets/UI/scène combat/fight.png" id="5_opo4b"]
 [ext_resource type="Script" uid="uid://bopsmmsgnrjbr" path="res://scenes/Intro/meteor_spawner.gd" id="8_opo4b"]
+[ext_resource type="PackedScene" uid="uid://d20bh0fid3tqh" path="res://scenes/fire_player/fire_cooldown/shoot/ShootCoolDown.tscn" id="9_anxwy"]
 [ext_resource type="Texture2D" uid="uid://cdjbysylaua7v" path="res://assets/UI/scène combat/ko.png" id="9_ko_tex"]
+[ext_resource type="Script" uid="uid://cwxnmjpajbytc" path="res://scenes/fire_player/fire_cooldown/FireBlock/fire_block.gd" id="9_r1ntn"]
 [ext_resource type="AudioStream" uid="uid://d0on0ui8gpg7a" path="res://assets/audio/voix/Rick Allen - Fighting Game Narrator - KO.wav" id="10_ko_snd"]
+[ext_resource type="Script" uid="uid://7g0smlyyyww2" path="res://scenes/fire_player/fire_cooldown/shoot/shoot_cool_down.gd" id="11_r1ntn"]
 [ext_resource type="AudioStream" uid="uid://c6x5l0vlfdalp" path="res://assets/audio/main/fight/music/Highscore.wav" id="13_1e6gc"]
+[ext_resource type="Script" uid="uid://dyu2s2fjd5aim" path="res://scenes/ice_player/ice_cooldown/block/block_ice.gd" id="13_yx8on"]
+[ext_resource type="Script" uid="uid://2t1i3tdbqt3g" path="res://scenes/ice_player/ice_cooldown/shoot/shoot_cool_down.gd" id="15_f0f5o"]
 [ext_resource type="Texture2D" uid="uid://f50xnj83ui1b" path="res://assets/UI/controles/touches_clavierLEFT.png" id="17_kvmcm"]
 [ext_resource type="Texture2D" uid="uid://csxvm7gxx3efv" path="res://assets/UI/controles/touches_manette.png" id="18_1e6gc"]
 [ext_resource type="Texture2D" uid="uid://rmjuy4cxvxfd" path="res://assets/UI/controles/touches_clavierRIGHT.png" id="18_a0313"]
+[ext_resource type="PackedScene" uid="uid://b2smikm8pkqms" path="res://scenes/ice_player/ice_cooldown/block/BlockIce.tscn" id="20_dur0x"]
+[ext_resource type="PackedScene" uid="uid://tcc8aw1m3idc" path="res://scenes/ice_player/ice_cooldown/shoot/ShootCoolDown.tscn" id="21_lx71a"]
+[ext_resource type="PackedScene" uid="uid://c1liqpemva1qo" path="res://scenes/fire_player/fire_cooldown/FireBlock/FireBlock.tscn" id="26_f0f5o"]
 
 [sub_resource type="Animation" id="Animation_5yswy"]
 length = 0.001
@@ -319,8 +327,26 @@ limit_right = 1280
 limit_bottom = 720
 script = ExtResource("2_yqm5v")
 
+[node name="FireBlock" parent="." instance=ExtResource("26_f0f5o")]
+position = Vector2(210, 72)
+script = ExtResource("9_r1ntn")
+
+[node name="ShootCoolDown2" parent="." instance=ExtResource("9_anxwy")]
+position = Vector2(270, 64)
+scale = Vector2(0.9427083, 0.9427083)
+script = ExtResource("11_r1ntn")
+
 [node name="FirePlayer" parent="." instance=ExtResource("2_lldya")]
 position = Vector2(356, 391)
+
+[node name="BlockIce" parent="." instance=ExtResource("20_dur0x")]
+position = Vector2(1081, 72)
+script = ExtResource("13_yx8on")
+
+[node name="ShootCoolDown" parent="." instance=ExtResource("21_lx71a")]
+position = Vector2(1028, 66)
+scale = Vector2(0.7604167, 0.7604167)
+script = ExtResource("15_f0f5o")
 
 [node name="IcePlayer" parent="." instance=ExtResource("4_u0wmg")]
 position = Vector2(997, 391)
@@ -436,9 +462,9 @@ anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-offset_left = -640.0
+offset_left = -646.0
 offset_top = -360.0
-offset_right = 640.0
+offset_right = 634.0
 offset_bottom = 360.0
 grow_horizontal = 2
 grow_vertical = 2
