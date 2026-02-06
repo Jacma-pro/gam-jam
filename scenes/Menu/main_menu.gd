@@ -125,7 +125,7 @@ func _on_button_jouer_pressed() -> void:
 	
 	validSFX.play()
 	await validSFX.finished
-	get_tree().change_scene_to_file("res://scenes/Intro/main_layout_intro.tscn")
+	get_tree().change_scene_to_file("res://scenes/cinematique.tscn")
 
 func _on_button_commandes_pressed() -> void:
 	validSFX.play()

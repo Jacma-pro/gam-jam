@@ -1,0 +1,20 @@
+[gd_scene load_steps=3 format=3 uid="uid://b3e1ty66b6gjv"]
+
+[ext_resource type="VideoStream" uid="uid://bmsnkxy6wi323" path="res://assets/video/cinématique_small.ogv" id="1_fx3wa"]
+[ext_resource type="Script" uid="uid://dganuxsxisn2c" path="res://scenes/cinematique.gd" id="2_script"]
+
+[node name="Cinematique" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("2_script")
+
+[node name="VideoStreamPlayer" type="VideoStreamPlayer" parent="."]
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 40.0
+stream = ExtResource("1_fx3wa")
+autoplay = true

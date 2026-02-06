@@ -306,10 +306,6 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 
-[node name="SceneManager" type="Node" parent="."]
-process_mode = 3
-script = ExtResource("4_manager")
-
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 process_mode = 3
 root_node = NodePath("../Camera2D2")
@@ -317,6 +313,10 @@ libraries = {
 &"": SubResource("AnimationLibrary_u0wmg")
 }
 autoplay = "intro"
+
+[node name="SceneManager" type="Node" parent="."]
+process_mode = 3
+script = ExtResource("4_manager")
 
 [node name="Camera2D2" type="Camera2D" parent="." groups=["camera_shakers"]]
 process_mode = 3
