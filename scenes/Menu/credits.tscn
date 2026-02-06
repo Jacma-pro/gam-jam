@@ -19,7 +19,7 @@
 
 [sub_resource type="Animation" id="Animation_cb1wt"]
 resource_name = "texteAnimation"
-length = 45.0
+length = 60.0
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
@@ -27,10 +27,10 @@ tracks/0/path = NodePath("TextureRect:position")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
-"times": PackedFloat32Array(0, 45),
+"times": PackedFloat32Array(0, 60),
 "transitions": PackedFloat32Array(1, 1),
 "update": 0,
-"values": [Vector2(230, 612), Vector2(230, -2500)]
+"values": [Vector2(230, 612), Vector2(230, -4000)]
 }
 
 [sub_resource type="Animation" id="Animation_yavrl"]
@@ -92,6 +92,7 @@ layout_mode = 2
 
 [node name="MusicMenu2" type="AudioStreamPlayer2D" parent="."]
 stream = ExtResource("4_lhvqg")
+bus = &"MusiqueFond"
 
 [node name="ColorRect" type="ColorRect" parent="."]
 offset_left = 583.0
@@ -107,7 +108,7 @@ anchor_bottom = 1.0
 offset_left = 280.0
 offset_top = 612.0
 offset_right = 1080.0
-offset_bottom = 2968.0
+offset_bottom = 3657.0
 grow_horizontal = 2
 grow_vertical = 2
 texture = ExtResource("6_cb1wt")
