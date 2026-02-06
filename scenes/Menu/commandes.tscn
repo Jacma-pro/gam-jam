@@ -40,7 +40,7 @@ offset_bottom = 40.0
 texture = ExtResource("2_u56dc")
 
 [node name="AudioControl" type="VBoxContainer" parent="."]
-offset_left = 1105.0
+offset_left = 1094.0
 offset_top = 22.0
 offset_right = 1245.0
 offset_bottom = 66.0

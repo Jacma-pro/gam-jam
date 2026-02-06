@@ -1,21 +1,32 @@
-[gd_scene load_steps=15 format=3 uid="uid://dskfjjn2a7r65"]
+[gd_scene load_steps=16 format=3 uid="uid://dskfjjn2a7r65"]
 
 [ext_resource type="Texture2D" uid="uid://b0v61cbe2yh58" path="res://assets/UI/menu principal/menuprincipal_0.png" id="1_olbcw"]
 [ext_resource type="Script" uid="uid://cuc6ir8c3pf47" path="res://scenes/Menu/credits.gd" id="1_script"]
-[ext_resource type="Texture2D" uid="uid://bblut8hljrul0" path="res://assets/UI/home.png" id="3_home"]
 [ext_resource type="FontFile" uid="uid://u87hkcwujixg" path="res://assets/fonts/m6x11plus.ttf" id="4_gqkl3"]
 [ext_resource type="AudioStream" uid="uid://cravr2eeibuv5" path="res://assets/audio/menu/music/music_menu_2.wav" id="4_lhvqg"]
 [ext_resource type="Texture2D" uid="uid://c10asp4bhjmh1" path="res://assets/UI/credits.png" id="6_cb1wt"]
-
-[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_lhvqg"]
-
-[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_lnsbd"]
-
-[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_cb1wt"]
+[ext_resource type="FontFile" uid="uid://c4auaft36pegl" path="res://assets/fonts/BoldPixels.ttf" id="6_yavrl"]
+[ext_resource type="AudioStream" uid="uid://dmj6hcpkulpfd" path="res://assets/audio/menu/sfx/nav.ogg" id="7_nav"]
+[ext_resource type="AudioStream" uid="uid://dc5ik7a1ix58i" path="res://assets/audio/menu/sfx/confirm.ogg" id="8_confirm"]
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_m305f"]
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_om5x0"]
+
+[sub_resource type="Animation" id="Animation_yavrl"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("TextureRect:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(280, 612)]
+}
 
 [sub_resource type="Animation" id="Animation_cb1wt"]
 resource_name = "texteAnimation"
@@ -33,26 +44,15 @@ tracks/0/keys = {
 "values": [Vector2(230, 612), Vector2(230, -4000)]
 }
 
-[sub_resource type="Animation" id="Animation_yavrl"]
-length = 0.001
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("TextureRect:position")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [Vector2(280, 612)]
-}
-
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_eq14k"]
 _data = {
 &"RESET": SubResource("Animation_yavrl"),
 &"texteAnimation": SubResource("Animation_cb1wt")
 }
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_eq14k"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_6s757"]
 
 [node name="Credits" type="Node2D"]
 script = ExtResource("1_script")
@@ -63,18 +63,8 @@ offset_right = 1280.0
 offset_bottom = 718.0
 texture = ExtResource("1_olbcw")
 
-[node name="homeReturn" type="Button" parent="."]
-offset_left = 16.0
-offset_top = 16.0
-offset_right = 116.0
-offset_bottom = 116.0
-theme_override_styles/normal = SubResource("StyleBoxEmpty_lhvqg")
-theme_override_styles/pressed = SubResource("StyleBoxEmpty_lnsbd")
-theme_override_styles/disabled = SubResource("StyleBoxEmpty_cb1wt")
-icon = ExtResource("3_home")
-
 [node name="AudioControl" type="VBoxContainer" parent="."]
-offset_left = 1105.0
+offset_left = 1098.0
 offset_top = 22.0
 offset_right = 1245.0
 offset_bottom = 66.0
@@ -92,7 +82,12 @@ layout_mode = 2
 
 [node name="MusicMenu2" type="AudioStreamPlayer2D" parent="."]
 stream = ExtResource("4_lhvqg")
-bus = &"MusiqueFond"
+
+[node name="HoverSFX" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("7_nav")
+
+[node name="ValidSFX" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("8_confirm")
 
 [node name="ColorRect" type="ColorRect" parent="."]
 offset_left = 583.0
@@ -119,3 +114,15 @@ libraries = {
 &"": SubResource("AnimationLibrary_eq14k")
 }
 autoplay = "texteAnimation"
+
+[node name="Button" type="Button" parent="."]
+offset_left = 30.0
+offset_top = 28.0
+offset_right = 264.0
+offset_bottom = 60.76
+theme_override_colors/font_color = Color(0.8745098, 0.8745098, 0.8745098, 1)
+theme_override_fonts/font = ExtResource("6_yavrl")
+theme_override_font_sizes/font_size = 26
+theme_override_styles/normal = SubResource("StyleBoxEmpty_eq14k")
+theme_override_styles/pressed = SubResource("StyleBoxEmpty_6s757")
+text = "MENU PRINCIPAL"
