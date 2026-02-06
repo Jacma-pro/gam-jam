@@ -12,7 +12,7 @@
 [ext_resource type="PackedScene" uid="uid://dk5rsfk36y8rc" path="res://scenes/ice_player/ice_player.tscn" id="4_u0wmg"]
 [ext_resource type="AudioStream" uid="uid://bypkt67slnixo" path="res://assets/audio/voix/Rick Allen - Fighting Games Narrator - Fight.wav" id="4_vw6lf"]
 [ext_resource type="Texture2D" uid="uid://cvn4p2ue3ewuu" path="res://assets/UI/scène combat/fight.png" id="5_opo4b"]
-[ext_resource type="Script" uid="uid://bopsmmsgnrjbr" path="res://scenes/Intro/meteor_spawner.gd" id="8_opo4b"]
+[ext_resource type="Script" path="res://scenes/Intro/meteor_spawner.gd" id="8_opo4b"]
 [ext_resource type="Texture2D" uid="uid://cdjbysylaua7v" path="res://assets/UI/scène combat/ko.png" id="9_ko_tex"]
 [ext_resource type="AudioStream" uid="uid://d0on0ui8gpg7a" path="res://assets/audio/voix/Rick Allen - Fighting Game Narrator - KO.wav" id="10_ko_snd"]
 [ext_resource type="AudioStream" uid="uid://c6x5l0vlfdalp" path="res://assets/audio/main/fight/music/Highscore.wav" id="13_1e6gc"]
@@ -298,10 +298,6 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 
-[node name="SceneManager" type="Node" parent="."]
-process_mode = 3
-script = ExtResource("4_manager")
-
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 process_mode = 3
 root_node = NodePath("../Camera2D2")
@@ -309,6 +305,10 @@ libraries = {
 &"": SubResource("AnimationLibrary_u0wmg")
 }
 autoplay = "intro"
+
+[node name="SceneManager" type="Node" parent="."]
+process_mode = 3
+script = ExtResource("4_manager")
 
 [node name="Camera2D2" type="Camera2D" parent="." groups=["camera_shakers"]]
 process_mode = 3

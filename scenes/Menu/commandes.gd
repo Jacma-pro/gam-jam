@@ -2,7 +2,7 @@ extends Node2D
 
 @onready var menu_music: AudioStreamPlayer2D = $MusicMenu2
 
-@onready var home_return: TextureRect = $homeReturn
+@onready var home_return: Button = $Button
 @onready var check_button: CheckButton = $AudioControl/CheckButtonOnOff
 @onready var h_slider: HSlider = $AudioControl/HSliderVolume
 
@@ -35,7 +35,7 @@ func _ready() -> void:
 			push_warning("Commandes: MusicMenu2 node not found")
 	# Setup Home Return handling
 	if home_return:
-		home_return.gui_input.connect(_on_home_return_gui_input)
+		home_return.pressed.connect(_on_home_return_pressed)
 	
 	# Setup Audio Controls initial state from GameManager
 	if GameManager:
@@ -47,12 +47,15 @@ func _ready() -> void:
 	check_button.toggled.connect(_on_check_button_toggled)
 	h_slider.value_changed.connect(_on_h_slider_value_changed)
 
-func _on_home_return_gui_input(event: InputEvent) -> void:
-	if event is InputEventMouseButton and event.pressed and event.button_index == MOUSE_BUTTON_LEFT:
-		# On supprime la musique persistante pour laisser place à celle du Menu Principal
-		if menu_music:
-			menu_music.queue_free()
-		get_tree().change_scene_to_file(MAIN_MENU_SCENE)
+func _on_home_return_pressed() -> void:
+	# On supprime la musique persistante pour laisser place à celle du Menu Principal
+	if menu_music:
+		menu_music.queue_free()
+	get_tree().change_scene_to_file(MAIN_MENU_SCENE)
+
+func _input(event: InputEvent) -> void:
+	if event.is_action_pressed("back_nav_menu"):
+		_on_home_return_pressed()
 
 func _on_check_button_toggled(toggled_on: bool) -> void:
 	if GameManager:
