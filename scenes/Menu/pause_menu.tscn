@@ -49,7 +49,7 @@ theme_override_colors/font_color = Color(1, 1, 1, 1)
 theme_override_fonts/font = ExtResource("2_wd0t7")
 theme_override_font_sizes/font_size = 46
 theme_override_styles/normal = SubResource("StyleBoxEmpty_vvnub")
-text = "Reprendre"
+text = "REPRENDRE"
 
 [node name="Button2" type="Button" parent="VBoxContainer"]
 layout_mode = 2
@@ -57,7 +57,7 @@ theme_override_colors/font_color = Color(1, 1, 1, 1)
 theme_override_fonts/font = ExtResource("2_wd0t7")
 theme_override_font_sizes/font_size = 46
 theme_override_styles/normal = SubResource("StyleBoxEmpty_onbn4")
-text = "Rejouer"
+text = "REJOUER"
 
 [node name="Button3" type="Button" parent="VBoxContainer"]
 layout_mode = 2
@@ -65,7 +65,7 @@ theme_override_colors/font_color = Color(1, 1, 1, 1)
 theme_override_fonts/font = ExtResource("2_wd0t7")
 theme_override_font_sizes/font_size = 46
 theme_override_styles/normal = SubResource("StyleBoxEmpty_n04sb")
-text = "Menu principal"
+text = "MENU PRINCIPAL"
 
 [node name="VBoxContainer2" type="VBoxContainer" parent="."]
 offset_left = 1105.0
