@@ -1,4 +1,4 @@
-[gd_scene load_steps=35 format=3 uid="uid://swrye7exddbs"]
+[gd_scene load_steps=56 format=3 uid="uid://swrye7exddbs"]
 
 [ext_resource type="AudioStream" uid="uid://bs4mtdk0lhfgx" path="res://assets/audio/main/fight/sfx/explosionInverse.mp3" id="2_3t15v"]
 [ext_resource type="AudioStream" uid="uid://bpd88i5gtblng" path="res://assets/audio/16-bitMusic/2025 03 _ Clement Panchout - Music Weeklies 25 DM - 16 Bit GEN Death metalwav.wav" id="2_7hehe"]
@@ -11,7 +11,6 @@
 [ext_resource type="Script" uid="uid://bygyknw1rogl4" path="res://scenes/Intro/scene_manager.gd" id="4_manager"]
 [ext_resource type="PackedScene" uid="uid://dk5rsfk36y8rc" path="res://scenes/ice_player/ice_player.tscn" id="4_u0wmg"]
 [ext_resource type="AudioStream" uid="uid://bypkt67slnixo" path="res://assets/audio/voix/Rick Allen - Fighting Games Narrator - Fight.wav" id="4_vw6lf"]
-[ext_resource type="Texture2D" uid="uid://cvn4p2ue3ewuu" path="res://assets/UI/scène combat/fight.png" id="5_opo4b"]
 [ext_resource type="Script" path="res://scenes/Intro/meteor_spawner.gd" id="8_opo4b"]
 [ext_resource type="PackedScene" uid="uid://d20bh0fid3tqh" path="res://scenes/fire_player/fire_cooldown/shoot/ShootCoolDown.tscn" id="9_anxwy"]
 [ext_resource type="Texture2D" uid="uid://cdjbysylaua7v" path="res://assets/UI/scène combat/ko.png" id="9_ko_tex"]
@@ -60,19 +59,19 @@ tracks/1/keys = {
 tracks/2/type = "value"
 tracks/2/imported = false
 tracks/2/enabled = true
-tracks/2/path = NodePath("../TextureRect:position")
+tracks/2/path = NodePath("../AudioStreamPlayer:volume_db")
 tracks/2/interp = 1
 tracks/2/loop_wrap = true
 tracks/2/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 0,
-"values": [Vector2(-622, 235)]
+"values": [0.0]
 }
 tracks/3/type = "value"
 tracks/3/imported = false
 tracks/3/enabled = true
-tracks/3/path = NodePath("../TextureRect:visible")
+tracks/3/path = NodePath("../controles_clavier_gauche2:visible")
 tracks/3/interp = 1
 tracks/3/loop_wrap = true
 tracks/3/keys = {
@@ -84,19 +83,19 @@ tracks/3/keys = {
 tracks/4/type = "value"
 tracks/4/imported = false
 tracks/4/enabled = true
-tracks/4/path = NodePath("../AudioStreamPlayer:volume_db")
+tracks/4/path = NodePath("../controles_manettes:visible")
 tracks/4/interp = 1
 tracks/4/loop_wrap = true
 tracks/4/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [0.0]
+"update": 1,
+"values": [true]
 }
 tracks/5/type = "value"
 tracks/5/imported = false
 tracks/5/enabled = true
-tracks/5/path = NodePath("../controles_clavier_gauche2:visible")
+tracks/5/path = NodePath("../controles_clavier_droite2:visible")
 tracks/5/interp = 1
 tracks/5/loop_wrap = true
 tracks/5/keys = {
@@ -108,19 +107,19 @@ tracks/5/keys = {
 tracks/6/type = "value"
 tracks/6/imported = false
 tracks/6/enabled = true
-tracks/6/path = NodePath("../controles_manettes:visible")
+tracks/6/path = NodePath("../Fight:position")
 tracks/6/interp = 1
 tracks/6/loop_wrap = true
 tracks/6/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
-"update": 1,
-"values": [true]
+"update": 0,
+"values": [Vector2(-374, 335)]
 }
 tracks/7/type = "value"
 tracks/7/imported = false
 tracks/7/enabled = true
-tracks/7/path = NodePath("../controles_clavier_droite2:visible")
+tracks/7/path = NodePath("../Fight:visible")
 tracks/7/interp = 1
 tracks/7/loop_wrap = true
 tracks/7/keys = {
@@ -128,6 +127,18 @@ tracks/7/keys = {
 "transitions": PackedFloat32Array(1),
 "update": 1,
 "values": [true]
+}
+tracks/8/type = "value"
+tracks/8/imported = false
+tracks/8/enabled = true
+tracks/8/path = NodePath("../Fight:frame")
+tracks/8/interp = 1
+tracks/8/loop_wrap = true
+tracks/8/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [0]
 }
 
 [sub_resource type="Animation" id="Animation_v5msw"]
@@ -174,37 +185,13 @@ tracks/2/keys = {
 "update": 0,
 "values": [Vector2(640, 360), Vector2(980, 417), Vector2(980, 400), Vector2(647, 351), Vector2(350, 410), Vector2(350, 400), Vector2(640, 360)]
 }
-tracks/3/type = "value"
+tracks/3/type = "audio"
 tracks/3/imported = false
 tracks/3/enabled = true
-tracks/3/path = NodePath("../TextureRect:position")
-tracks/3/interp = 2
+tracks/3/path = NodePath("../AudioStreamPlayer")
+tracks/3/interp = 1
 tracks/3/loop_wrap = true
 tracks/3/keys = {
-"times": PackedFloat32Array(6, 6.2, 6.6),
-"transitions": PackedFloat32Array(1, 1, 0.07694646),
-"update": 0,
-"values": [Vector2(-622, 235), Vector2(-622, 235), Vector2(391, 235)]
-}
-tracks/4/type = "value"
-tracks/4/imported = false
-tracks/4/enabled = true
-tracks/4/path = NodePath("../TextureRect:visible")
-tracks/4/interp = 1
-tracks/4/loop_wrap = true
-tracks/4/keys = {
-"times": PackedFloat32Array(6, 7.9),
-"transitions": PackedFloat32Array(1, 1),
-"update": 1,
-"values": [true, false]
-}
-tracks/5/type = "audio"
-tracks/5/imported = false
-tracks/5/enabled = true
-tracks/5/path = NodePath("../AudioStreamPlayer")
-tracks/5/interp = 1
-tracks/5/loop_wrap = true
-tracks/5/keys = {
 "clips": [{
 "end_offset": 0.0,
 "start_offset": 0.0,
@@ -212,14 +199,14 @@ tracks/5/keys = {
 }],
 "times": PackedFloat32Array(0.03333336)
 }
-tracks/5/use_blend = true
-tracks/6/type = "audio"
-tracks/6/imported = false
-tracks/6/enabled = true
-tracks/6/path = NodePath("../AudioStreamPlayer2")
-tracks/6/interp = 1
-tracks/6/loop_wrap = true
-tracks/6/keys = {
+tracks/3/use_blend = true
+tracks/4/type = "audio"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("../AudioStreamPlayer2")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
 "clips": [{
 "end_offset": 1.4312,
 "start_offset": 0.0,
@@ -239,23 +226,47 @@ tracks/6/keys = {
 }],
 "times": PackedFloat32Array(1.0333333, 3.5, 6.0666666, 7.4333334)
 }
-tracks/6/use_blend = true
-tracks/7/type = "value"
-tracks/7/imported = false
-tracks/7/enabled = true
-tracks/7/path = NodePath("../AudioStreamPlayer:volume_db")
-tracks/7/interp = 1
-tracks/7/loop_wrap = true
-tracks/7/keys = {
+tracks/4/use_blend = true
+tracks/5/type = "value"
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/path = NodePath("../AudioStreamPlayer:volume_db")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/keys = {
 "times": PackedFloat32Array(6, 7.9666667),
 "transitions": PackedFloat32Array(1, 0.32987696),
 "update": 0,
 "values": [0.0, -23.376]
 }
+tracks/6/type = "value"
+tracks/6/imported = false
+tracks/6/enabled = true
+tracks/6/path = NodePath("../controles_clavier_gauche2:visible")
+tracks/6/interp = 1
+tracks/6/loop_wrap = true
+tracks/6/keys = {
+"times": PackedFloat32Array(0, 8),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [false, true]
+}
+tracks/7/type = "value"
+tracks/7/imported = false
+tracks/7/enabled = true
+tracks/7/path = NodePath("../controles_manettes:visible")
+tracks/7/interp = 1
+tracks/7/loop_wrap = true
+tracks/7/keys = {
+"times": PackedFloat32Array(0, 8),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [false, true]
+}
 tracks/8/type = "value"
 tracks/8/imported = false
 tracks/8/enabled = true
-tracks/8/path = NodePath("../controles_clavier_gauche2:visible")
+tracks/8/path = NodePath("../controles_clavier_droite2:visible")
 tracks/8/interp = 1
 tracks/8/loop_wrap = true
 tracks/8/keys = {
@@ -267,26 +278,26 @@ tracks/8/keys = {
 tracks/9/type = "value"
 tracks/9/imported = false
 tracks/9/enabled = true
-tracks/9/path = NodePath("../controles_manettes:visible")
-tracks/9/interp = 1
+tracks/9/path = NodePath("../Fight:position")
+tracks/9/interp = 2
 tracks/9/loop_wrap = true
 tracks/9/keys = {
-"times": PackedFloat32Array(0, 8),
-"transitions": PackedFloat32Array(1, 1),
-"update": 1,
-"values": [false, true]
+"times": PackedFloat32Array(0, 6, 6.6),
+"transitions": PackedFloat32Array(1, 1, 0.025382917),
+"update": 0,
+"values": [Vector2(-374, 335), Vector2(-374, 335), Vector2(660, 335)]
 }
 tracks/10/type = "value"
 tracks/10/imported = false
 tracks/10/enabled = true
-tracks/10/path = NodePath("../controles_clavier_droite2:visible")
+tracks/10/path = NodePath("../Fight:visible")
 tracks/10/interp = 1
 tracks/10/loop_wrap = true
 tracks/10/keys = {
-"times": PackedFloat32Array(0, 8),
+"times": PackedFloat32Array(4.9666667, 7.9666667),
 "transitions": PackedFloat32Array(1, 1),
 "update": 1,
-"values": [false, true]
+"values": [true, false]
 }
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_u0wmg"]
@@ -454,6 +465,8 @@ layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
+offset_left = -3.0
+offset_right = -3.0
 grow_horizontal = 2
 grow_vertical = 2
 
@@ -502,24 +515,8 @@ script = ExtResource("15_f0f5o")
 [node name="IcePlayer" parent="." instance=ExtResource("4_u0wmg")]
 position = Vector2(997, 391)
 
-[node name="TextureRect" type="TextureRect" parent="."]
-layout_mode = 1
-anchors_preset = 8
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-offset_left = -1262.0
-offset_top = -125.0
-offset_right = -61.33789
-offset_bottom = 291.0
-grow_horizontal = 2
-grow_vertical = 2
-scale = Vector2(0.5, 0.5)
-texture = ExtResource("5_opo4b")
-
 [node name="Fight" type="AnimatedSprite2D" parent="."]
-position = Vector2(-365, 591.00006)
+position = Vector2(-374, 335)
 scale = Vector2(1.4500002, 1.45)
 sprite_frames = SubResource("SpriteFrames_q0v1x")
 
