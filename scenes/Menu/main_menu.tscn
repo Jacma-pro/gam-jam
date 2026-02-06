@@ -159,7 +159,6 @@ offset_bottom = 720.0
 texture = ExtResource("2_akboc")
 
 [node name="TextureRect6" type="TextureRect" parent="."]
-visible = false
 layout_mode = 1
 anchors_preset = 8
 anchor_left = 0.5
